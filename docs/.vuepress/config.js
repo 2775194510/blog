@@ -1,6 +1,7 @@
 // .vuepress/config.js
 
 module.exports = {
+    base: "./",
     theme: 'reco',
     title: '小泽博客正在开发',
     markdown: {
