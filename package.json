@@ -1,0 +1,17 @@
+{
+  "name": "vuepress-starter",
+  "version": "1.0.0",
+  "description": "无",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "胡昊泽",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.9.9",
+    "vuepress-theme-reco": "^1.6.17"
+  }
+}
