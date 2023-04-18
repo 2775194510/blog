@@ -30,6 +30,26 @@ module.exports = {
               url: "https://www.ytmp3.cn/down/52951.mp3",
               //封面图片
               cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
+            },
+            {
+              //名字
+              name: "温柔只给意中人2",
+              //作者
+              artist: "MC梦柯",
+              //地址
+              url: "https://www.ytmp3.cn/down/52951.mp3",
+              //封面图片
+              cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
+            },
+            {
+              //名字
+              name: "温柔只给意中人3",
+              //作者
+              artist: "MC梦柯",
+              //地址
+              url: "https://www.ytmp3.cn/down/52951.mp3",
+              //封面图片
+              cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
             }
           ],
           // 是否默认缩小
