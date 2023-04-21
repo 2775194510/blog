@@ -20,7 +20,7 @@ module.exports = {
         "@vuepress-reco/vuepress-plugin-bgm-player",
         {
           audios: [
-            //本地歌曲
+            //网络歌曲
             {
               //名字
               name: "温柔只给意中人",
@@ -52,11 +52,11 @@ module.exports = {
               cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
             }
           ],
-          // 是否默认缩小
+          // // 是否默认缩小
           autoShrink: true,
-          // 缩小时缩为哪种模式
+          // // 缩小时缩为哪种模式
           shrinkMode: "float",
-          // 悬浮窗样式
+          // // 悬浮窗样式
           floatStyle: { bottom: "30px", "z-index": "999999" },
         },
       ],
@@ -106,20 +106,66 @@ module.exports = {
       logo: '/logo.png',
       authorAvatar: '/logo.png',
       subSidebar: 'auto',
+      sidebarDepth: 6,
+      sidebar: {
+        position: 'left',
+        depth: 6
+      },
       //导航
       nav: [
         { text: "首页", link: "/" },
+        {
+          text: '前端',
+          items:[
+              {text:'jQuery笔记', link: '/blogs/前端/jquery'}, 
+              {text:'vue2', link: '/blogs/前端/vue2'},
+              {text:'vue3', link: '/blogs/前端/vue3'},  
+              {text:'ES6', link: '/blogs/前端/ES6语法'}, 
+              {text:'其它链接', link: 'https://www.baidu.com/'}// 外部链接
+          ]
+      },
+      {
+        text: '后端',
+        items:[
+            {text:'Java', link: '/blogs/后端/java'}, 
+            {text:'Redis', link: '/blogs/后端/redis'}, 
+            {text:'Spring', link: '/blogs/后端/spring'}, 
+            {text:'SpringBoot', link: '/blogs/后端/spring'}, 
+            {text:'其它链接', link: 'https://www.baidu.com/'}// 外部链接
+        ]
+    },
+      {
+        text: '数据库',
+        items:[
+            {text:'Mysql', link: '/blogs/数据库/mysql'}, 
+            {text:'Oracle', link: '/blogs/数据库/oracle'}, 
+            {text:'学习链接', link: 'https://www.runoob.com/mysql/mysql-tutorial.html'}// 外部链接
+        ]
+    },
+        { text: "好玩的东西", 
+          items:[
+            {
+              text:'cmd',items:[
+                {
+                  text:'  打开本地电脑文件', 
+                  link: '/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件'
+                },
+            ]
+          },
+            {text: 'markdown语法',link: '/blogs/好玩的东西/markdown语法/markdown'}
+          ] 
+        },
         // { text: "guide", link: "/guide/" },
         { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' }
       ],
-      // 博客配置
+      // 博客配置ll
       blogConfig: {
         category: {
           location: 2, // 在导航栏菜单中所占的位置，默认2
           text: "必备知识", // 默认文案 “分类”
         },
         tag: {
-          location: 3, // 在导航栏菜单中所占的位置，默认3
+          location: 9, // 在导航栏菜单中所占的位置，默认3
           text: "Tag", // 默认文案 “标签”
         },
         socialLinks: [     // 信息栏展示社交信息
