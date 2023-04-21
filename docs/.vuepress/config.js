@@ -170,7 +170,7 @@ module.exports = {
         },
         socialLinks: [     // 信息栏展示社交信息
         { icon: 'reco-github', link: 'https://github.com/recoluan' },
-        { icon: 'reco-npm', link: 'https://www.npmjs.com/~reco_luan' }
+        { icon: 'reco-npm', link: 'https://gitee.com/hu-haoze/xiaoze-blog/pages' }
       ]
       }
     },
