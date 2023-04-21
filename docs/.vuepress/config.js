@@ -105,12 +105,10 @@ module.exports = {
       type: 'blog',
       logo: '/logo.png',
       authorAvatar: '/logo.png',
-      subSidebar: 'auto',
-      sidebarDepth: 6,
-      sidebar: {
-        position: 'left',
-        depth: 6
-      },
+      sidebar: 'auto',
+      sidebarDepth: 5,
+    // 设置侧边栏位置
+      sidebarPosition: 'left',
       //导航
       nav: [
         { text: "首页", link: "/" },
@@ -170,7 +168,8 @@ module.exports = {
         },
         socialLinks: [     // 信息栏展示社交信息
         { icon: 'reco-github', link: 'https://github.com/recoluan' },
-        { icon: 'reco-npm', link: 'https://gitee.com/hu-haoze/xiaoze-blog/pages' }
+        { icon: 'reco-mayun', link: 'https://gitee.com/hu-haoze/xiaoze-blog/pages' },
+        { icon: 'reco-csdn', link: 'https://blog.csdn.net/weixin_51472505?spm=1000.2115.3001.5343' }
       ]
       }
     },

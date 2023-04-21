@@ -1,7 +1,6 @@
 ---
 title: 【jQuery】1-基本语法
 date: 2023-4-19
-sidebar: 'auto'
 categories:
   - jQuery
 tags:
