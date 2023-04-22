@@ -104,7 +104,7 @@ module.exports = {
     themeConfig: {
       type: 'blog',
       logo: '/logo.png',
-      authorAvatar: '/logo.png',
+      authorAvatar: '/titletop.jpg',
       sidebar: 'auto',
       sidebarDepth: 5,
     // 设置侧边栏位置
@@ -140,6 +140,12 @@ module.exports = {
             {text:'学习链接', link: 'https://www.runoob.com/mysql/mysql-tutorial.html'}// 外部链接
         ]
     },
+    {
+      text: '其他',
+      items:[
+          {text:'gitee', link: '/blogs/其他/gitee'}, 
+      ]
+     },
         { text: "好玩的东西", 
           items:[
             {
