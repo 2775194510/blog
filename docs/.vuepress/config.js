@@ -106,9 +106,9 @@ module.exports = {
       logo: '/logo.png',
       authorAvatar: '/titletop.jpg',
       sidebar: 'auto',
-      sidebarDepth: 5,
     // 设置侧边栏位置
-      sidebarPosition: 'left',
+     sidebarDepth: 4,
+
       //导航
       nav: [
         { text: "首页", link: "/" },
@@ -144,6 +144,8 @@ module.exports = {
       text: '其他',
       items:[
           {text:'gitee', link: '/blogs/其他/gitee'}, 
+          {text:'linux', link: '/blogs/其他/linux'}, 
+
       ]
      },
         { text: "好玩的东西", 

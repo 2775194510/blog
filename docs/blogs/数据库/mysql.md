@@ -1,10 +1,12 @@
 ---
 title: 【mysql】1：mysql基本语法
+sidebar: auto
+sidebarDepth: 4
 date: 2023-4-22
 categories:
   - 数据库
 tags:
-  - sql
+  - mysql
 author: 胡昊泽
 ---
 
@@ -24,7 +26,7 @@ author: 胡昊泽
 ```
 ### 4：数据类型
 - MySQL 中定义数据字段的类型对数据库的优化是非常重要的。
-- MySQL 支持多种类型，大致可以分为三类：**数值**、**日期/时间** 和 **字符串\(字符\)** 类型。  
+- MySQL 支持多种类型，大致可以分为三类：**数值**、**日期/时间** 和 **字符串\(字符\)** 类型。    
 #### 4.1 数值类型
 - MySQL 支持所有标准 SQL 数值数据类型。
 - 这些类型包括严格数值数据类型( `INTEGER`、`SMALLINT`、`DECIMAL` 和 `NUMERIC` )，以及近似数值数据类型( `FLOAT`、`REAL` 和 `DOUBLE` `PRECISION` )。
