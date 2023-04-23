@@ -1,11 +1,11 @@
 ---
-title: 【spring】spring
-date: 2023-12-28
+title: 【redis】1：redis基本数据类型
+date: 2023-4-23
 sidebar: 'auto'
 categories:
   - 后端
 tags:
-  - spring
+  - redis
 ---
 
 哈哈哈哈

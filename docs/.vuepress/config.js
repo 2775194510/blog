@@ -128,7 +128,7 @@ module.exports = {
             {text:'Java', link: '/blogs/后端/java'}, 
             {text:'Redis', link: '/blogs/后端/redis'}, 
             {text:'Spring', link: '/blogs/后端/spring'}, 
-            {text:'SpringBoot', link: '/blogs/后端/spring'}, 
+            {text:'SpringBoot', link: '/blogs/后端/SpringBoot'}, 
             {text:'其它链接', link: 'https://www.baidu.com/'}// 外部链接
         ]
     },
