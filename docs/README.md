@@ -1,7 +1,7 @@
 ---
 home: true
+subSidebar: false
 heroImage: /logo.png
-bgImage: '/aboutUs.jpg'
 heroText: 学习永无止境，人生永无上限！
 description: Happy , EveryDay , 工作中学习，学习中生活!
 features:

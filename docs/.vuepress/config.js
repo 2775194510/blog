@@ -7,7 +7,7 @@ module.exports = {
       lineNumbers: true,
     },
     plugins: [
-      // 页面滑动自动跳转到对应的二级标题
+      // 页面滚动时自动激活侧边栏链接的插件
       [
         "@vuepress/active-header-links",
         {
@@ -15,55 +15,10 @@ module.exports = {
           headerAnchorSelector: ".header-anchor",
         },
       ], 
-      // 歌曲
-      [
-        "@vuepress-reco/vuepress-plugin-bgm-player",
-        {
-          audios: [
-            //网络歌曲
-            {
-              //名字
-              name: "温柔只给意中人",
-              //作者
-              artist: "MC梦柯",
-              //地址
-              url: "https://www.ytmp3.cn/down/52951.mp3",
-              //封面图片
-              cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
-            },
-            {
-              //名字
-              name: "温柔只给意中人2",
-              //作者
-              artist: "MC梦柯",
-              //地址
-              url: "https://www.ytmp3.cn/down/52951.mp3",
-              //封面图片
-              cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
-            },
-            {
-              //名字
-              name: "温柔只给意中人3",
-              //作者
-              artist: "MC梦柯",
-              //地址
-              url: "https://www.ytmp3.cn/down/52951.mp3",
-              //封面图片
-              cover: "https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200",
-            }
-          ],
-          // // 是否默认缩小
-          autoShrink: true,
-          // // 缩小时缩为哪种模式
-          shrinkMode: "float",
-          // // 悬浮窗样式
-          floatStyle: { bottom: "30px", "z-index": "999999" },
-        },
-      ],
     //  光标插件
       ['cursor-effects', {
           size: 2, // size of the particle, default: 2
-          shape: 'star', // ['star' | 'circle'], // shape of the particle, default: 'star'
+          shape: 'circle', // ['star' | 'circle'], // shape of the particle, default: 'star'
           zIndex: 999999999, // z-index property of the canvas, default: 999999999
        }
      ],
@@ -75,10 +30,16 @@ module.exports = {
       hideText: '客官不要走嘛~',
       recoverTime: 2000,
      }],
+  //    ["vuepress-plugin-nuggets-style-copy", {
+  //     copyText: "复制代码",
+  //     tip: {
+  //         content: "复制成功"
+  //     }
+  //  }],
     [
       'copyright',
       {
-        authorName: 'onion', // 选中的文字将无法被复制
+        authorName: '小泽', // 选中的文字将无法被复制
         minLength: 30, // 如果长度超过  30 个字符
       },
     ],
@@ -88,16 +49,15 @@ module.exports = {
         theme: ['z16','blackCat', 'whiteCat', 'haru1', 'haru2', 'haruto', 'koharu', 'izumi', 'shizuku', 'wanko', 'miku']
       }
     ],
-  
-    //    [
-    //   'vuepress-plugin-nuggets-style-copy',
-    //   {
-    //     // copyText: "复制代码",
-    //     // tip: {
-    //     //   content: "复制成功",
-    //     // },
-    //   },
-    // ],
+      // 只要把这个放进 config的plugins中就可以了 
+      ["sakura", {
+        num: 30,  // 默认数量
+        show: true, //  是否显示
+        zIndex: 999,   // 层级
+        img: {
+          replace: false,  // false 默认图 true 换图 需要填写httpUrl地址
+        }     
+      }],
   
     ],
   
@@ -105,10 +65,129 @@ module.exports = {
       type: 'blog',
       logo: '/logo.png',
       authorAvatar: '/titletop.jpg',
-      sidebar: 'auto',
-    // 设置侧边栏位置
-     sidebarDepth: 4,
-
+      subSidebar: 'auto',//在所有页面中启用自动生成子侧边栏，原 sidebar 仍然兼容,
+      sidebar: {
+        '/blogs/后端/': [
+          {
+            title: '后端',
+            collapsable: false,
+            children: [
+              {
+                title: 'java',
+                collapsable: false,
+                children: [
+                  'java/Java面向对象',
+                  'java/Java反射',
+                ]
+              },
+              {
+                title: 'redis',
+                collapsable: false,
+                children: [
+                  'redis/redis基本数据类型',
+                ]
+              },
+              {
+                title: 'spring',
+                collapsable: false,
+                children: [
+                  'spring/spring',
+                ]
+              },
+              {
+                title: 'springboot',
+                collapsable: false,
+                children: [
+                  'springboot/SpringBoot',
+                ]
+              },
+            ]
+          }
+        ],
+        '/blogs/其他/': [
+          {
+            title: '其他',
+            collapsable: false,
+            children: [
+              {
+                title: 'gitee',
+                collapsable: false,
+                children: [
+                  'gitee',
+                ]
+              },
+              {
+                title: 'linux',
+                collapsable: false,
+                children: [
+                  'linux',
+                ]
+              }
+            ]
+          }
+        ],
+        '/blogs/数据库/': [
+          {
+            title: '数据库',
+            collapsable: false,
+            children: [
+              {
+                title: 'mysql',
+                collapsable: false,
+                children: [
+                  'mysql/mysql基本语法',
+                ]
+              },
+              {
+                title: 'oracle',
+                collapsable: false,
+                children: [
+                  'oracle/oracle基本语法',
+                ]
+              }
+            ]
+          }
+        ],
+        '/blogs/前端/': [
+          {
+            title: '前端知识',
+            collapsable: false,
+            children: [
+              {
+                title: 'jQuery',
+                collapsable: false,
+                children: [
+                  'jquery',
+                ]
+              },
+              {
+                title: 'vue2',
+                collapsable: false,
+                children: [
+                  'vue2/vue2',
+                ]
+              },
+              {
+                title: 'vue3',
+                collapsable: false,
+                children: [
+                  'vue3/vue3',
+                ]
+              },
+              {
+                title: 'ES6',
+                collapsable: false,
+                children: [
+                  'ES6/ES6语法',
+                ]
+              },
+            ]
+          }
+        ],
+      },
+  
+     // 设置侧边栏位置
+      sidebarDepth: 4,
       //导航
       nav: [
         { text: "首页", link: "/" },
@@ -116,27 +195,27 @@ module.exports = {
           text: '前端',
           items:[
               {text:'jQuery笔记', link: '/blogs/前端/jquery'}, 
-              {text:'vue2', link: '/blogs/前端/vue2'},
-              {text:'vue3', link: '/blogs/前端/vue3'},  
-              {text:'ES6', link: '/blogs/前端/ES6语法'}, 
+              {text:'vue2', link: '/blogs/前端/vue2/vue2'},
+              {text:'vue3', link: '/blogs/前端/vue3/vue3'},  
+              {text:'ES6', link: '/blogs/前端/ES6/ES6语法'}, 
               {text:'其它链接', link: 'https://www.baidu.com/'}// 外部链接
           ]
       },
       {
         text: '后端',
         items:[
-            {text:'Java', link: '/blogs/后端/java'}, 
-            {text:'Redis', link: '/blogs/后端/redis'}, 
-            {text:'Spring', link: '/blogs/后端/spring'}, 
-            {text:'SpringBoot', link: '/blogs/后端/SpringBoot'}, 
+            {text:'Java', link: '/blogs/后端/java/Java面向对象'}, 
+            {text:'Redis', link: '/blogs/后端/redis/redis基本数据类型'}, 
+            {text:'Spring', link: '/blogs/后端/spring/spring'}, 
+            {text:'SpringBoot', link: '/blogs/后端/springboot/SpringBoot'}, 
             {text:'其它链接', link: 'https://www.baidu.com/'}// 外部链接
         ]
     },
       {
         text: '数据库',
         items:[
-            {text:'Mysql', link: '/blogs/数据库/mysql'}, 
-            {text:'Oracle', link: '/blogs/数据库/oracle'}, 
+            {text:'Mysql', link: '/blogs/数据库/mysql/mysql基本语法'}, 
+            {text:'Oracle', link: '/blogs/数据库/oracle/oracle基本语法'}, 
             {text:'学习链接', link: 'https://www.runoob.com/mysql/mysql-tutorial.html'}// 外部链接
         ]
     },

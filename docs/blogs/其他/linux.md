@@ -1,6 +1,7 @@
 ---
 title: 【Linux】1：Linux基本语法
 date: 2023-4-23
+sidebar: auto
 categories:
   - Linux
 tags:

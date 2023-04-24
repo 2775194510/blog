@@ -1,7 +1,7 @@
 ---
 title: 【cmd】1:cmd打开根据不同数字来打开本地文件
 date: 2023-4-18
-sidebar: 'auto'
+sidebar: auto
 categories:
   - cmd
 tags:

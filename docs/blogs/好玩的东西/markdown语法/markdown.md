@@ -1,7 +1,7 @@
 ---
 title: 【markdown】markdown语法
 date: 2023-4-14
-sidebar: 'true'
+sidebar: auto
 author: 胡昊泽
 categories:
   - markdown语法
