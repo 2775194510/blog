@@ -184,6 +184,28 @@ module.exports = {
             ]
           }
         ],
+        '/blogs/算法/': [
+          {
+            title: '算法大全',
+            collapsable: false,
+            children: [
+              {
+                title: 'Java',
+                collapsable: false,
+                children: [
+                  'Java/Java算法',
+                ]
+              },
+              {
+                title: 'MySQL',
+                collapsable: false,
+                children: [
+                  'MySQL/MySQL算法',
+                ]
+              }
+            ]
+          }
+        ],
       },
   
      // 设置侧边栏位置
@@ -219,6 +241,14 @@ module.exports = {
             {text:'学习链接', link: 'https://www.runoob.com/mysql/mysql-tutorial.html'}// 外部链接
         ]
     },
+    {
+      text: '算法',
+      items:[
+          {text:'Java', link: '/blogs/算法/java/Java算法'}, 
+          {text:'Mysql', link: '/blogs/算法/MySQL/MySQL算法'}, 
+          {text:'刷题链接', link: 'https://leetcode.cn/problemset/all/'}, 
+      ]
+  },
     {
       text: '其他',
       items:[
