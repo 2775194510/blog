@@ -206,6 +206,36 @@ module.exports = {
             ]
           }
         ],
+        '/blogs/工具/': [
+          {
+            title: '常用工具大全',
+            collapsable: false,
+            children: [
+              {
+                title: 'css',
+                collapsable: false,
+                children: [
+                  {
+                    title: 'h5',
+                    collapsable: false,
+                    children: [
+                      'css/h5/h5',
+                    ]
+                  },
+                  {
+                    title: 'vue',
+                    collapsable: false,
+                    children: [
+                      'css/vue/vue杂货铺',
+                      'css/vue/vue模板',
+                      'css/vue/vue常用css',
+                    ]
+                  }
+                ]
+              },
+            ]
+          }
+        ],
       },
   
      // 设置侧边栏位置
@@ -270,6 +300,12 @@ module.exports = {
             {text: 'markdown语法',link: '/blogs/好玩的东西/markdown语法/markdown'}
           ] 
         },
+        {
+          text: '工具集合',
+          items:[
+              {text:'常用css', link: '/blogs/工具/css/h5/h5'},  
+          ]
+      },
         // { text: "guide", link: "/guide/" },
         { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' }
       ],
