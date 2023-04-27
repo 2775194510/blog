@@ -158,6 +158,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                   'jquery',
+                  'jquery常用'
                 ]
               },
               {
