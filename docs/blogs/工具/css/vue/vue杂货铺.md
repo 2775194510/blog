@@ -261,21 +261,119 @@ Vue.use(ElementUI);
 ```
 
 ### 5-2 animate
-```npm
+```js
 npm install animate.css --save
 
 import 'animate.css';
 ```
 
 ### 5-3 axios
-```npm
+
+- ① 在 **main.js** 中引入axios
+```js
 npm install axios
 
 import axios from "axios";
+import './permission'
+import store from './store'
 Vue.prototype.$axios = axios
+```  
+- ② 编写 **http.js** 文件来实现前后置拦截 
+```js
+import axios from 'axios';
+
+const http = axios.create();
+
+// 请求拦截器
+http.interceptors.request.use(config => {
+  // 在发送请求之前的逻辑处理
+  // 可以修改请求配置，添加请求头等
+  //config.headers.Authorization = token
+  return config;
+}, error => {
+  // 请求错误处理
+  return Promise.reject(error);
+});
+
+// 响应拦截器
+http.interceptors.response.use(response => {
+  // 在获取到响应数据之后的逻辑处理
+  // 可以对响应数据进行处理、错误处理等
+
+  return response;
+}, error => {
+  // 响应错误处理
+  return Promise.reject(error);
+});
+
+export default http;
 
 ```
+- ③ 编写 **permission.js** 来实现路由跳转时检查token
+> `token` 已经存储到了 `localStorage` 中，所以需要编写 `store/index.js` (需要用到vuex) 
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    token: '',
+    userInfo: JSON.parse(sessionStorage.getItem("userInfo"))
+    //sessionStorage中得userInfo是序列化得字符串，这里要将他反序列化成对象。
+  },
+  mutations: {
+    SET_TOKEN: (state, token) => {
+      state.token = token
+      localStorage.setItem("token", token)
+    },
+    SET_USERINFO: (state, userInfo) => {
+      state.userInfo = userInfo
+      //sessionStorage中不可以存入对象，所以要将他序列化
+      sessionStorage.setItem("userInfo", JSON.stringify(userInfo))
+    },
+    REMOVE_INFO: (state) => {
+      localStorage.setItem("token", '')
+      sessionStorage.setItem("userInfo", JSON.stringify(''))
+      state.userInfo = {}
+    }
+  },
+  getters: {
+    getUser: state => {
+      return state.userInfo
+    }
+  },
+  actions: {},
+  modules: {}
+})
+```
+
+```js
+import router from "./router";
+// 路由判断登录 根据路由配置文件的参数
+router.beforeEach((to, from, next) => {
+    console.log(to)
+    if (to.matched.some(record => record.meta.requireAuth)) { // 判断该路由是否需要登录权限
+        const token = localStorage.getItem("token")
+        console.log("------------" + token)
+        if (token) { // 判断当前的token是否存在 ； 登录存入的token
+            if (to.path === '/login') {
+            } else {
+                next()
+            }
+        } else {
+            alert("您的权限不足，请您登录！")
+            next({
+                path: '/login'
+            })
+        }
+    } else {
+        next()
+    }
+})
+
+```  
 ### 5-4 sass-loader
 ```npm
 npm install --save-dev sass-loader

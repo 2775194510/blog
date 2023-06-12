@@ -1,6 +1,7 @@
 ---
 home: true
 subSidebar: false
+bgImage: '/aboutUs.jpg'
 heroImage: /logo.png
 heroText: 学习永无止境，人生永无上限！
 description: Happy , EveryDay , 工作中学习，学习中生活!
@@ -13,7 +14,7 @@ features:
   details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
 footer: MIT Licensed | Copyright © 2018-present Evan You
 heroImageStyle: {
-  maxHeight: '200px',
+  maxHeight: '300px',
   display: block,
   margin: '6rem auto 1.5rem',
   borderRadius: '50%',

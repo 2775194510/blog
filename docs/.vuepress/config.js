@@ -237,6 +237,126 @@ module.exports = {
             ]
           }
         ],
+        '/blogs/面试/': [
+          {
+            title: '面试大全',
+            collapsable: false,
+            children: [
+              {
+                title: '计算机网络',
+                collapsable: false,
+                children: [
+                  '计算机网络上',
+                  '计算机网络下'
+                ]
+              },
+              {
+                title: '操作系统',
+                collapsable: false,
+                children: [
+                  '操作系统',
+                ]
+              },
+              {
+                title: 'JVM',
+                collapsable: false,
+                children: [
+                  'jvm笔记',
+                  'jvm细节'
+                ]
+              },
+              {
+                title: 'Java',
+                collapsable: false,
+                children: [
+                  {
+                    title: 'Java基础',
+                    collapsable: false,
+                    children: [
+                      'Java基础上',
+                      'Java基础下'
+                    ]
+                  },
+                  {
+                    title: 'Java集合',
+                    collapsable: false,
+                    children: [
+                      'HashMap',
+                      'HashMap的线程安全问题',
+                      'ConcurrentHashMap',
+                      'Java集合高频面试题'
+                    ]
+                  },
+                  {
+                    title: 'Java并发',
+                    collapsable: false,
+                    children: [
+                      'AQS',
+                      'Java多线程面试-基础',
+                      'Java多线程总结版',
+                      '进程通信和线程通信的方式',
+                      '如何设计线程池',
+                      'juc'
+                    ]
+                  }
+                ]
+              },
+               {
+                title: 'Linux',
+                collapsable: false,
+                children: [
+                  'Linux',
+                  'shell'
+                ]
+              },
+               {
+                title: 'Spring',
+                collapsable: false,
+                children: [
+                  'Spring',
+                ]
+              },
+               {
+                title: 'Mybatis',
+                collapsable: false,
+                children: [
+                  'Mybatis',
+                ]
+              },
+                {
+                title: 'Mysql',
+                collapsable: false,
+                children: [
+                  'MySQL',
+                  'MySQL基础',
+                  'MySQL索引连环18问！',
+                ]
+              },
+              {
+                title: 'Redis',
+                collapsable: false,
+                children: [
+                  'Redis',
+                ]
+              },
+              {
+                title: 'Dubbo',
+                collapsable: false,
+                children: [
+                  'Dubbo面试题',
+                ]
+              },
+              {
+                title: 'MQ',
+                collapsable: false,
+                children: [
+                  'MQ面试题',
+                  'Kafka面试题'
+                ]
+              },
+            ]
+          }
+        ],
       },
   
      // 设置侧边栏位置
@@ -304,7 +424,8 @@ module.exports = {
         {
           text: '工具集合',
           items:[
-              {text:'常用css', link: '/blogs/工具/css/h5/h5'},  
+            { text: '常用css', link: '/blogs/工具/css/h5/h5' },  
+            { text: '面试大全', link: '/blogs/面试/Java基础上' },  
           ]
       },
         // { text: "guide", link: "/guide/" },
