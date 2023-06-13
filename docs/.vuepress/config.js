@@ -317,6 +317,13 @@ module.exports = {
                 ]
               },
                {
+                title: 'SpringSecurity',
+                collapsable: false,
+                children: [
+                  'SpringSecurity',
+                ]
+              },
+               {
                 title: 'Mybatis',
                 collapsable: false,
                 children: [
