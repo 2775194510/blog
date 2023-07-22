@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-756bbf49\",\"path\":\"/blogs/%E9%9D%A2%E8%AF%95/juc.html\",\"title\":\"juc\",\"lang\":\"en-US\",\"frontmatter\":{\"title\":\"juc\",\"date\":\"2023-6-12\",\"sidebar\":\"auto\",\"keys\":[\"c5abde72f7faa2110550fc5a776622a2\"],\"categories\":[\"面经\"],\"tags\":[\"面经\"]},\"headers\":[{\"level\":2,\"title\":\"一：juc概述。\",\"slug\":\"一-juc概述。\",\"link\":\"#一-juc概述。\",\"children\":[]},{\"level\":2,\"title\":\"二：卖票。\",\"slug\":\"二-卖票。\",\"link\":\"#二-卖票。\",\"children\":[{\"level\":3,\"title\":\"1：过去javase的写法\",\"slug\":\"_1-过去javase的写法\",\"link\":\"#_1-过去javase的写法\",\"children\":[]},{\"level\":3,\"title\":\"2：Lock得使用\",\"slug\":\"_2-lock得使用\",\"link\":\"#_2-lock得使用\",\"children\":[]},{\"level\":3,\"title\":\"3：Lambda表达式\",\"slug\":\"_3-lambda表达式\",\"link\":\"#_3-lambda表达式\",\"children\":[]}]},{\"level\":2,\"title\":\"三：线程间的通信\",\"slug\":\"三-线程间的通信\",\"link\":\"#三-线程间的通信\",\"children\":[]},{\"level\":2,\"title\":\"四：多线程得8锁\",\"slug\":\"四-多线程得8锁\",\"link\":\"#四-多线程得8锁\",\"children\":[]},{\"level\":2,\"title\":\"五：集合线程不安全\",\"slug\":\"五-集合线程不安全\",\"link\":\"#五-集合线程不安全\",\"children\":[]},{\"level\":2,\"title\":\"六：实现多线程方式\",\"slug\":\"六-实现多线程方式\",\"link\":\"#六-实现多线程方式\",\"children\":[]},{\"level\":2,\"title\":\"七：CountDownLatch\",\"slug\":\"七-countdownlatch\",\"link\":\"#七-countdownlatch\",\"children\":[]},{\"level\":2,\"title\":\"八：CyclicBarrier\",\"slug\":\"八-cyclicbarrier\",\"link\":\"#八-cyclicbarrier\",\"children\":[]},{\"level\":2,\"title\":\"九：读写锁\",\"slug\":\"九-读写锁\",\"link\":\"#九-读写锁\",\"children\":[]},{\"level\":2,\"title\":\"十：阻塞队列\",\"slug\":\"十-阻塞队列\",\"link\":\"#十-阻塞队列\",\"children\":[]},{\"level\":2,\"title\":\"十一：线程池\",\"slug\":\"十一-线程池\",\"link\":\"#十一-线程池\",\"children\":[{\"level\":3,\"title\":\"1：一池N个\",\"slug\":\"_1-一池n个\",\"link\":\"#_1-一池n个\",\"children\":[]},{\"level\":3,\"title\":\"2：一池一个\",\"slug\":\"_2-一池一个\",\"link\":\"#_2-一池一个\",\"children\":[]},{\"level\":3,\"title\":\"3：伸缩池\",\"slug\":\"_3-伸缩池\",\"link\":\"#_3-伸缩池\",\"children\":[]},{\"level\":3,\"title\":\"4：几个重要的参数（七个）\",\"slug\":\"_4-几个重要的参数-七个\",\"link\":\"#_4-几个重要的参数-七个\",\"children\":[]}]},{\"level\":2,\"title\":\"十二：线程池的原理\",\"slug\":\"十二-线程池的原理\",\"link\":\"#十二-线程池的原理\",\"children\":[]},{\"level\":2,\"title\":\"十三：strem流式计算\",\"slug\":\"十三-strem流式计算\",\"link\":\"#十三-strem流式计算\",\"children\":[]},{\"level\":2,\"title\":\"十四：分支合并框架\",\"slug\":\"十四-分支合并框架\",\"link\":\"#十四-分支合并框架\",\"children\":[{\"level\":3,\"title\":\"异步回调\",\"slug\":\"异步回调\",\"link\":\"#异步回调\",\"children\":[]}]},{\"level\":2,\"title\":\"十五：JMM\",\"slug\":\"十五-jmm\",\"link\":\"#十五-jmm\",\"children\":[]}]}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}
