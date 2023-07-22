@@ -30,12 +30,12 @@ module.exports = {
       hideText: '客官不要走嘛~',
       recoverTime: 2000,
     }],
-    //    ["vuepress-plugin-nuggets-style-copy", {
-    //     copyText: "复制代码",
-    //     tip: {
-    //         content: "复制成功"
-    //     }
-    //  }],
+    // ['vuepress-plugin-nuggets-style-copy', {
+    //   copyText: "复制代码",
+    //   tip: {
+    //     content: "复制成功"
+    //   }
+    // }],
     [
       'copyright',
       {
@@ -246,12 +246,16 @@ module.exports = {
                       title: '开发必备',
                       collapsable: false,
                       children: [
+                        'spring/springboot/开发必备/1：maven包大全',
+                        'spring/springboot/开发必备/2：application.yml',
+                        'spring/springboot/开发必备/3：SpringBoot统一解决跨域处理',
                       ]
                     },
                     {
                       title: '业务需求',
                       collapsable: false,
                       children: [
+                        'spring/springboot/业务需求/1：开发小工具',
                       ]
                     },
                     {
