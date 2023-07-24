@@ -85,6 +85,7 @@ module.exports = {
               collapsable: false,
               children: [
                 'redis/redis基本数据类型',
+                'redis/缓存击穿，穿透解决',
               ]
             },
             {
