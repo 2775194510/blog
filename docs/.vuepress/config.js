@@ -78,6 +78,7 @@ module.exports = {
               children: [
                 'java/Java面向对象',
                 'java/Java反射',
+                'java/Java-Stream大全',
               ]
             },
             {
