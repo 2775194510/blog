@@ -9,6 +9,7 @@ tags:
 
 [学习地址](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#mapToInt-java.util.function.ToIntFunction-)
 
+## 1:api学习
 ```java
 package com.xiaoze.exer.Exercise.StreamTestPack;
 
@@ -116,3 +117,5 @@ public class StreamTest {
 `查找以A开头的name：`Alice  
 
 :::
+
+## 2:实战
