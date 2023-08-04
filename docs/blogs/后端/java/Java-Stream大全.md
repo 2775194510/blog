@@ -119,3 +119,99 @@ public class StreamTest {
 :::
 
 ## 2:实战
+### 2.1：分页（skip、limit）
+- `skip` ：从那个索引开始
+- `limit`：截取数量
+```java
+   int total = resList.size();
+   List<QfeedqueryDetailRes> result = resList.stream().skip((qfeedqueryDetailVo.getCurrentPage() - 1) * qfeedqueryDetailVo.getPageSize()).limit(qfeedqueryDetailVo.getPageSize()).collect(Collectors.toList());   
+```
+
+### 2.2：升序降序（sorted）
+:::warning 注意
+根据对象集合中的某个字段升序和降序
+:::
+```java
+if(paixu.getOrderBy() == 1){  //升序
+      collect1 = collect.stream()
+                    .sorted(Comparator.comparing(ResultFrontHouse::getScore))
+                    .collect(Collectors.toList());
+}else {  //降序
+      collect1 = collect.stream()
+                .sorted(Comparator.comparing(ResultFrontHouse::getScore).reversed())
+                .collect(Collectors.toList());
+  }
+```
+### 2.3：求集合交集、差集、并集
+```java
+public class StreamListTest {
+    public static void main(String[] args)throws Exception {
+        List<String> list1 = new ArrayList<>();
+        list1.add("1");
+        list1.add("2");
+        list1.add("3");
+        list1.add("5");
+        list1.add("6");
+
+        List<String> list2 = new ArrayList<>();
+        list2.add("1");
+        list2.add("2");
+        list2.add("3");
+        list2.add("4");
+        list2.add("5");
+        list2.add("7");
+        list2.add("9");
+
+        // 交集
+        List<String> intersection = list1.stream().filter(item -> list2.contains(item)).collect(Collectors.toList());
+        System.out.println("---交集 intersection---");
+        intersection.parallelStream().forEach(System.out :: println);
+
+        // 差集 (list1 - list2)
+        List<String> reduce1 = list1.stream().filter(item -> !list2.contains(item)).collect(Collectors.toList());
+        System.out.println("---差集 reduce1 (list1 - list2)---");
+        reduce1.parallelStream().forEach(System.out :: println);
+
+        // 差集 (list2 - list1)
+        List<String> reduce2 = list2.stream().filter(item -> !list1.contains(item)).collect(Collectors.toList());
+        System.out.println("---差集 reduce2 (list2 - list1)---");
+        reduce2.parallelStream().forEach(System.out :: println);
+
+
+        //合拼差
+        reduce1.addAll(reduce2);
+        System.out.println("---合拼差 reduce1 (list2 -> list1)---");
+        reduce1.parallelStream().forEach(System.out :: println);
+
+
+        // 并集
+        List<String> listAll = list1.parallelStream().collect(Collectors.toList());
+        List<String> listAll2 = list2.parallelStream().collect(Collectors.toList());
+        listAll.addAll(listAll2);
+        System.out.println("---并集 listAll---");
+        listAll.parallelStream().forEachOrdered(System.out :: println);
+
+        // 去重并集
+        List<String> listAllDistinct = listAll.stream().distinct().collect(Collectors.toList());
+        System.out.println("---得到去重并集 listAllDistinct---");
+        listAllDistinct.parallelStream().forEachOrdered(System.out :: println);
+
+        System.out.println("---原来的List1---");
+        list1.parallelStream().forEachOrdered(System.out :: println);
+        System.out.println("---原来的List2---");
+        list2.parallelStream().forEachOrdered(System.out :: println);
+
+    }
+}
+```
+
+### 2.4：求一组数组的最大值、最小值、个数、数据和、平均数
+```java
+  List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+  IntSummaryStatistics stats = list.stream().mapToInt(x -> x).summaryStatistics();
+  System.out.println("最小值：" + stats.getMin());
+  System.out.println("最大值：" + stats.getMax());
+  System.out.println("个数：" + stats.getCount());
+  System.out.println("和：" + stats.getSum());
+  System.out.println("平均数：" + stats.getAverage());
+```
