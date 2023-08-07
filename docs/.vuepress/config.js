@@ -103,6 +103,19 @@ module.exports = {
                 'springboot/SpringBoot',
               ]
             },
+            {
+              title: 'springcloud',
+              collapsable: false,
+              children: [
+                'springcloud/1：springcloud入门',
+                'springcloud/2：eureka服务注册',
+                'springcloud/3：ribbon负载均衡',
+                'springcloud/4：Nacos注册中心',
+                'springcloud/5：Nacos配置管理',
+                'springcloud/6：Feign远程调用',
+                'springcloud/7：Gateway服务网关',
+              ]
+            },
           ]
         }
       ],
@@ -123,6 +136,7 @@ module.exports = {
               collapsable: false,
               children: [
                 'linux',
+                'linux特殊命令',
               ]
             }
           ]
@@ -266,6 +280,7 @@ module.exports = {
                       children: [
                         'spring/springboot/自定义注解/1：自定义校验字段注解',
                         'spring/springboot/自定义注解/2：统计方法执行时间注解',
+                        'spring/springboot/自定义注解/3：设置接口访问频率',
                       ]
                     },
                   ]
@@ -426,6 +441,7 @@ module.exports = {
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
           { text: 'Spring', link: '/blogs/后端/spring/spring' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/SpringBoot' },
+          { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
         ]
       },
@@ -450,7 +466,6 @@ module.exports = {
         items: [
           { text: 'gitee', link: '/blogs/其他/gitee' },
           { text: 'linux', link: '/blogs/其他/linux' },
-
         ]
       },
       {
