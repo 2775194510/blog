@@ -138,7 +138,14 @@ module.exports = {
                 'linux',
                 'linux特殊命令',
               ]
-            }
+            },
+            {
+              title: 'nginx',
+              collapsable: false,
+              children: [
+                'Nginx',
+              ]
+            },
           ]
         }
       ],
@@ -466,6 +473,7 @@ module.exports = {
         items: [
           { text: 'gitee', link: '/blogs/其他/gitee' },
           { text: 'linux', link: '/blogs/其他/linux' },
+          { text: 'nginx', link: '/blogs/其他/Nginx' },
         ]
       },
       {
