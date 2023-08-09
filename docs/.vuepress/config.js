@@ -230,6 +230,29 @@ module.exports = {
           ]
         }
       ],
+      '/blogs/好玩的东西/': [
+        {
+          title: '各种杂货铺',
+          collapsable: false,
+          children: [
+            {
+              title: '电脑',
+              collapsable: false,
+              children: [
+                'cmd命令/1：cmd打开本地电脑文件',
+                'cmd命令/2：杂货铺',
+              ]
+            },
+            {
+              title: 'markdown',
+              collapsable: false,
+              children: [
+                'markdown语法/markdown',
+              ]
+            }
+          ]
+        }
+      ],
       '/blogs/工具/': [
         {
           title: '常用工具大全',
@@ -479,14 +502,7 @@ module.exports = {
       {
         text: "好玩的东西",
         items: [
-          {
-            text: 'cmd', items: [
-              {
-                text: '  打开本地电脑文件',
-                link: '/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件'
-              },
-            ]
-          },
+          { text: '电脑杂货铺', link: '/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件' },
           { text: 'markdown语法', link: '/blogs/好玩的东西/markdown语法/markdown' }
         ]
       },
