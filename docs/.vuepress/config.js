@@ -100,7 +100,7 @@ module.exports = {
               title: 'springboot',
               collapsable: false,
               children: [
-                'springboot/SpringBoot',
+                'springboot/1：SpringBoot拦截器',
               ]
             },
             {
@@ -486,7 +486,7 @@ module.exports = {
           { text: 'Java', link: '/blogs/后端/java/Java面向对象' },
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
           { text: 'Spring', link: '/blogs/后端/spring/spring' },
-          { text: 'SpringBoot', link: '/blogs/后端/springboot/SpringBoot' },
+          { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
         ]
