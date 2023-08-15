@@ -313,6 +313,17 @@ module.exports = {
                         'spring/springboot/自定义注解/3：设置接口访问频率',
                       ]
                     },
+                    {
+                      title: '整合三方',
+                      collapsable: false,
+                      children: [
+                        'spring/springboot/整合三方/1：springboot整合easyExcel',
+                        'spring/springboot/整合三方/2：springboot整合word',
+                        'spring/springboot/整合三方/3：springboot基于模板word导出',
+                        'spring/springboot/整合三方/4：springboot整合pdf',
+
+                      ]
+                    },
                   ]
                 },
               ]
