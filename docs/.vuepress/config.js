@@ -296,6 +296,7 @@ module.exports = {
                         'spring/springboot/开发必备/2：application.yml',
                         'spring/springboot/开发必备/3：SpringBoot统一解决跨域处理',
                         'spring/springboot/开发必备/4：SpringBoot统一解决异常处理',
+
                       ]
                     },
                     {
@@ -303,6 +304,8 @@ module.exports = {
                       collapsable: false,
                       children: [
                         'spring/springboot/业务需求/1：开发小工具',
+                        'spring/springboot/业务需求/2：常用sql大全',
+
                       ]
                     },
                     {
@@ -322,6 +325,7 @@ module.exports = {
                         'spring/springboot/整合三方/2：springboot整合word',
                         'spring/springboot/整合三方/3：springboot基于模板word导出',
                         'spring/springboot/整合三方/4：springboot整合pdf',
+                        'spring/springboot/整合三方/5：springboot整合QQ邮箱',
 
                       ]
                     },
