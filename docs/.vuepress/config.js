@@ -295,6 +295,7 @@ module.exports = {
                         'spring/springboot/开发必备/1：maven包大全',
                         'spring/springboot/开发必备/2：application.yml',
                         'spring/springboot/开发必备/3：SpringBoot统一解决跨域处理',
+                        'spring/springboot/开发必备/4：SpringBoot统一解决异常处理',
                       ]
                     },
                     {
