@@ -40,7 +40,8 @@ author: 胡昊泽
 - ①：首先自定义一个异常`BusinessException`，然后让他继承`RuntimeException`，`BusinessException`中就两个字段，`错误码` 和 `错误信息`。
 - ②：异常类中会有一些构造方法，会根据传入的`错误码`，去`exception.properties`中寻找对应的`错误信息`（在这里有个工具类，里面会根据`错误码`去文件中进行寻找） **所以这里需要注意的是：如何加载异常配置文件，并且去里面寻找去匹配？**
 - ③：自定义异常基本上实现完成了，然后定义`全局异常处理器`，就是我抛出这个异常了然后做什么操作？
-- ④：既然我`统一`要给前端返回相同的`响应模板`，就可以在`全局异常处理器`中去实现这个功能。
+- ④：既然我`统一`要给前端返回相同的`响应模板`，就可以在`全局异常处理器`中去实现这个功能。(之前用的是`统一响应类`返回，但是发现格式好像不正确，不是我想要的，所以更改一下)
+- ⑤：**补充**，定义`全局异常响应类`，然后去全局异常处理器中去控制返回格式。
 
 
 ## 3：代码实现
@@ -211,7 +212,7 @@ public class ErrorCodeLoadUtil {
 ```
 ### 3）全局异常处理器
 
-统一返回类
+统一返回类，（不是异常情况下使用R返回），异常情况下后续已经更改，有一个统一异常响应类。
 ```java
 package com.xiaoze.exer.pojo;
 
@@ -295,6 +296,38 @@ public interface ResultCode {
     public static Integer ERROR = 20001;
 }
 ```
+异常响应类
+```java
+package com.xiaoze.exer.pojo;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * @author 小泽
+ * @create 2023-08-16  13:15
+ * 异常返回类
+ * 记得每天敲代码哦
+ */
+@Data
+public class ExceptionResult {
+    @ApiModelProperty(value = "返回码")
+    private String code;
+
+    @ApiModelProperty(value = "返回消息")
+    private String message;
+
+    @ApiModelProperty(value = "异常信息")
+    private String exception;
+    //失败静态方法
+    public static ExceptionResult error(String code,String message){
+        ExceptionResult resultVo=new ExceptionResult();
+        resultVo.setCode(code);
+        resultVo.setMessage(message);
+        return resultVo;
+    }
+}
+```
 
 全局异常处理器
 ```java
@@ -331,13 +364,16 @@ public class GloablExceptonHandler {
         return R.error().code(e.getCode()).message(e.getMsg());
     }
 
-    @ExceptionHandler(BusinessException.class)
-    public R error(BusinessException e){
+     @ExceptionHandler(BusinessException.class)
+    public ExceptionResult error(BusinessException e){
         System.out.println("-----------------------------------------------");
         log.error(ExceptionUtil.getMessage(e));
         e.printStackTrace();
-        //封装异常统一响应数据
-        return R.error().code(Integer.valueOf(e.getCode())).message(e.getErrorMsg());
+        //封装成为ExceptionResult对象
+        ExceptionResult error = ExceptionResult.error(e.getCode(), e.getErrorMsg());
+        error.setException(e.getStackTrace()[0].getClassName() + "   >>   方法名称： " + e.getStackTrace()[0].getMethodName() + "   >>   controller层抛出异常位置：  " + e.getStackTrace()[0].getLineNumber());
+        System.out.println("-----------------------------------------------");
+        return error;
     }
 }
 
