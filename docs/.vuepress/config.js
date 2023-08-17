@@ -51,7 +51,7 @@ module.exports = {
     ],
     // 只要把这个放进 config的plugins中就可以了 
     ["sakura", {
-      num: 30,  // 默认数量
+      num: 15,  // 默认数量
       show: true, //  是否显示
       zIndex: 999,   // 层级
       img: {
