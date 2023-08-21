@@ -297,7 +297,6 @@ module.exports = {
                         'spring/springboot/开发必备/3：SpringBoot统一解决跨域处理',
                         'spring/springboot/开发必备/4：SpringBoot统一解决异常处理',
                         'spring/springboot/开发必备/5：公共类',
-
                       ]
                     },
                     {
@@ -316,6 +315,8 @@ module.exports = {
                         'spring/springboot/自定义注解/1：自定义校验字段注解',
                         'spring/springboot/自定义注解/2：统计方法执行时间注解',
                         'spring/springboot/自定义注解/3：设置接口访问频率',
+                        'spring/springboot/自定义注解/4：SpringBoot+Vue实现数据加密',
+
                       ]
                     },
                     {
