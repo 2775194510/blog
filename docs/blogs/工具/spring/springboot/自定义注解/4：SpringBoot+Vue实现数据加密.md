@@ -603,17 +603,20 @@ public class CryptoJSRequiredAspect {
         Object[] args = joinPoint.getArgs();
         log.error(String.valueOf(args));
 
-        for (Class<?> parameterType : parameterTypes) {
-            //将解密出的内容转换成User 类对象
-            if(parameterType.equals(User.class)){
-                // 3.将解密出的内容转换成对象
-                User user = new ObjectMapper().readValue(unSecrtMessage, User.class);
-                System.out.println(user);
+          //这里请求体中的参数值肯定是一个对象（这里采用动态去进行赋值，不用在意请求体是什么类型，直接获取请求体类型，然后转换、赋值即可）
+        args[0] = new ObjectMapper().readValue(unSecrtMessage, parameterTypes[0]);
 
-                // 将User类对象赋值给模型属性
-                args[0] = user;
-            }
-        }
+        // for (Class<?> parameterType : parameterTypes) {
+        //     //将解密出的内容转换成User 类对象
+        //     if (parameterType.equals(User.class)) {
+        //         // 3.将解密出的内容转换成对象
+        //         User user = new ObjectMapper().readValue(unSecrtMessage, User.class);
+        //         System.out.println(user);
+        //
+        //         // 将User类对象赋值给模型属性
+        //         args[0] = user;
+        //     }
+        // }
         return joinPoint.proceed(args);
     }
 
