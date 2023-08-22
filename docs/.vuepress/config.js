@@ -116,6 +116,36 @@ module.exports = {
                 'springcloud/7：Gateway服务网关',
               ]
             },
+            {
+              title: '消息中间件',
+              collapsable: false,
+              children: [
+                {
+                  title: 'rabbitmq',
+                  collapsable: false,
+                  children: [
+                    'rabbitmq/1：RabbitMq',
+                  ]
+                },
+              ]
+            },
+          ]
+        }
+      ],
+      '/blogs/运维/': [
+        {
+          title: '运维篇',
+          collapsable: false,
+          children: [
+            {
+              title: 'docker',
+              collapsable: false,
+              children: [
+                'docker/1：docker安装部署',
+                'docker/2：docker命令',
+                'docker/3：docker安装三方指南',
+              ]
+            },
           ]
         }
       ],
@@ -230,6 +260,7 @@ module.exports = {
           ]
         }
       ],
+
       '/blogs/好玩的东西/': [
         {
           title: '各种杂货铺',
@@ -490,7 +521,14 @@ module.exports = {
           { text: 'Spring', link: '/blogs/后端/spring/spring' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
+          { text: '消息中间件', link: '/blogs/后端/rabbitmq/1：RabbitMq' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
+        ]
+      },
+      {
+        text: '运维',
+        items: [
+          { text: 'docker', link: '/blogs/运维/docker/1：docker安装部署' },
         ]
       },
       {
