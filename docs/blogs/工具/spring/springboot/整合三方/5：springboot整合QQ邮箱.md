@@ -18,7 +18,7 @@ author: 胡昊泽
 ![如图操作](./img/image2.png)
 
 ## 2：导包
-```maven
+```xml
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-mail</artifactId>
@@ -27,7 +27,7 @@ author: 胡昊泽
 ```
 
 ## 3：application.yml配置
-```xml
+```yml
 #服务端口
 spring:
   servlet:

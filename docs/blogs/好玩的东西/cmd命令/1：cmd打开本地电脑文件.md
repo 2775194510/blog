@@ -13,7 +13,7 @@ tags:
 :::
 ## 1：创建bat命令脚本
 ## 2：编写脚本
-```cmd
+```bat
 @chcp 65001 
 @echo off
 ::title

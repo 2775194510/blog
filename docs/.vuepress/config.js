@@ -359,7 +359,7 @@ module.exports = {
                         'spring/springboot/整合三方/3：springboot基于模板word导出',
                         'spring/springboot/整合三方/4：springboot整合pdf',
                         'spring/springboot/整合三方/5：springboot整合QQ邮箱',
-
+                        'spring/springboot/整合三方/6：springboot整合jasypt实现yml配置文件密码加密',
                       ]
                     },
                   ]

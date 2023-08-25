@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>6：springboot整合jasypt实现yml配置文件密码加密 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.766037be.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/8.e0db1b5e.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/29.9deb1414.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.7c343e30.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.4110b4de.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.de8c740c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.47b813fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.c3158127.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.be4d6096.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.5615af3a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.5f584256.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.7ded2292.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.3a884b79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.ae8b853f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.239fd792.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.3162fa3d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.cab9b087.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.de507f4a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.80bfe40a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.0ca07949.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.cf23f56c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.761b8bb8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.7bfe91e4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.fd72ae2b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.6ee15803.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.5b23a503.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.7c5d95fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.52e36f35.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.63007a9f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.aa39b1f7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.69e1a72d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.664070fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.90bc6c57.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.d5800eee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.1e0bb264.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.08b6199f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.dc8d451a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.d6ae2c8b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.fd9562c1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.24970f80.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.85588c2e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.4e2905e9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.7fd1dce0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.51ddbcf4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.bb6eef6f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.edf2d95d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.ce611d09.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.b6319bd6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.6191c63f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.44412204.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.e76b4ebc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.47db609b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.c5da9d55.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.6772c743.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.46a7fb28.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.009d9710.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.3b15e16e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.35528ed2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.670e78b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.c9699784.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.cfeec14b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.d32d398c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.09c0fba9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.998b2628.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.be02439c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.1ad4a93b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.902e3f68.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.2ac2ee65.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.63933476.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.e28c7653.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.83136401.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.02c8c4d0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.da26e1c2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.03a492d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.2802281d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.504a5c5e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.25350afb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.321eb243.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.8d5c66a9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.7429491c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.7dbbca28.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.7b71cacb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.9fe755a7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.c6c236f8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.ddb5df69.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.fbb18c24.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.e80db81c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/9.913eb74d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.e537684e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.363f70b6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.391278d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.91f2b1c6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.a0352dee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.f58e73ac.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.d0254eef.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>84</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>26</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f26d6d;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#f26d6d;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#f8b26a;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>常用工具大全</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>css</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>h5</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="sidebar-link">1-h5常用css总结</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading"><span>vue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/css/vue/vue杂货铺.html" class="sidebar-link">1-vue杂货铺</a></li><li><a href="/xiaoze-blog/blogs/工具/css/vue/vue模板.html" class="sidebar-link">2-vue常用模板总结</a></li><li><a href="/xiaoze-blog/blogs/工具/css/vue/vue常用css.html" class="sidebar-link">3-vue常用css总结</a></li></ul></section></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>spring</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>springboot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-3"><p class="sidebar-heading"><span>开发必备</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/开发必备/1：maven包大全.html" class="sidebar-link">1：maven包大全</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/开发必备/2：application.yml.html" class="sidebar-link">2：application.yml.</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/开发必备/3：SpringBoot统一解决跨域处理.html" class="sidebar-link">3：SpringBoot统一解决跨域处理</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/开发必备/4：SpringBoot统一解决异常处理.html" class="sidebar-link">4：SpringBoot统一解决异常处理</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/开发必备/5：公共类.html" class="sidebar-link">5：公共类</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-3"><p class="sidebar-heading"><span>业务需求</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/业务需求/1：开发小工具.html" class="sidebar-link">1：开发小工具</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/业务需求/2：常用sql大全.html" class="sidebar-link">2：常用sql大全</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-3"><p class="sidebar-heading"><span>自定义注解</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="sidebar-link">1：自定义校验字段注解</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/2：统计方法执行时间注解.html" class="sidebar-link">2：统计方法执行时间注解</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/3：设置接口访问频率.html" class="sidebar-link">3：设置接口访问频率</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/4：SpringBoot+Vue实现数据加密.html" class="sidebar-link">4：SpringBoot+Vue实现数据加密</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-3"><p class="sidebar-heading open"><span>整合三方</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/1：springboot整合easyExcel.html" class="sidebar-link">1：springboot整合easyExcel</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/2：springboot整合word.html" class="sidebar-link">2：springboot整合word</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/3：springboot基于模板word导出.html" class="sidebar-link">3：springboot基于模板word导出</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/4：springboot整合pdf.html" class="sidebar-link">4：springboot整合pdf</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/5：springboot整合QQ邮箱.html" class="sidebar-link">5：springboot整合QQ邮箱</a></li><li><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/6：springboot整合jasypt实现yml配置文件密码加密.html" class="active sidebar-link">6：springboot整合jasypt实现yml配置文件密码加密</a></li></ul></section></li></ul></section></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>6：springboot整合jasypt实现yml配置文件密码加密</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">6：springboot整合jasypt实现yml配置文件密码加密</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>胡昊泽</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>8/25/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>Java</span><span class="tag-item" data-v-8a445198>springboot</span></i></div></div> <div class="theme-reco-content content__default"><div class="custom-block warning"><p class="title">需求背景</p><p>springboot项目配置yml文件中的密码不能暴露，比如数据库用户名、密码等，如何操作？答案肯定是加密，难道还能不写嘛？哈哈哈哈哈</p></div><h2 id="_1-前置工作。"><a href="#_1-前置工作。" class="header-anchor">#</a> 1：前置工作。</h2> <h3 id="_1-导包"><a href="#_1-导包" class="header-anchor">#</a> 1）导包</h3> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.ulisesbocchio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jasypt-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.1.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p style="color:red;">这里有个大坑，就是版本分界线的问题，3.0.0是个分界线。我也是解决了一个小时，终于发现是版本解密的问题，最后会说出原因以及如何解决？</p> <h3 id="_2-思路"><a href="#_2-思路" class="header-anchor">#</a> 2）思路</h3> <p>既然要机密解密，那开发者肯定要知道<code>加密前后的内容</code>以及<code>加密的盐</code>,这些<code>加密后的内容</code>应该由开发者人员提供。所以提供一个批处理文件来进行<code>加密</code>和<code>解密</code>。</p> <ul><li>①：企业中可能是自己实现的加密解密，然后打成了jar包，就是为了简单封装一下，没必要的逻辑，知识为了简化开发。</li> <li>②：我直接利用<code>jasypt</code>jar包来进行加密解密，手段是采用<code>bat文件</code>来控制<code>加密解密内容输出</code>，和企业效果实现一样。</li></ul> <h3 id="_3-编写bat脚本。"><a href="#_3-编写bat脚本。" class="header-anchor">#</a> 3）编写bat脚本。</h3> <blockquote><p>可以循环加密解密，不用关闭重新打开，三个参数</p></blockquote> <ul><li>第一个是加密解密</li> <li>第二个是加密解密内容</li> <li>第三个是盐</li></ul> <p style="color:red;">然后通过bat脚本来进行控制。</p> <div class="language-bat line-numbers-mode"><pre class="language-text"><code>@chcp 65001 
+@echo off
+::title
+@echo.
+title 加解密内容输出：
+@echo.
+@echo. ~请输入以下内容：
+@echo.
+@echo.
+
+set /p one=请输入加密解密方式(1加密 2解密)：
+@echo.
+set /p two=请输入要加解密的内容:
+@echo.
+set /p three=请输入要加解密的盐:
+@echo.
+
+:loop
+
+if %one%==1 (
+	java -cp E:\maven\repository\org\jasypt\jasypt\1.9.3\jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input=%two% password=%three% algorithm=PBEWithMD5AndDES  
+)else if %one%==2 (
+	java -cp E:\maven\repository\org\jasypt\jasypt\1.9.3\jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input=%two% password=%three% algorithm=PBEWithMD5AndDES
+)
+
+set /p one=请输入加密解密方式(1加密 2解密)：
+@echo.
+set /p two=请输入要加解密的内容:
+@echo.
+set /p three=请输入要加解密的盐:
+@echo.
+goto loop
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h3 id="_4-java获取加密解密"><a href="#_4-java获取加密解密" class="header-anchor">#</a> 4）Java获取加密解密</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EncryptTests</span> <span class="token punctuation">{</span>
+ 
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">ALGORITHM_INFO</span> <span class="token operator">=</span> <span class="token string">&quot;PBEWithMD5AndDES&quot;</span><span class="token punctuation">;</span>
+ 
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">PASSWORD_INFO</span> <span class="token operator">=</span> <span class="token string">&quot;qwert12345&quot;</span><span class="token punctuation">;</span>
+ 
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">contextLoads</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+ 
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">StringEncryptor</span> stringEncryptor<span class="token punctuation">;</span>
+ 
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">encryptPwd</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">StandardPBEStringEncryptor</span> standardPBEStringEncryptor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StandardPBEStringEncryptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//配置文件中配置如下的算法</span>
+        standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">setAlgorithm</span><span class="token punctuation">(</span><span class="token constant">ALGORITHM_INFO</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//配置文件中配置的password</span>
+        standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span><span class="token constant">PASSWORD_INFO</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//要加密的文本</span>
+        <span class="token class-name">String</span> name <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span><span class="token string">&quot;root&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> password <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span><span class="token string">&quot;root&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> redisPassword <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span><span class="token string">&quot;123456&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//将加密的文本写到配置文件中</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;name=&quot;</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;password=&quot;</span> <span class="token operator">+</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;redisPassword=&quot;</span> <span class="token operator">+</span> redisPassword<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">//要解密的文本</span>
+        <span class="token class-name">String</span> name2 <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span><span class="token string">&quot;FarrmxSQX5uwtH/NZRxy+g==&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> password2 <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span><span class="token string">&quot;vhiaYB1gl9zPj16yu7uMkA==&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> redisPassword2 <span class="token operator">=</span> standardPBEStringEncryptor<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span><span class="token string">&quot;ZII7UphhbVuJ8c3oxPUeyw==&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//解密后的文本</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;name2=&quot;</span> <span class="token operator">+</span> name2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;password2=&quot;</span> <span class="token operator">+</span> password2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;redisPassword2=&quot;</span> <span class="token operator">+</span> redisPassword2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+    <span class="token punctuation">}</span>
+ 
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><h2 id="_2-springboot实现"><a href="#_2-springboot实现" class="header-anchor">#</a> 2：springboot实现</h2> <h3 id="_1-导入需要的包"><a href="#_1-导入需要的包" class="header-anchor">#</a> 1）导入需要的包</h3> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.ulisesbocchio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jasypt-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.1.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="_2-yml配置"><a href="#_2-yml配置" class="header-anchor">#</a> 2）yml配置</h3> <p style="color:red;">这里采用的是2.1.1版本,默认的 iv-generator-classname 是 org.jasypt.iv.RandomIvGenerator,所以写不写无所谓，只需要一个密钥就可以了</p> <blockquote><p>比如之前我的密码是0开头的，所以它的解析方式不用</p></blockquote> <ul><li>1、以0b开头的数字，会被当做二进制数处理</li> <li>2、以0x开头的数字，会被当做十六进制数处理</li> <li>3、以0开头的数字，会被当做八进制数处理</li></ul> <blockquote><p>解决办法：''包裹</p></blockquote> <p>但是就是我通过bat拿到了加密后的内容，password: 'ENC(E+bqBnmc7SOBiploQdkpgw==)'，肯定是不行的，所以得修改数据库密码，就可以解决这个问题。</p> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">jasypt</span><span class="token punctuation">:</span>
+  <span class="token key atrule">encryptor</span><span class="token punctuation">:</span>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> xiaoze_exer   <span class="token comment"># 密钥</span>
+    <span class="token key atrule">pool-size</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token comment">#    algorithm: PBEWithMD5AndDES</span>
+<span class="token comment">#    iv-generator-classname: org.jasypt.salt.RandomSaltGenerator</span>
+<span class="token comment">#服务端口</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+    <span class="token key atrule">multipart</span><span class="token punctuation">:</span>
+      <span class="token key atrule">max-request-size</span><span class="token punctuation">:</span> 30MB
+      <span class="token key atrule">max-file-size</span><span class="token punctuation">:</span> 1024MB
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> exer
+  <span class="token key atrule">mvc</span><span class="token punctuation">:</span>
+    <span class="token key atrule">pathmatch</span><span class="token punctuation">:</span>
+      <span class="token key atrule">matching-strategy</span><span class="token punctuation">:</span> <span class="token string">'ANT_PATH_MATCHER '</span>
+  <span class="token key atrule">mail</span><span class="token punctuation">:</span>
+    <span class="token comment"># 下面这个是QQ邮箱host ， 企业邮箱 : smtp.exmail.qq.com</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> smtp.qq.com
+    <span class="token comment"># tencent mail port  这个是固定的</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">465</span>
+    <span class="token comment"># 你的QQ邮箱</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> huhaoze0429@qq.com
+    <span class="token comment"># 进入邮箱配置后得到的授权码</span>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> fmjlxvxxajtcdfce
+    <span class="token comment">#test-connection: true</span>
+    <span class="token key atrule">default-encoding</span><span class="token punctuation">:</span> utf<span class="token punctuation">-</span><span class="token number">8</span>
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mail</span><span class="token punctuation">:</span>
+        <span class="token key atrule">smtp</span><span class="token punctuation">:</span>
+          <span class="token key atrule">auth</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">starttls</span><span class="token punctuation">:</span>
+            <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+            <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> smtps
+<span class="token comment">#返回json的全局时间格式</span>
+  <span class="token key atrule">jackson</span><span class="token punctuation">:</span>
+    <span class="token key atrule">serialization</span><span class="token punctuation">:</span>
+      <span class="token key atrule">write-dates-as-timestamps</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">date-format</span><span class="token punctuation">:</span> yyyy<span class="token punctuation">-</span>MM<span class="token punctuation">-</span>dd HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss
+    <span class="token key atrule">time-zone</span><span class="token punctuation">:</span> GMT+8
+<span class="token comment">#  cloud:</span>
+<span class="token comment">#    nacos:</span>
+<span class="token comment">#      discovery:</span>
+<span class="token comment">#        server-addr: localhost:8848</span>
+  <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
+    <span class="token key atrule">active</span><span class="token punctuation">:</span> dev
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/collegestudentsloosechangenetwork<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> ENC(E+bqBnmc7SOBiploQdkpgw==)  <span class="token comment">#ENC()是他的固定格式</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">database</span><span class="token punctuation">:</span> <span class="token number">0</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+<span class="token key atrule">mybatis-plus</span><span class="token punctuation">:</span>
+<span class="token comment">#  configuration:</span>
+<span class="token comment">#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span>
+  <span class="token key atrule">global-config</span><span class="token punctuation">:</span>
+    <span class="token key atrule">db-config</span><span class="token punctuation">:</span>
+      <span class="token key atrule">logic-delete-field</span><span class="token punctuation">:</span> deleted <span class="token comment"># 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)</span>
+      <span class="token key atrule">logic-delete-value</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token comment"># 逻辑已删除值(默认为 1)</span>
+      <span class="token key atrule">logic-not-delete-value</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token comment"># 逻辑未删除值(默认为 0)</span>
+    <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>com/xiaoze/fraulein/mapper/xml/<span class="token important">*.xml</span>
+
+<span class="token key atrule">qiniu</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessKey</span><span class="token punctuation">:</span> zKhTOqWZCDZenbQ2js2<span class="token punctuation">-</span>D<span class="token punctuation">-</span>WbFGyicyhTbc3tFFyl
+  <span class="token key atrule">secretKey</span><span class="token punctuation">:</span>  4VWXeZxfD5isbwdSSTyJ6oEHdi9Mnd7wP1wnGOm8
+  <span class="token key atrule">bucketName</span><span class="token punctuation">:</span>  collegestudent
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> xiaozestudy.love
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8085</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br></div></div><h2 id="_3-版本比较"><a href="#_3-版本比较" class="header-anchor">#</a> 3：版本比较</h2> <h3 id="_1-3-0-0之后"><a href="#_1-3-0-0之后" class="header-anchor">#</a> 1）3.0.0之后</h3> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.ulisesbocchio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jasypt-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>我第一次开始的时候导入的是<code>3.0.3</code>，这个版本，yml内容不变，就还是只有一个盐，但是我发现它仍然会提示错误，错误内容如下：
+<img src="/xiaoze-blog/assets/img/20230825.e6daf6f9.png" alt="图片错误">
+结果找资料发现，3.0.0版本之后，官方更改了加密算法，结果导致了这种情况，所以我们在yml中改成官方更新过的加密算法就可以了,必须设置<code>algorithm</code>和<code>iv-generator-classname</code>。</p> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">jasypt</span><span class="token punctuation">:</span>
+  <span class="token key atrule">encryptor</span><span class="token punctuation">:</span>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> xiaoze_exer   <span class="token comment"># 密钥</span>
+    <span class="token key atrule">pool-size</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">algorithm</span><span class="token punctuation">:</span> PBEWithMD5AndDES
+    <span class="token key atrule">iv-generator-classname</span><span class="token punctuation">:</span> org.jasypt.iv.NoIvGenerator
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="_2-3-0-0之前"><a href="#_2-3-0-0之前" class="header-anchor">#</a> 2）3.0.0之前</h3> <p>就直接导入2.1.1版本的包，直接配置就好了。</p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/工具/spring/springboot/整合三方/5：springboot整合QQ邮箱.html" class="prev">
+          5：springboot整合QQ邮箱
+        </a></span> <!----></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_1-前置工作。" class="sidebar-link reco-side-_1-前置工作。" data-v-b57cc07c>1：前置工作。</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_1-导包" class="sidebar-link reco-side-_1-导包" data-v-b57cc07c>1）导包</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_2-思路" class="sidebar-link reco-side-_2-思路" data-v-b57cc07c>2）思路</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_3-编写bat脚本。" class="sidebar-link reco-side-_3-编写bat脚本。" data-v-b57cc07c>3）编写bat脚本。</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_4-java获取加密解密" class="sidebar-link reco-side-_4-java获取加密解密" data-v-b57cc07c>4）Java获取加密解密</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_2-springboot实现" class="sidebar-link reco-side-_2-springboot实现" data-v-b57cc07c>2：springboot实现</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_1-导入需要的包" class="sidebar-link reco-side-_1-导入需要的包" data-v-b57cc07c>1）导入需要的包</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_2-yml配置" class="sidebar-link reco-side-_2-yml配置" data-v-b57cc07c>2）yml配置</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_3-版本比较" class="sidebar-link reco-side-_3-版本比较" data-v-b57cc07c>3：版本比较</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_1-3-0-0之后" class="sidebar-link reco-side-_1-3-0-0之后" data-v-b57cc07c>1）3.0.0之后</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%B7%A5%E5%85%B7/spring/springboot/%E6%95%B4%E5%90%88%E4%B8%89%E6%96%B9/6%EF%BC%9Aspringboot%E6%95%B4%E5%90%88jasypt%E5%AE%9E%E7%8E%B0yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86.html#_2-3-0-0之前" class="sidebar-link reco-side-_2-3-0-0之前" data-v-b57cc07c>2）3.0.0之前</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.766037be.js" defer></script><script src="/xiaoze-blog/assets/js/8.e0db1b5e.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/29.9deb1414.js" defer></script>
+  </body>
+</html>
