@@ -336,6 +336,7 @@ module.exports = {
                       children: [
                         'spring/springboot/业务需求/1：开发小工具',
                         'spring/springboot/业务需求/2：常用sql大全',
+                        'spring/springboot/业务需求/3：SpringBoot启动时加载数据库数据到redis',
 
                       ]
                     },
