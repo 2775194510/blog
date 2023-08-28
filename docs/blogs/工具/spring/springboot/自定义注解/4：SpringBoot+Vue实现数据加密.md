@@ -381,9 +381,9 @@ public class SecretUtil {
     /***
      * key和iv值需要和前端一致
      */
-    public static final String KEY = "xjnx_bizplat_key";
+    public static final String KEY = "123456798";
 
-    public static final String IV = "xjnx_bizplat_ivm";
+    public static final String IV = "13245678911111";
 
     /**
      * 加密方法
