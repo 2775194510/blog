@@ -338,6 +338,8 @@ module.exports = {
                         'spring/springboot/业务需求/2：常用sql大全',
                         'spring/springboot/业务需求/3：SpringBoot启动时加载数据库数据到redis',
                         'spring/springboot/业务需求/4：SpringBoot启动时加载数据库数据到项目中',
+                        'spring/springboot/业务需求/5：Springboot集成Jaxb加载数据到xml',
+
                       ]
                     },
                     {
