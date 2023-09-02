@@ -342,6 +342,7 @@ module.exports = {
                         'spring/springboot/业务需求/4：SpringBoot启动时加载数据库数据到项目中',
                         'spring/springboot/业务需求/5：Springboot集成Jaxb加载数据到xml',
                         'spring/springboot/业务需求/6：接受、发送xml报文',
+                        'spring/springboot/业务需求/7：结合mapStruct实现JavaBean转换',
 
                       ]
                     },
