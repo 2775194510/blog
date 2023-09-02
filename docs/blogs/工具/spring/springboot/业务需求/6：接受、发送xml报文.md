@@ -356,9 +356,11 @@ controller
      * @return java.lang.String
      */
     @PostMapping(value = "/dataInfo", produces = "text/html;charset=UTF-8")
-    public void initAcctOrgData(HttpServletRequest request, HttpServletResponse response) {
+    public String initAcctOrgData(HttpServletRequest request, HttpServletResponse response) {
         // 定义xml报文中对应的JavaBean
         UserTest user = new UserTest();
+        String ns = "http://esb.xjrccb.com/1000200036";
+        String result = "";
         try {
             // 1.获取请求中的xml报文，转换成字符串
             String reqt = new String(readInputStream(request.getInputStream()), "UTF-8");
@@ -372,11 +374,17 @@ controller
 
             // 4.进行对应的操作......
             logger.error(String.valueOf(user));
+
+            // 5.JavaBean转换成xml
+            String userXml = XMLUtil.convertToXml1(user, "UTF-8");
+
+            // 6.统一返回xml格式
+            result = rtnData(userXml, ns);
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("chucuole");
         }
-        // return R.ok().data("usertest",user);
+        return result;
     }
 
     /**
@@ -444,6 +452,7 @@ xml报文测试
 ```
 结果展示
 ![111](./img/image3.png)
+![111](./img/image4.png)
 ## 3：后端发送XML数据
 ### 1）编写实体类
 ```java
