@@ -79,6 +79,8 @@ module.exports = {
                 'java/Java面向对象',
                 'java/Java反射',
                 'java/Java-Stream大全',
+                'java/Java位运算符详解',
+
               ]
             },
             {
