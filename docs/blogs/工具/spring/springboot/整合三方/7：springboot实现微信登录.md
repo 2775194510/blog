@@ -16,6 +16,7 @@ author: 胡昊泽
 在现在大部分网站，都支持微信登录或者支付宝登录，所以我们应该如何实现？
 :::
 
+[微信登录官方网站](https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html) 
 <p style="color:red">但是有个问题，要想真正实现微信登录，需要具备一些必要的条件，比如，微信公众号需要认证等，所以我借助之前写过的一些来实现，我个人公众号目前无法实现这一功能。</p>
 
 <!-- [微信登录官网地址](https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html) -->
