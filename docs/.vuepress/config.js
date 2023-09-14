@@ -178,6 +178,13 @@ module.exports = {
                 'Nginx',
               ]
             },
+            {
+              title: 'lua',
+              collapsable: false,
+              children: [
+                'lua脚本',
+              ]
+            },
           ]
         }
       ],
@@ -345,6 +352,7 @@ module.exports = {
                         'spring/springboot/业务需求/5：Springboot集成Jaxb加载数据到xml',
                         'spring/springboot/业务需求/6：接受、发送xml报文',
                         'spring/springboot/业务需求/7：结合mapStruct实现JavaBean转换',
+                        'spring/springboot/业务需求/8：调用三方接口示例实现',
 
                       ]
                     },
@@ -564,6 +572,8 @@ module.exports = {
           { text: 'gitee', link: '/blogs/其他/gitee' },
           { text: 'linux', link: '/blogs/其他/linux' },
           { text: 'nginx', link: '/blogs/其他/Nginx' },
+          { text: 'lua', link: '/blogs/其他/lua脚本' },
+
         ]
       },
       {
