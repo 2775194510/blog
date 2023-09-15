@@ -353,6 +353,7 @@ module.exports = {
                         'spring/springboot/业务需求/6：接受、发送xml报文',
                         'spring/springboot/业务需求/7：结合mapStruct实现JavaBean转换',
                         'spring/springboot/业务需求/8：调用三方接口示例实现',
+                        'spring/springboot/业务需求/9：数据脱敏',
 
                       ]
                     },
