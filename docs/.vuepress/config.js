@@ -183,6 +183,7 @@ module.exports = {
               collapsable: false,
               children: [
                 'lua脚本',
+                'redis操作lua脚本'
               ]
             },
           ]
@@ -574,6 +575,7 @@ module.exports = {
           { text: 'linux', link: '/blogs/其他/linux' },
           { text: 'nginx', link: '/blogs/其他/Nginx' },
           { text: 'lua', link: '/blogs/其他/lua脚本' },
+
 
         ]
       },
