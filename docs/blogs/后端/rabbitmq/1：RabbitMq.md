@@ -605,7 +605,6 @@ public void testSendMap() throws InterruptedException {
 public MessageConverter jsonMessageConverter(){
     return new Jackson2JsonMessageConverter();
 }
-```
 
 
 

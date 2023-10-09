@@ -129,6 +129,13 @@ module.exports = {
                     'rabbitmq/1：RabbitMq',
                   ]
                 },
+                {
+                  title: 'rocketmq',
+                  collapsable: false,
+                  children: [
+                    'rocketmq/1：RocketMq',
+                  ]
+                },
               ]
             },
           ]
