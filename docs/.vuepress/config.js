@@ -90,7 +90,8 @@ module.exports = {
                 'juc/1：线程基础',
                 'juc/2：CompletableFuture',
                 'juc/2：CompletableFuture个人代码',
-
+                'juc/3：Java锁',
+                'juc/4：LockSupport与线程中断',
               ]
             },
             {
