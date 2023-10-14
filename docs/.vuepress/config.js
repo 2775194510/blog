@@ -152,6 +152,8 @@ module.exports = {
                   collapsable: false,
                   children: [
                     'rocketmq/1：RocketMq',
+                    'rocketmq/2：RocketMq简单集成文档',
+
                   ]
                 },
               ]

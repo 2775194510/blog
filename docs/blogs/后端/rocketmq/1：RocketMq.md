@@ -2,9 +2,9 @@
 title: 1：RocketMq
 date: 2023-10-07
 categories:
-  - rabbit
+  - rocket
 tags:
-  - rabbit
+  - rocket
 ---
 
 ## 1：环境安装
