@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>6：volatile与Java内存模型 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.df24bf45.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/9.a4d96106.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/10.95c61c6f.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.6b294692.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.50a230e0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.37ae30ae.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.44ce82ae.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.81441134.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.79b3c627.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.0fa42b12.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.b70af14f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.df866b07.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.9b242738.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.5d471e3a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.b6c8f668.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.f41f352a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.a1f7bcd2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.3a06a28d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.a2790d9d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.4e79cd83.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.873261d1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.5c0400dc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.c4e955fe.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.56613a86.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.399eec60.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.3ad4df29.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.7fd492c2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.38844342.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.f5fe10ed.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.8af9fb52.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.64ea56ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.c208ffeb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.5e6874cd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.bac79e6c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.6cfdc6cd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.c82b59d4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.63243456.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.00e8157c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.3c32f8f0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.7af642fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.4a2ef773.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.a63df502.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.3df8ccde.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.177c2dd8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.45769b4a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.bd819eda.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.422a4159.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.97d6b601.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.5b06cff3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.3fe4d319.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.6e2a4ea7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.bdb11d66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.501b1b4d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.3bc05237.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.e407cc61.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.f72bac79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.ec03f2a0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.2035fc31.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.7df75dda.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.204a3ea3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.7b44494e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.22028cf2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.24bb357e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.67282e43.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.0b16efb2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.5c71e6e7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.8b95de70.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.733d4f08.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.014626fe.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.a19cb183.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.1dfbef59.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.c6fb8cc4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.cb438cd7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.c47e6636.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.42f9c96a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.94293581.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.e769fbc4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.ea697ff5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.88e1a5c0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.eee99705.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.3023445c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.2e6333bc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.2f66c58f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.75495d3e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.a2c9e333.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.05675d77.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.c85182a6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.597df56d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.c8c6c9ed.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.011203b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.0563b56c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.a0b3f2fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.2b44940f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.160ed240.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.1e4b1ddf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.6bd33961.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.7f302697.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.61fd10e2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.7688de91.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.ac30f786.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.6e07756e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.cb60d831.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.b35d2549.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.1b003de3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.c74863b7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.73cb5e27.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.a849eb1a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.93e84c12.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.661e7517.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.c6bfcfe4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.9145207c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.deb4dfd9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.523288da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.73af592f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.81f980cb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.252027bb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.4cce9a9e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.c758a8ff.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>107</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>29</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#fb9b5f;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#abbd81;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#abbd81;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>后端</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="sidebar-link">1：java面向对象</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java反射.html" class="sidebar-link">2：java反射</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java-Stream大全.html" class="sidebar-link">3：Stream</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java位运算符详解.html" class="sidebar-link">4：Java位运算符详解</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>Juc</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="sidebar-link">1：线程基础</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture.html" class="sidebar-link">2：CompletableFuture</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture个人代码.html" class="sidebar-link">2：CompletableFuture个人代码</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/3：Java锁.html" class="sidebar-link">3：Java锁</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/4：LockSupport与线程中断.html" class="sidebar-link">4：LockSupport与线程中断</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/5：Java内存模型之JMM.html" class="sidebar-link">5：Java内存模型之JMM</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/6：volatile与Java内存模型.html" class="active sidebar-link">6：volatile与Java内存模型</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/7：CAS.html" class="sidebar-link">7：CAS</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/8：原子操作类之18罗汉增强.html" class="sidebar-link">8：原子操作类之18罗汉增强</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/9：聊聊ThreadLocal.html" class="sidebar-link">9：聊聊ThreadLocal</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="sidebar-link">1：redis基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/后端/redis/缓存击穿，穿透解决.html" class="sidebar-link">2：缓存击穿、穿透解决办法</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>spring</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="sidebar-link">1：spring入门</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>springboot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="sidebar-link">1：SpringBoot拦截器</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>springcloud</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="sidebar-link">1：springcloud入门</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/2：eureka服务注册.html" class="sidebar-link">2：eureka服务注册</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/3：ribbon负载均衡.html" class="sidebar-link">3：ribbon负载均衡</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/4：Nacos注册中心.html" class="sidebar-link">4：Nacos注册中心</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/5：Nacos配置管理.html" class="sidebar-link">5：Nacos配置管理</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/6：Feign远程调用.html" class="sidebar-link">6：Feign远程调用</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/7：Gateway服务网关.html" class="sidebar-link">7：Gateway服务网关</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>消息中间件</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>rabbitmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="sidebar-link">1：RabbitMq</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading"><span>rocketmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rocketmq/1：RocketMq.html" class="sidebar-link">1：RocketMq</a></li></ul></section></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>6：volatile与Java内存模型</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">6：volatile与Java内存模型</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>10/12/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>juc</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-被volatile修改的变量有2大特点"><a href="#_1-被volatile修改的变量有2大特点" class="header-anchor">#</a> 1：被volatile修改的变量有2大特点</h2> <h3 id="_1-特点"><a href="#_1-特点" class="header-anchor">#</a> 1）特点</h3> <ul><li>可见性</li> <li>有序性</li></ul> <p><img src="/xiaoze-blog/assets/img/image26.c9412f39.png" alt="Alt text"></p> <blockquote><p>那为什么volatile可以实现这些功能呢？
+<strong>底层就是内存屏障 （面试必问）</strong></p></blockquote> <h3 id="_2-volatile的内存语义"><a href="#_2-volatile的内存语义" class="header-anchor">#</a> 2）volatile的内存语义</h3> <ul><li>当<strong>写</strong>一个<code>volatile</code>变量时，JMM会把<strong>该线程对应的本地内存中的共享变量</strong>立即刷新回到<strong>主内存</strong>中。</li> <li>当<strong>读</strong>一个<code>volatile</code>变量时，JMM会把<strong>该线程对应的工作内存</strong>设置为<strong>无效</strong>，直接从<strong>主内存</strong>中读取<strong>共享变量</strong>。</li> <li>所以<code>volatile</code>的写内存语义是直接刷新到主内存中，读的内存语义是直接从主内存中读取。</li></ul> <blockquote><p>一句话，<code>volatile</code>修饰的变量在某个工作内存修改后立刻会刷新会主内存，并把其他工作内存的该变量设置为无效。</p></blockquote> <h2 id="_2-内存屏障-面试重点必须拿下"><a href="#_2-内存屏障-面试重点必须拿下" class="header-anchor">#</a> 2：内存屏障（面试重点必须拿下）</h2> <h3 id="_1-生活case"><a href="#_1-生活case" class="header-anchor">#</a> 1）生活case</h3> <ul><li>没有管控，顺序难保</li> <li>设定规则，禁止乱序</li></ul> <blockquote><p>回忆一下volatile两大特性</p></blockquote> <ul><li>可见性
+<ul><li>立即刷新回主内存+失效处理。</li></ul></li> <li>有序性
+<ul><li>禁止指令重排：存在数据依赖关系的禁止重排。</li></ul></li></ul> <h3 id="_2-是什么"><a href="#_2-是什么" class="header-anchor">#</a> 2）是什么</h3> <p><strong>内存屏障</strong>（也称内存栅栏，内存栅障，屏障指令等，是一类同步屏障指令，是CPU或编译器在对内存随机访问的操作中的一个同步点，使得此点之前的所有读写操作都执行后才可以开始执行此点之后的操作），<strong>避免代码重排序</strong>。内存屏障其实就是<strong>一种JVM指令</strong>，Java内存模型的<strong>重排规则</strong>会要求Java编译器在生成JVM指令时<strong>插入特定的内存屏障指令</strong> ，通过这些<strong>内存屏障指令</strong>，<code>volatile</code>实现了<strong>Java内存模型中</strong>的<strong>可见性</strong>和<strong>有序性</strong>，但<code>volatile</code>无法保证**原子性 **。</p> <ul><li><strong>写屏障(Store Memory Barrier)</strong> ：告诉处理器在<strong>写屏障之前</strong>将所有存储在<strong>缓存(store buffer es) <strong>中的数据同步到</strong>主内存</strong>。也就是说当看到<strong>Store屏障指令</strong>， <strong>就必须把该指令之前所有写入指令执行完毕才能继续往下执行</strong>。</li> <li><strong>读屏障(Load Memory Barrier)</strong> ：处理器在<strong>读屏障之后</strong>的读操作， 都在<strong>读屏障之后</strong>执行。也就是说在<strong>Load屏障指令</strong>之后就<strong>能够保证后面的读取数据指令一定能够读取到最新的数据</strong>。
+<img src="/xiaoze-blog/assets/img/image27.5b30f6df.png" alt="Alt text"></li></ul> <blockquote><p>因此重排序时，不允许把内存屏障之后的指令重排序到内存屏障之前。
+一句话：对一个 <code>volatile 域</code>的<strong>写</strong>, <code>happens-before</code> 于任意后续对这个 <code>volatile</code> 域的<strong>读</strong>，也叫写<strong>后读</strong>。</p></blockquote> <h3 id="_3-内存屏障分类"><a href="#_3-内存屏障分类" class="header-anchor">#</a> 3）内存屏障分类</h3> <h4 id="一句话"><a href="#一句话" class="header-anchor">#</a> 一句话</h4> <ul><li>上一章讲解过<code>happens-before</code>先行发生原则，类似接口规范，落地？
+<strong>落地</strong>靠什么？你凭什么可以保证？你管用吗？</li></ul> <h4 id="粗分两种"><a href="#粗分两种" class="header-anchor">#</a> 粗分两种</h4> <ul><li>写屏障
+<ul><li>在写指令之后插入写屏障，强制把写缓冲区的数据刷回到主内存中</li></ul></li> <li>读屏障
+<ul><li>在读指令之前插入读屏障，让工作内存或CPU高速缓存当中的缓存数据失效，重新回到主内存中获取最新数据。</li></ul></li></ul> <h4 id="细分4种"><a href="#细分4种" class="header-anchor">#</a> 细分4种</h4> <blockquote><p>C++源码分析</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//Unsafe.class</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">loadFence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">storeFence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">fullFence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//Unsafe.java   </span>
+<span class="token comment">//同上</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//unsafe.cpp</span>
+
+<span class="token function">UNSAFE_ENTRY</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token class-name">Unsafe_LoadFence</span><span class="token punctuation">(</span><span class="token class-name">JNIEnv</span><span class="token operator">*</span> env<span class="token punctuation">,</span> jobject unsafe<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//读屏障</span>
+  <span class="token class-name">UnsafeWrapper</span><span class="token punctuation">(</span><span class="token string">&quot;Unsafe_LoadFence&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">acquire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">UNSAFE_END</span>
+
+<span class="token function">UNSAFE_ENTRY</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token class-name">Unsafe_StoreFence</span><span class="token punctuation">(</span><span class="token class-name">JNIEnv</span><span class="token operator">*</span> env<span class="token punctuation">,</span> jobject unsafe<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//写屏障</span>
+  <span class="token class-name">UnsafeWrapper</span><span class="token punctuation">(</span><span class="token string">&quot;Unsafe_StoreFence&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">UNSAFE_END</span>
+
+<span class="token function">UNSAFE_ENTRY</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token class-name">Unsafe_FullFence</span><span class="token punctuation">(</span><span class="token class-name">JNIEnv</span><span class="token operator">*</span> env<span class="token punctuation">,</span> jobject unsafe<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token class-name">UnsafeWrapper</span><span class="token punctuation">(</span><span class="token string">&quot;Unsafe_FullFence&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">fence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">UNSAFE_END</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//OrderAccess.hpp</span>
+<span class="token keyword">class</span> <span class="token class-name">OrderAccess</span> <span class="token operator">:</span> <span class="token class-name">AllStatic</span> <span class="token punctuation">{</span>
+ <span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">loadload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//读读</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">storestore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//写写</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">loadstore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//读写</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">storeload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//写读</span>
+
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span>     <span class="token function">fence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//orderAccess_linux_x86</span>
+inline <span class="token keyword">void</span> <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">loadload</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token punctuation">{</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+inline <span class="token keyword">void</span> <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">storestore</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+inline <span class="token keyword">void</span> <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">loadstore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+inline <span class="token keyword">void</span> <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">storeload</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span> <span class="token function">fence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+inline <span class="token keyword">void</span> <span class="token class-name">OrderAccess</span><span class="token operator">::</span><span class="token function">acquire</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">volatile</span> intptr_t local_dummy<span class="token punctuation">;</span>
+#ifdef <span class="token constant">AMD64</span>
+  __asm__ <span class="token keyword">volatile</span> <span class="token punctuation">(</span><span class="token string">&quot;movq 0(%%rsp), %0&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;=r&quot;</span> <span class="token punctuation">(</span>local_dummy<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token string">&quot;memory&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+#else__
+  asm__ <span class="token keyword">volatile</span> <span class="token punctuation">(</span><span class="token string">&quot;movl 0(%%esp),%0&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;=r&quot;</span> <span class="token punctuation">(</span>local_dummy<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token string">&quot;memory&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+#endif <span class="token comment">// AMD64</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><blockquote><p>4种屏障
+<img src="/xiaoze-blog/assets/img/image28.f39d14dc.png" alt="Alt text"></p></blockquote> <h3 id="_4-需要分2次讲解-复习的内容"><a href="#_4-需要分2次讲解-复习的内容" class="header-anchor">#</a> 4）需要分2次讲解+复习的内容</h3> <h4 id="什么叫保证有序性"><a href="#什么叫保证有序性" class="header-anchor">#</a> 什么叫保证有序性</h4> <ul><li>禁止指令重排
+通过 <strong>内存屏障</strong> 禁止重排</li></ul> <blockquote><ol><li>重排序有可能影响程序的执行和实现， 因此， 我们有时候希望告诉JVM你别“自作聪明”给我重排序， 我这里不需要排序， 听主人的。</li></ol></blockquote> <blockquote><ol start="2"><li>对于编译器的重排序， JMM会根据重排序的规则， 禁止特定类型的编译器重排序。</li></ol></blockquote> <blockquote><ol start="3"><li>对于处理器的重排序， Java编译器在生成指令序列的适当位置， 插入内存屏障指令， 来禁止特定类型的处理器排序。</li></ol></blockquote> <h4 id="happens-before之volatile变量规则"><a href="#happens-before之volatile变量规则" class="header-anchor">#</a> happens-before之volatile变量规则</h4> <p><img src="/xiaoze-blog/assets/img/image29.5fd8ca84.png" alt="Alt text"></p> <ul><li>当第一个操作为<code>volatile</code>读时，不论第二个操作是什么，都不能 <strong>重排序</strong>。这个操作保证了<code>volatile</code> <strong>读之后</strong> 的操作不会被重排到<code>volatile</code>读之前。</li> <li>当第二个操作为<code>volatile</code>写时，不论第一个操作是什么，都不能 <strong>重排序</strong>。这个操作保证了<code>volatile</code><strong>写之前</strong> 的操作不会被重排到<code>volatile</code>写之后。</li> <li>当第一个操作为<code>volatile</code>写时，第二个操作为<code>volatile</code>读时，<strong>不能重排</strong>。</li></ul> <h4 id="jmm就将内存屏障插入策略分为4种规则"><a href="#jmm就将内存屏障插入策略分为4种规则" class="header-anchor">#</a> JMM就将内存屏障插入策略分为4种规则</h4> <p><strong>读屏障</strong></p> <ul><li>在每个<code>volatile</code>读操作的 <strong>后面</strong> 插入一个<code>LoadLoad</code>屏障</li> <li>在每个<code>volatile</code>读操作的 <strong>后面</strong> 插入一个<code>LoadStore</code>屏障
+<img src="/xiaoze-blog/assets/img/image30.3681dbe7.png" alt="Alt text"> <strong>写屏障</strong></li> <li>在每个<code>volatile</code>写操作的 <strong>前面</strong> 插入一个<code>StoreStore</code>屏障</li> <li>在每个<code>volatile</code>写操作的 <strong>后面</strong> 插入一个<code>StoreLoad</code>屏障</li></ul> <p><img src="/xiaoze-blog/assets/img/image31.0f5e9c71.png" alt="Alt text"></p> <h2 id="_3-volatile特性"><a href="#_3-volatile特性" class="header-anchor">#</a> 3：volatile特性</h2> <h3 id="_1-保证可见性"><a href="#_1-保证可见性" class="header-anchor">#</a> 1）保证可见性</h3> <h4 id="说明"><a href="#说明" class="header-anchor">#</a> 说明</h4> <blockquote><p>保证不同线程对某个变量完成操作后结果及时可见，即该共享变量一旦改变所有线程立即可见。</p></blockquote> <h4 id="code"><a href="#code" class="header-anchor">#</a> Code</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VolatileSeeDemo</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//static  boolean flag = true;       //不加volatile，没有可见性</span>
+    <span class="token keyword">static</span> <span class="token keyword">volatile</span> <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>       <span class="token comment">//加了volatile，保证可见性</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot;\t come in&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token comment">//默认flag是true,如果未被修改就一直循环，下面那句话也打不出来</span>
+            <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot;\t flag被修改为false,退出.....&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">&quot;t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//暂停几秒</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">SECONDS</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;main线程修改完成&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//没有volatile时</span>
+<span class="token comment">//t1   come in</span>
+<span class="token comment">//main线程修改完成</span>
+<span class="token comment">//--------程序一直在跑（在循环里）</span>
+
+<span class="token comment">//有volatile时</span>
+<span class="token comment">//t1   come in</span>
+<span class="token comment">//main线程修改完成</span>
+<span class="token comment">//t1   flag被修改为false,退出.....</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h4 id="上述代码原理解释"><a href="#上述代码原理解释" class="header-anchor">#</a> 上述代码原理解释</h4> <blockquote><p>线程t1中为何看不到被主线程main修改为false的flag的值？</p></blockquote> <p>问题可能:</p> <ul><li>主线程修改了flag之后没有将其刷新到主内存，所以t1线程看不到。</li> <li>主线程将flag刷新到了主内存，但是t1一直读取的是自己工作内存中flag的值，没有去主内存中更新获取flag最新的值。</li></ul> <p>我们的诉求：</p> <ul><li>1.线程中修改了工作内存中的副本之后，立即将其刷新到主内存；</li> <li>2.工作内存中每次读取共享变量时，都去主内存中重新读取，然后拷贝到工作内存。</li></ul> <p>解决：</p> <blockquote><p>使用volatile修饰共享变量，就可以达到上面的效果，被volatile修改的变量有以下特点：</p></blockquote> <ul><li>线程中读取的时候，每次读取都会去主内存中读取共享变量最新的值 ，然后将其复制到工作内存</li> <li>线程中修改了工作内存中变量的副本，修改之后会立即刷新到主内存</li></ul> <h4 id="volatile变量的读写过程"><a href="#volatile变量的读写过程" class="header-anchor">#</a> volatile变量的读写过程</h4> <blockquote><p>原理一层层剖析：现象—失效/立刻刷新—内存屏障—缓存一致性协议/总线嗅探</p></blockquote> <p>read(读取)→load(加载)→use(使用)→assign(赋值)→store(存储)→write(写入)→lock(锁定)→unlock(解锁)</p> <p><img src="/xiaoze-blog/assets/img/image32.59265a42.png" alt="Alt text">
+一个更清晰简单的图
+<img src="/xiaoze-blog/assets/img/image33.e36e1d4c.png" alt="Alt text"> <code>read</code>: 作用于 <strong>主内存</strong> ，将变量的值从主内存传输到工作内存，主内存到工作内存
+<code>load</code>: 作用于 <strong>工作内存</strong> ，将read从主内存传输的变量值放入 <strong>工作内存变量副本</strong> 中，即数据加载
+<code>use</code>: 作用于 <strong>工作内存</strong> ，将工作内存变量副本的值传递给执行引擎，每当JVM遇到需要该变量的字节码指令时会执行该操作
+<code>assign</code>: 作用于 <strong>工作内存</strong> ，将从执行引擎接收到的值赋值给工作内存变量，每当JVM遇到一个给变量赋值字节码指令时会执行该操作
+<code>store</code>: 作用于 <strong>工作内存</strong> ，将赋值完毕的工作变量的值写回给主内存
+<code>write</code>: 作用于 <strong>主内存</strong> ，将store传输过来的变量值赋值给主内存中的变量
+由于上述6条只能保证单条指令的原子性，针对多条指令的组合性原子保证，没有大面积加锁，所以，JVM提供了另外两个原子指令：
+<code>lock</code>: 作用于 <strong>主内存</strong> ，将一个变量标记为一个线程独占的状态，只是写时候加锁，就只是锁了写变量的过程。
+<code>unlock</code>: 作用于 <strong>主内存</strong> ，把一个处于锁定状态的变量释放，然后才能被其他线程占用</p> <h3 id="_2-没有原子性"><a href="#_2-没有原子性" class="header-anchor">#</a> 2）没有原子性</h3> <h4 id="volatile变量的复合操作不具有原子性-比如number"><a href="#volatile变量的复合操作不具有原子性-比如number" class="header-anchor">#</a> volatile变量的复合操作不具有原子性，比如number++</h4> <h4 id="code-2"><a href="#code-2" class="header-anchor">#</a> Code</h4> <ul><li>synchronized和volatile代码演示</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">class</span> <span class="token class-name">MyNumber</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//volatile int number = 0;</span>
+
+    <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">addPlusPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//加上synchronized</span>
+    <span class="token punctuation">{</span>
+        number<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VolatileNoAtomicDemo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">MyNumber</span> myNumber <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">1000</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    myNumber<span class="token punctuation">.</span><span class="token function">addPlusPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//暂停几秒钟线程</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">SECONDS</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;\t&quot;</span> <span class="token operator">+</span> myNumber<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//-------------volatile情况下</span>
+<span class="token comment">//main  8302</span>
+<span class="token comment">//-----------synchronized请款下</span>
+<span class="token comment">//main  10000</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><p><strong>读取赋值一个普通变量的情况</strong>
+当线程1对主内存对象发起read操作到write操作第一套流程的时间里，线程2随时都有可能对这个主内存对象发起第二套操作</p> <blockquote><p>各忙各的
+<img src="/xiaoze-blog/assets/img/image34.9ec27355.png" alt="Alt text"> <strong>不保证原子性</strong></p></blockquote> <ul><li>从底层来说，<code>i++</code> 或者 <code>number++</code>（在执行引擎操作时）其实是分了三步的：<strong>数据加载</strong> 、<strong>数据计算</strong> 、<strong>数据赋值</strong> 。而这三步非原子操作 。
+<img src="/xiaoze-blog/assets/img/image35.999b95de.png" alt="Alt text">
+对于volatile变量 <strong>具备可见性 ，JVM只是保证从主内存加载到线程工作内存的值是最新的，也仅是数据加载时是最新的。但是多线程环境下，“数据计算”和“数据赋值”操作可能多次出现，若数据在加载之后，若主内存volatile修饰变量发生修改之后，线程工作内存中的操作将会作废去读主内存最新值，操作出现写丢失问题</strong>。即各线程私有内存和主内存公共内存中变量不同步 ，进而导致数据不一致。由此可见volatile解决的是变量读取时的可见性问题，但无法保证原子性，对于多线程修改主内存共享变量的场景必须使用加锁同步。</li></ul> <blockquote><p>比如说你在计算的时候，别的线程已经提交了，所以你的计算直接失效了</p></blockquote> <p>再分析下</p> <p><code>synchronized</code>加了之后保证了串行执行，每次只有一个线程进来。
+<img src="/xiaoze-blog/assets/img/image36.0734b888.png" alt="Alt text">
+但<code>volatile</code>不能保证原子性，大家一起读，一起加一，就看谁提交的快了。提交快的直接让另一个失效。</p> <p><img src="/xiaoze-blog/assets/img/image37.19b42a51.png" alt="Alt text">
+从i++的字节码角度说明
+<img src="/xiaoze-blog/assets/img/image38.37f37bfc.png" alt="Alt text">
+原子性指的是一个操作是不可中断的，即使是在多线程环境下，一个操作一旦开始就不会被其他线程影响。</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  i<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//不具备原子性，该操作是先读取值，然后写回一个新值，相当于原来的值加上1，分3步完成</span>
+
+  <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>如果第二个线程在第一个线程读取旧值和写回新值期间读取i的域值，那么第二个线程就会与第一个线程一起看到同一个值，</p> <p>并执行相同值的加1操作，这也就造成了线程安全失败，因此对于<code>add方法</code>必须使用<code>synchronized</code>修饰，以便保证线程安全.</p> <h4 id="结论"><a href="#结论" class="header-anchor">#</a> 结论</h4> <blockquote><p>volatile不适合参与到依赖当前值的运算，如i=i+1，i++之类的
+那么依靠可见性的特点<code>volatile</code>可以用在哪些地方呢？通常<code>volatile</code>用作保存某个状态的<code>boolean</code>值或<code>or int</code>值。 （一旦布尔值被改变迅速被看到，就可以做其他操作）
+<img src="/xiaoze-blog/assets/img/image39.71fab68a.png" alt="Alt text"></p></blockquote> <h4 id="面试回答"><a href="#面试回答" class="header-anchor">#</a> 面试回答</h4> <p>对于 <code>volatile</code> 变量，JVM只是保证从主内存加载到线程工作内存的值是最新的，也只是数据加载时是最新的。如果第二个线程在第一个线程 <strong>读取旧值</strong> 和 <strong>写回新值期</strong> 间读取i的阈值，也就造成了线程安全问题。
+（中间这个蓝色框代表的是在执行引擎操作期间）</p> <p><img src="/xiaoze-blog/assets/img/image40.13049276.png" alt="Alt text"></p> <h3 id="_3-说明与案例"><a href="#_3-说明与案例" class="header-anchor">#</a> 3）说明与案例</h3> <p>重排序</p> <p>重排序是指编译器和处理器为了优化程序性能而对指令序列进行重新排序的一种手段，有时候会改变程序语句的先后顺序</p> <p>不存在数据依赖关系，可以重排序；</p> <blockquote><p>存在数据依赖关系 ，禁止重排序</p></blockquote> <p>但重排后的指令绝对不能改变原有的串行语义！这点在并发设计中必须要重点考虑！</p> <p>重排序的分类和执行流程
+<img src="/xiaoze-blog/assets/img/image41.0533d785.png" alt="Alt text">
+编译器优化的重排序： 编译器在不改变单线程串行语义的前提下，可以重新调整指令的执行顺序
+指令级并行的重排序： 处理器使用指令级并行技术来讲多条指令重叠执行，若不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序
+内存系统的重排序： 由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是乱序执行</p> <p>数据依赖性 ：若两个操作访问同一变量，且这两个操作中有一个为写操作，此时两操作间就存在数据依赖性。</p> <p>案例</p> <p>不存在数据依赖关系，可以重排序 ===&gt; 重排序OK 。
+<img src="/xiaoze-blog/assets/img/image42.d8615c28.png" alt="Alt text"> <strong>存在</strong> 数据依赖关系，<strong>禁止重排序</strong> ===&gt; 重排序发生，会导致程序运行结果不同。</p> <p>编译器和处理器在重排序时，会遵守数据依赖性，不会改变存在依赖关系的两个操作的执行,但不同处理器和不同线程之间的数据性不会被编译器和处理器考虑，其只会作用于单处理器和单线程环境，下面三种情况，只要重排序两个操作的执行顺序，程序的执行结果就会被改变。
+<img src="/xiaoze-blog/assets/img/image43.6a920d9c.png" alt="Alt text"></p> <h4 id="volatile的底层实现是通过内存屏障-2次复习"><a href="#volatile的底层实现是通过内存屏障-2次复习" class="header-anchor">#</a> volatile的底层实现是通过内存屏障，2次复习</h4> <blockquote><p>volatile有关的禁止指令重排的行为
+<img src="/xiaoze-blog/assets/img/image44.53d163d9.png" alt="Alt text">
+四大屏障的插入情况
+<img src="/xiaoze-blog/assets/img/image45.97ba1fb4.png" alt="Alt text">
+案例</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VolatileTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">volatile</span> <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">//假如不加volatile，这两句话的顺序就有可能颠倒，影像最终结果</span>
+        flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;---i = &quot;</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ul><li><code>volatile</code>写
+<img src="/xiaoze-blog/assets/img/image46.78deab0d.png" alt="Alt text"></li> <li><code>volatile</code>读（必须要先确保拿到最新值）
+<img src="/xiaoze-blog/assets/img/image47.88788e6a.png" alt="Alt text"></li></ul> <h2 id="_4-如何正确使用volatile-实际工作"><a href="#_4-如何正确使用volatile-实际工作" class="header-anchor">#</a> 4：如何正确使用volatile（实际工作）</h2> <h3 id="_1-单一赋值可以-但是含有符合运算赋值不可以-比如i"><a href="#_1-单一赋值可以-但是含有符合运算赋值不可以-比如i" class="header-anchor">#</a> 1）单一赋值可以，但是含有符合运算赋值不可以（比如i++）</h3> <blockquote><p>下面这两个单一赋值可以的</p></blockquote> <ul><li><code>volatile int a = 10;</code></li> <li><code>volatile boolean flag = false</code></li></ul> <h3 id="_2-状态标志-判断业务是否结束"><a href="#_2-状态标志-判断业务是否结束" class="header-anchor">#</a> 2）状态标志，判断业务是否结束</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//这个前面讲过</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UseVolatileDemo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">//do something......循环</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">&quot;t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//暂停几秒钟线程</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">SECONDS</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2L</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">&quot;t2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="_3-开销较低的读-写锁策略"><a href="#_3-开销较低的读-写锁策略" class="header-anchor">#</a> 3）开销较低的读，写锁策略</h3> <p>当读远多于写</p> <p>最土的方法就是加两个<code>synchronized</code>，但是 <strong>读</strong> 用<code>volatile</code>，<strong>写</strong> 用<code>synchronized</code>可以提高性能</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UseVolatileDemo</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//</span>
+   <span class="token comment">// 使用：当读远多于写，结合使用内部锁和 volatile 变量来减少同步的开销</span>
+   <span class="token comment">// 理由：利用volatile保证读取操作的可见性；利用synchronized保证复合操作的原子性</span>
+     
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Counter</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> value<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> value<span class="token punctuation">;</span>   <span class="token comment">//利用volatile保证读取操作的可见性</span>
+              <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">int</span> <span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> value<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//利用synchronized保证复合操作的原子性</span>
+               <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="_4-dcl双锁案例"><a href="#_4-dcl双锁案例" class="header-anchor">#</a> 4）DCL双锁案例</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SafeDoubleCheckSingleton</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SafeDoubleCheckSingleton</span> singleton<span class="token punctuation">;</span> <span class="token comment">//-----这里没加volatile</span>
+    <span class="token comment">//私有化构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//双重锁设计</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">SafeDoubleCheckSingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//1.多线程并发创建对象时，会通过加锁保证只有一个线程能创建对象</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token comment">//隐患：多线程环境下，由于重排序，该对象可能还未完成初始化就被其他线程读取</span>
+                    singleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">//实例化分为三步</span>
+                    <span class="token comment">//1.分配对象的内存空间</span>
+                    <span class="token comment">//2.初始化对象</span>
+                    <span class="token comment">//3.设置对象指向分配的内存地址</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//2.对象创建完毕，执行getInstance()将不需要获取锁，直接返回创建对象</span>
+        <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h4 id="单线程情况下"><a href="#单线程情况下" class="header-anchor">#</a> 单线程情况下</h4> <p>单线程环境下(或者说正常情况下)，在&quot;问题代码处&quot;，会执行如下操作，保证能获取到已完成初始化的实例</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//三步</span>
+memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1.分配对象的内存空间</span>
+<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//2.初始化对象</span>
+instance <span class="token operator">=</span> memory<span class="token punctuation">;</span> <span class="token comment">//3.设置对象指向分配的内存地址</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="多线程情况下-由于指令重排序"><a href="#多线程情况下-由于指令重排序" class="header-anchor">#</a> 多线程情况下（由于指令重排序）</h4> <p>隐患：多线程环境下，在&quot;问题代码处&quot;，会执行如下操作，由于重排序导致2,3乱序，后果就是其他线程得到的是null而不是完成初始化的对象 。（没初始化完的就是null）
+正常情况</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//三步</span>
+memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1.分配对象的内存空间</span>
+<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//2.初始化对象</span>
+instance <span class="token operator">=</span> memory<span class="token punctuation">;</span> <span class="token comment">//3.设置对象指向分配的内存地址</span>
+```<span class="token operator">*</span>
+
+   非正常情况
+
+```java
+<span class="token comment">//三步</span>
+memory <span class="token operator">=</span> <span class="token function">allocate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1.分配对象的内存空间</span>
+instance <span class="token operator">=</span> memory<span class="token punctuation">;</span> <span class="token comment">//3.设置对象指向分配的内存地址---这里指令重排了，但是对象还没有初始化</span>
+<span class="token function">ctorInstance</span><span class="token punctuation">(</span>memory<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//2.初始化对象</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h4 id="解决"><a href="#解决" class="header-anchor">#</a> 解决</h4> <p>加volatile修饰</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SafeDoubleCheckSingleton</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//通过volatile声明，实现线程安全的延迟初始化。</span>
+    <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">static</span> <span class="token class-name">SafeDoubleCheckSingleton</span> singleton<span class="token punctuation">;</span>
+    <span class="token comment">//私有化构造方法</span>
+    <span class="token keyword">private</span> <span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//双重锁设计</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">SafeDoubleCheckSingleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//1.多线程并发创建对象时，会通过加锁保证只有一个线程能创建对象</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>singleton <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token comment">//隐患：多线程环境下，由于重排序，该对象可能还未完成初始化就被其他线程读取</span>
+                                      <span class="token comment">//原理:利用volatile，禁止 &quot;初始化对象&quot;(2) 和 &quot;设置singleton指向内存空间&quot;(3) 的重排序</span>
+                    singleton <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SafeDoubleCheckSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//2.对象创建完毕，执行getInstance()将不需要获取锁，直接返回创建对象</span>
+        <span class="token keyword">return</span> singleton<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+ 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>实例化<code>singleton</code>分多步执行（分配内存空间、初始化对象、将对象指向分配的内存空间），某些编译器为了性能原因，会将第二步和第三步进行重排序（分配内存空间、将对象指向分配的内存空间、初始化对象）。这样，某个线程可能会获得一个未完全初始化的实例。</p> <h2 id="_5-最后的小总结"><a href="#_5-最后的小总结" class="header-anchor">#</a> 5：最后的小总结</h2> <p>volatile可见性
+<img src="/xiaoze-blog/assets/img/image48.e4dcc235.png" alt="Alt text"></p> <ul><li>volatile没有原子性</li> <li>volatile禁重排
+<ul><li>写指令
+<img src="/xiaoze-blog/assets/img/image49.f06f532e.png" alt="Alt text"></li> <li>读指令
+<img src="/xiaoze-blog/assets/img/image50.80b1d9ce.png" alt="Alt text">
+凭什么我们java写了一个volatile关键字系统底层加入内存屏障？两者关系怎么勾搭上的？
+字节码层面<code>javap -c xx.class</code>
+它其实添加了一个<code>ACC_VOLATILE</code> <img src="/xiaoze-blog/assets/img/image51.f9c449ea.png" alt="Alt text"></li></ul></li></ul> <blockquote><p>内存屏障是什么？</p></blockquote> <p>内存屏障是一种屏障指令，它使得CPU或编译器对屏障指令的前和后所发出的内存操作执行一个排序的约束。也叫内存栅栏或栅栏指令</p> <blockquote><p>内存屏障能干嘛？</p></blockquote> <ul><li><ol><li>阻止屏障两边的指令重排序</li></ol></li> <li><ol start="2"><li>写数据时假如屏障，强制将线程私有工作内存的数据刷回主物理内存</li></ol></li> <li><ol start="3"><li>读数据时加入屏障，线程私有工作内存的数据失效，重新到主物理内存中获取最新数据</li></ol></li></ul> <blockquote><p>内存屏障的四大指令</p></blockquote> <p><img src="/xiaoze-blog/assets/img/image52.6d83774a.png" alt="Alt text"></p> <blockquote><p>3句话总结</p></blockquote> <ul><li><code>volatile</code>写之前的的操作，都禁止重排到<code>volatile</code>之后</li> <li><code>volatile</code>读之后的操作，都禁止重排到<code>volatile</code>之前</li> <li><code>volatile</code>写之后<code>volatile</code>读，禁止重排序</li></ul></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/后端/juc/5：Java内存模型之JMM.html" class="prev">
+          5：Java内存模型之JMM
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/后端/juc/7：CAS.html">
+          7：CAS
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_1-被volatile修改的变量有2大特点" class="sidebar-link reco-side-_1-被volatile修改的变量有2大特点" data-v-b57cc07c>1：被volatile修改的变量有2大特点</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_1-特点" class="sidebar-link reco-side-_1-特点" data-v-b57cc07c>1）特点</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_2-volatile的内存语义" class="sidebar-link reco-side-_2-volatile的内存语义" data-v-b57cc07c>2）volatile的内存语义</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_2-内存屏障-面试重点必须拿下" class="sidebar-link reco-side-_2-内存屏障-面试重点必须拿下" data-v-b57cc07c>2：内存屏障（面试重点必须拿下）</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_1-生活case" class="sidebar-link reco-side-_1-生活case" data-v-b57cc07c>1）生活case</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_2-是什么" class="sidebar-link reco-side-_2-是什么" data-v-b57cc07c>2）是什么</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_3-内存屏障分类" class="sidebar-link reco-side-_3-内存屏障分类" data-v-b57cc07c>3）内存屏障分类</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_4-需要分2次讲解-复习的内容" class="sidebar-link reco-side-_4-需要分2次讲解-复习的内容" data-v-b57cc07c>4）需要分2次讲解+复习的内容</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_3-volatile特性" class="sidebar-link reco-side-_3-volatile特性" data-v-b57cc07c>3：volatile特性</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_1-保证可见性" class="sidebar-link reco-side-_1-保证可见性" data-v-b57cc07c>1）保证可见性</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_2-没有原子性" class="sidebar-link reco-side-_2-没有原子性" data-v-b57cc07c>2）没有原子性</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_3-说明与案例" class="sidebar-link reco-side-_3-说明与案例" data-v-b57cc07c>3）说明与案例</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_4-如何正确使用volatile-实际工作" class="sidebar-link reco-side-_4-如何正确使用volatile-实际工作" data-v-b57cc07c>4：如何正确使用volatile（实际工作）</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_1-单一赋值可以-但是含有符合运算赋值不可以-比如i" class="sidebar-link reco-side-_1-单一赋值可以-但是含有符合运算赋值不可以-比如i" data-v-b57cc07c>1）单一赋值可以，但是含有符合运算赋值不可以（比如i++）</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_2-状态标志-判断业务是否结束" class="sidebar-link reco-side-_2-状态标志-判断业务是否结束" data-v-b57cc07c>2）状态标志，判断业务是否结束</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_3-开销较低的读-写锁策略" class="sidebar-link reco-side-_3-开销较低的读-写锁策略" data-v-b57cc07c>3）开销较低的读，写锁策略</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_4-dcl双锁案例" class="sidebar-link reco-side-_4-dcl双锁案例" data-v-b57cc07c>4）DCL双锁案例</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/juc/6%EF%BC%9Avolatile%E4%B8%8EJava%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html#_5-最后的小总结" class="sidebar-link reco-side-_5-最后的小总结" data-v-b57cc07c>5：最后的小总结</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.df24bf45.js" defer></script><script src="/xiaoze-blog/assets/js/9.a4d96106.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/10.95c61c6f.js" defer></script>
+  </body>
+</html>

@@ -92,9 +92,16 @@ module.exports = {
                 'juc/2：CompletableFuture个人代码',
                 'juc/3：Java锁',
                 'juc/4：LockSupport与线程中断',
+                'juc/5：Java内存模型之JMM',
+                'juc/6：volatile与Java内存模型',
+                'juc/7：CAS',
+                'juc/8：原子操作类之18罗汉增强',
+                'juc/9：聊聊ThreadLocal',
+
               ]
             },
             {
+
               title: 'redis',
               collapsable: false,
               children: [
