@@ -465,9 +465,12 @@ public class OpsReqTaskConsumer implements RocketMQListener<MessageExt> {
 ### 3）消息发送
 消息信息映射 `RocketMqMsg` ：
 ![Alt text](./assets/image11.png)
+
 消息信息输入 `AsRocketMqProducerInput` :
 ![Alt text](./assets/image12.png)
+
 消息信息生产服务 `RocketMqProducerService` :
 ![Alt text](./assets/image13.png)
+
 ### 4）消息接收
 ![Alt text](./assets/image14.png)
