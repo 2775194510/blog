@@ -102,6 +102,15 @@ module.exports = {
             },
             {
 
+              title: 'mybatis',
+              collapsable: false,
+              children: [
+                'mybatis/1：mybatis入门教程',
+                'mybatis/2：mybatis常用sql大全',
+              ]
+            },
+            {
+
               title: 'redis',
               collapsable: false,
               children: [
@@ -566,6 +575,7 @@ module.exports = {
         items: [
           { text: 'Java', link: '/blogs/后端/java/Java面向对象' },
           { text: 'Juc', link: '/blogs/后端/juc/1：线程基础' },
+          { text: 'Mybatis', link: '/blogs/后端/mybatis/1：mybatis入门教程' },
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
           { text: 'Spring', link: '/blogs/后端/spring/spring' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },

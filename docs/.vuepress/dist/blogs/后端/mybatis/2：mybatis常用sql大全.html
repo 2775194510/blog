@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2：mybatis常用sql大全 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.572faffb.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/9.76c849d1.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/65.e34a298d.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.161a904d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.33479b9c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.068d1caf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.517231a6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.338a2824.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.166f275e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.faff6455.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.dd7e3ee9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.2d6b6aa4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.b3b388fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.a44d3e57.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.387d7123.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.13d49596.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.72f808d8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.bd68a05c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.fffc4ae5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.a1c14901.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.3df1c607.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.9a1a8dac.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.3425db9e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.4ed96cbf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.bf948291.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.73c5e4ab.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.0711f978.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.8f39197b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.5a155df7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.b68d9f86.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.59bda94f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.17ef6350.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.08a88071.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.5eace194.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.7f2c9e1c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.9678b44c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.e93cdd71.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.cbce7158.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.31bccc17.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.59a2e1bc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.3323f6f7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.c23e695a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.184cb368.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.25089e0f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.a8177888.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.14650664.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.a8913b7f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.9969e952.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.66670cb0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.5225d3ac.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.9db2098b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.2770fae6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.27e869a7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.2fa81234.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.f3a2d5be.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.599081c3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.a5f1635d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.b4aa4eaa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.abeff618.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.0d3dc48b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.4f5a45bb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.c3c7f858.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.c9e7355b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.b9a29e2e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.350263ca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.9ed3a73b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.64db48fe.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.2cf82024.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.ad7bd931.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.bfb9b5fd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.3dd9680f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.8a7f0be5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.f397b776.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.28301757.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.c2edf113.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.aa390440.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.238d2c78.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.48723597.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.8acfb33e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.48893638.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.4cdcfaa4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.e27fad2f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.27563168.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.d4971fc2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.a5cfd8bf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.4db0cc41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.15280909.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.2e59512e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.0937b118.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.63229916.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.c1881d03.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.eeaf8df3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.408df8e1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.8f479b4e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.018be7ac.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.2282814e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.0b229fc1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.a1fba804.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.5f902cdc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.2734af4e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.76969828.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.ee76b35e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.2b3adb1e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.903bc937.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.744e98f4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.9631b349.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.b614ec79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.a26ade7f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.26062d8a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.7b2ee862.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.284fcd65.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.84f532e3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.8b607592.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.88afee4e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.b71f9f6f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.77ff540e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.0ef59d56.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.443d8551.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.4800e5f6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.facfcdca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.53cf8ecf.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>110</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>31</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#67cc86;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#f47e60;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#abbd81;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>后端</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="sidebar-link">1：java面向对象</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java反射.html" class="sidebar-link">2：java反射</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java-Stream大全.html" class="sidebar-link">3：Stream</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java位运算符详解.html" class="sidebar-link">4：Java位运算符详解</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Juc</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="sidebar-link">1：线程基础</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture.html" class="sidebar-link">2：CompletableFuture</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture个人代码.html" class="sidebar-link">2：CompletableFuture个人代码</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/3：Java锁.html" class="sidebar-link">3：Java锁</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/4：LockSupport与线程中断.html" class="sidebar-link">4：LockSupport与线程中断</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/5：Java内存模型之JMM.html" class="sidebar-link">5：Java内存模型之JMM</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/6：volatile与Java内存模型.html" class="sidebar-link">6：volatile与Java内存模型</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/7：CAS.html" class="sidebar-link">7：CAS</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/8：原子操作类之18罗汉增强.html" class="sidebar-link">8：原子操作类之18罗汉增强</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/9：聊聊ThreadLocal.html" class="sidebar-link">9：聊聊ThreadLocal</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>mybatis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="sidebar-link">1：mybatis入门教程</a></li><li><a href="/xiaoze-blog/blogs/后端/mybatis/2：mybatis常用sql大全.html" class="active sidebar-link">2：mybatis常用sql大全</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="sidebar-link">1：redis基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/后端/redis/缓存击穿，穿透解决.html" class="sidebar-link">2：缓存击穿、穿透解决办法</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>spring</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="sidebar-link">1：spring入门</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>springboot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="sidebar-link">1：SpringBoot拦截器</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>springcloud</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="sidebar-link">1：springcloud入门</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/2：eureka服务注册.html" class="sidebar-link">2：eureka服务注册</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/3：ribbon负载均衡.html" class="sidebar-link">3：ribbon负载均衡</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/4：Nacos注册中心.html" class="sidebar-link">4：Nacos注册中心</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/5：Nacos配置管理.html" class="sidebar-link">5：Nacos配置管理</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/6：Feign远程调用.html" class="sidebar-link">6：Feign远程调用</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/7：Gateway服务网关.html" class="sidebar-link">7：Gateway服务网关</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>消息中间件</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>rabbitmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="sidebar-link">1：RabbitMq</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading"><span>rocketmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rocketmq/1：RocketMq.html" class="sidebar-link">1：RocketMq</a></li><li><a href="/xiaoze-blog/blogs/后端/rocketmq/2：RocketMq简单集成文档.html" class="sidebar-link">2：RocketMq简单集成文档</a></li></ul></section></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>2：mybatis常用sql大全</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">2：mybatis常用sql大全</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>11/7/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>mybatis</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-统计数量"><a href="#_1-统计数量" class="header-anchor">#</a> 1：统计数量</h2> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code> <span class="token keyword">select</span> usr_id<span class="token punctuation">,</span>
+    <span class="token function">count</span><span class="token punctuation">(</span>rpk_id<span class="token punctuation">)</span> <span class="token keyword">as</span> rpkNum<span class="token punctuation">,</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'03'</span> <span class="token keyword">then</span> rpk_id <span class="token keyword">else</span> <span class="token boolean">null</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> wdrlRpkNum<span class="token punctuation">,</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'01'</span> <span class="token keyword">then</span> rpk_id <span class="token keyword">else</span> <span class="token boolean">null</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> noWdrlRpkNum<span class="token punctuation">,</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'04'</span> <span class="token keyword">then</span> rpk_id <span class="token keyword">else</span> <span class="token boolean">null</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> exdRpkNum<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'03'</span> <span class="token keyword">then</span> rpk_amt <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> wdrlRpkAmt<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'01'</span> <span class="token keyword">then</span> rpk_amt <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> noWdrlRpkAmt<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'04'</span> <span class="token keyword">then</span> rpk_amt <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> exdRpkAmt<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'03'</span> <span class="token operator">and</span> to_char<span class="token punctuation">(</span>tran_tim<span class="token punctuation">,</span><span class="token string">'yyyy'</span><span class="token punctuation">)</span> <span class="token operator">=</span> to_char<span class="token punctuation">(</span>sysdate<span class="token punctuation">,</span><span class="token string">'yyyy'</span><span class="token punctuation">)</span> <span class="token keyword">then</span> rpk_amt <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> yearWdrlRpkAmt<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> rpk_sta <span class="token operator">=</span> <span class="token string">'03'</span> <span class="token operator">and</span> to_char<span class="token punctuation">(</span>tran_tim<span class="token punctuation">,</span><span class="token string">'yyyymm'</span><span class="token punctuation">)</span> <span class="token operator">=</span> to_char<span class="token punctuation">(</span>sysdate<span class="token punctuation">,</span><span class="token string">'yyyymm'</span><span class="token punctuation">)</span> <span class="token keyword">then</span> rpk_amt <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> monWdrlRpkAmt
+    <span class="token keyword">from</span> t_acc_rpk_putout_list
+    <span class="token keyword">where</span> usr_id <span class="token operator">=</span> <span class="token string">'5023032421091900000012'</span>
+    <span class="token keyword">group</span> <span class="token keyword">by</span> usr_id
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="_2-根据一个字段去批量修改另外一个字段"><a href="#_2-根据一个字段去批量修改另外一个字段" class="header-anchor">#</a> 2：根据一个字段去批量修改另外一个字段</h2> <p>mapper</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code>	<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AccEtpOptOrderMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">AccEtpOptOrderPo</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>
+	<span class="token comment">/**
+	 * 根据流水号去批量修改 对应的交易状态
+	 * @param chnlFLowIds
+	 * @param tranSta
+	 */</span>
+	<span class="token keyword">void</span> <span class="token function">updAccEtpOptOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;chnlFLowIds&quot;</span><span class="token punctuation">)</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> chnlFLowIds<span class="token punctuation">,</span> <span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;tranSta&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> tranSta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>xml</p> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcacce.infracl.mapper.AccEtpOptOrderMapper<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>update</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>updAccEtpOptOrder<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        update t_acc_etp_opt_order set tran_sta = #{tranSta} 
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>where</span><span class="token punctuation">&gt;</span></span>
+            chnl_flow_id in (
+	             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">collection</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>chnlFLowIds<span class="token punctuation">&quot;</span></span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>chnlFlowId<span class="token punctuation">&quot;</span></span> <span class="token attr-name">separator</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>,<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		            #{chnlFlowId}
+		         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span> <span class="token punctuation">&gt;</span></span>
+            )
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>where</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>update</span><span class="token punctuation">&gt;</span></span>
+	
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="_3-自定义sql-传递多个字段"><a href="#_3-自定义sql-传递多个字段" class="header-anchor">#</a> 3：自定义sql（传递多个字段）</h2> <p>mapper</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code>	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EtpHangAcctInfDo</span><span class="token punctuation">&gt;</span></span> <span class="token function">selectEtpOptHangAcc</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;cusNo&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> cusNo<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;usrId&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> usrId<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;acctNo&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> acctNo<span class="token punctuation">,</span>
+			<span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;yqzlFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> yqzlFlag<span class="token punctuation">,</span> <span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;zbtFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> zbtFlag<span class="token punctuation">,</span> 
+			<span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;dzpjFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> dzpjFlag<span class="token punctuation">,</span> <span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;ncpsgFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> ncpsgFlag<span class="token punctuation">,</span>
+			<span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;qryFlag&quot;</span><span class="token punctuation">)</span>  <span class="token class-name">String</span> qryFlag<span class="token punctuation">,</span>  <span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;trsFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> trsFlag<span class="token punctuation">,</span> 
+			<span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;ageFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> ageFlag<span class="token punctuation">,</span>	<span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;rclFlag&quot;</span><span class="token punctuation">)</span> <span class="token class-name">String</span> rclFlag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>xml</p> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>selectEtpOptHangAcc<span class="token punctuation">&quot;</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcacce.infracl.dto.EtpHangAcctInfDo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        select t1.hang_acct_id as hangAcctId,
+        	   t1.cus_no     as cusNo,
+        	   t1.usr_id     as usrId,
+        	   t1.acct_no    as acctNo,
+        	   t1.acct_alias as acctAlias,
+               t1.dft_flag   as dftFlag,
+               t1.cret_tm    as cretTm,
+               t1.modi_tm    as modiTm,
+               t2.acct_typ   as acctTyp,
+               t2.acct_name  as acctName,
+               t2.acct_opn_org      as acctOpnOrg,
+               t2.acct_opn_name     as acctOpnName,
+               t1.qry_flag     		as qryFlag,
+               t1.trs_flag      	as trsFlag,
+               t1.age_flag      	as ageFlag,
+               t1.seq_no			as seqNo,
+               t1.rcl_flag			as rclFlag
+        from t_acc_etp_opt_hang_inf t1
+        left join t_acc_etp_hang_inf t2 on t1.cus_no = t2.cus_no and t1.acct_no = t2.acct_no
+        left join t_acc_etp_sign_inf t4 on t1.cus_no = t4.cus_no and t1.acct_no = t4.acct_no
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>where</span><span class="token punctuation">&gt;</span></span>
+ 			t1.cus_no = #{cusNo} and t1.usr_id = #{usrId}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>acctNo!=null and acctNo!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.acct_no = #{acctNo}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span> 
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>yqzlFlag!=null and yqzlFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.yqzl_flag = #{yqzlFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>zbtFlag!=null and zbtFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.zbt_flag = #{zbtFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span> 
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>dzpjFlag!=null and dzpjFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.dzpj_flag = #{dzpjFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ncpsgFlag!=null and ncpsgFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.ncpsg_flag = #{ncpsgFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>qryFlag!=null and qryFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.qry_flag = #{qryFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>trsFlag!=null and trsFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.trs_flag = #{trsFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ageFlag!=null and ageFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.age_flag = #{ageFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>rclFlag!=null and rclFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.rcl_flag = #{rclFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>where</span><span class="token punctuation">&gt;</span></span>
+ 		order by t1.cret_tm desc
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><h2 id="_4-自定义sql-传递对象"><a href="#_4-自定义sql-传递对象" class="header-anchor">#</a> 4：自定义sql（传递对象）</h2> <div class="language-java line-numbers-mode"><pre class="language-java"><code>	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EtpGrpHangAcctInfDo</span><span class="token punctuation">&gt;</span></span> <span class="token function">selectGrpEtpHangAcc</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">&quot;grpEtpHangInf&quot;</span><span class="token punctuation">)</span> <span class="token class-name">AccGrpEtpHangInfPo</span> grpEtpHangInfPo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-xml line-numbers-mode"><pre class="language-xml"><code>	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>selectGrpEtpHangAcc<span class="token punctuation">&quot;</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcacce.infracl.dto.EtpGrpHangAcctInfDo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		select t1.hang_acct_id as hangAcctId,
+               t1.cus_no    as cusNo,
+               t1.cus_mb_no as cusMbNo,
+        	   t1.acct_no   as acctNo,
+        	   t1.acct_name as acctName,
+               t1.acct_typ  as acctTyp,
+               t1.acct_opn_org as acctOpnOrg,
+               t1.acct_opn_name as acctOpnName,
+               t1.dft_flag  as dftFlag,
+               t1.auth_flag as authFlag,
+               t1.cret_tm   as cretTm,
+               t1.modi_tm   as modiTm,
+               t1.qry_flag  as qryFlag,
+               t1.trs_flag  as trsFlag,
+               t1.age_flag  as ageFlag,
+               t1.ups_flag  as upsFlag,
+               t1.dbt_flag  as dbtFlag,
+               t1.acl_flag  as aclFlag
+        from t_acc_grp_etp_hang_inf t1
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>where</span><span class="token punctuation">&gt;</span></span>
+ 			t1.cus_no = #{grpEtpHangInf.cusNo}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.sgFlag=='1'.toString() <span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.cus_mb_no = #{grpEtpHangInf.cusNo}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.sgFlag=='2'.toString() <span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.cus_no != t1.cus_mb_no
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.cusMbNo!=null and grpEtpHangInf.cusMbNo!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.cus_mb_no = #{grpEtpHangInf.cusMbNo}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.qryFlag!=null and grpEtpHangInf.qryFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.qry_flag = #{grpEtpHangInf.qryFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.trsFlag!=null and grpEtpHangInf.trsFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.trs_flag = #{grpEtpHangInf.trsFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.ageFlag!=null and grpEtpHangInf.ageFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.age_flag = #{grpEtpHangInf.ageFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.upsFlag!=null and grpEtpHangInf.upsFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.ups_flag = #{grpEtpHangInf.upsFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.dbtFlag!=null and grpEtpHangInf.dbtFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.dbt_flag = #{grpEtpHangInf.dbtFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>grpEtpHangInf.aclFlag!=null and grpEtpHangInf.aclFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 				and t1.acl_flag = #{grpEtpHangInf.aclFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>where</span><span class="token punctuation">&gt;</span></span>
+ 		order by t1.cret_tm desc
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h2 id="_5-自定义sql-字段模糊查询"><a href="#_5-自定义sql-字段模糊查询" class="header-anchor">#</a> 5：自定义sql（字段模糊查询）</h2> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>selectEtpOptHangAcc<span class="token punctuation">&quot;</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcacce.infracl.dto.EtpHangAcctInfDo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        select t1.hang_acct_id as hangAcctId,
+        	   t1.cus_no     as cusNo,
+        	   t1.usr_id     as usrId,
+        	   t1.acct_no    as acctNo,
+        	   t1.acct_alias as acctAlias,
+               t1.dft_flag   as dftFlag,
+               t1.cret_tm    as cretTm,
+               t1.modi_tm    as modiTm,
+               t2.acct_typ   as acctTyp,
+               t2.acct_name  as acctName,
+               t2.acct_opn_org      as acctOpnOrg,
+               t2.acct_opn_name     as acctOpnName,
+               t1.qry_flag     		as qryFlag,
+               t1.trs_flag      	as trsFlag,
+               t1.age_flag      	as ageFlag,
+               t1.seq_no			as seqNo,
+               t1.rcl_flag			as rclFlag
+        from t_acc_etp_opt_hang_inf t1
+        left join t_acc_etp_hang_inf t2 on t1.cus_no = t2.cus_no and t1.acct_no = t2.acct_no
+        left join t_acc_etp_sign_inf t4 on t1.cus_no = t4.cus_no and t1.acct_no = t4.acct_no
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>where</span><span class="token punctuation">&gt;</span></span>
+ 			t1.cus_no = #{cusNo} and t1.usr_id = #{usrId}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>acctNo!=null and acctNo!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.acct_no like  CONCAT(#{acctNo}, '%')
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span> 
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>yqzlFlag!=null and yqzlFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.yqzl_flag = #{yqzlFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>zbtFlag!=null and zbtFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.zbt_flag = #{zbtFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span> 
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>dzpjFlag!=null and dzpjFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.dzpj_flag = #{dzpjFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ncpsgFlag!=null and ncpsgFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t4.ncpsg_flag = #{ncpsgFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>qryFlag!=null and qryFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.qry_flag = #{qryFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>trsFlag!=null and trsFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.trs_flag = #{trsFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ageFlag!=null and ageFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.age_flag = #{ageFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>rclFlag!=null and rclFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and t1.rcl_flag = #{rclFlag}
+ 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>  			
+ 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>where</span><span class="token punctuation">&gt;</span></span>
+ 		order by t1.cret_tm desc
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><h2 id="_6-带条件查询-case-when"><a href="#_6-带条件查询-case-when" class="header-anchor">#</a> 6：带条件查询( case when )</h2> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span> <span class="token name">PUBLIC</span> <span class="token string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="token string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcaccp.infracl.mapper.AccCoreOdsMapper<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>selectListCoreTran<span class="token punctuation">&quot;</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.xjrccb.bizplat.bcaccp.api.dto.CustAcctTranInfo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        select trim(subacct) as fndCd,
+		       trim(acctno) as acctNo,
+		       trim(cardno) as cardNo,
+		       trim(ccy) as ccy,
+		       trim(teller) as tranTlr,
+		       cdflg as debCreFlag,
+		       ctflg as cshTrsFlag,
+		       tranamt as tranAmt,
+		       case when cdflg = 'D' then tranamt else 0.00 end as debTranAmt,
+		       case when cdflg = 'C' then tranamt else 0.00 end as creTranAmt,
+		       bal as acctBal,
+		       trim(ftfacctno) as oppAcctNo,
+		       trim(oppaccname) as oppAcctNam,
+		       trim(agentname) as oppAcctOpnBank,
+		       trim(ptxnseq) as tranFlowId,
+		       trandate as tranDat,
+		       trim(oppclsno) as trantim,
+		       trim(tranbrc) as tranOrg,
+		       trim(channel) as tranChnl,
+		       trim(briefcode) as absCd,
+		       trim(&quot;desc&quot;) as abs,
+		       trim(memo) as rmrk,
+		       trim(clsno) as wriOffId
+		  from ngcstrad.dpspersavelist t1
+		  left join ngcstrad.pubmemocode t2 on t1.briefcode = memocode
+		 where acctno like concat(#{acctNo},'%') and tranamt &gt; 0
+		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>sttDat!=null and endDat!=null<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 			   and trandate between #{sttDat} and #{endDat}
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>minAmt!=null and maxAmt!=null<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 		      and tranamt between #{minAmt} and #{maxAmt}
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>tranFlowId!=null and tranFlowId!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 		     and ptxnseq = #{tranFlowId}
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>debCreFlag!=null and debCreFlag!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ 		     and cdflg = #{debCreFlag}
+ 		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>oppAcctNam!=null and oppAcctNam!=''<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		     and oppaccname like concat(#{oppAcctNam},'%')
+		 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">&gt;</span></span>
+		 order by trandate desc, ptxnseq desc 
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="prev">
+          1：mybatis入门教程
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html">
+          1：redis基本数据类型
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_1-统计数量" class="sidebar-link reco-side-_1-统计数量" data-v-b57cc07c>1：统计数量</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_2-根据一个字段去批量修改另外一个字段" class="sidebar-link reco-side-_2-根据一个字段去批量修改另外一个字段" data-v-b57cc07c>2：根据一个字段去批量修改另外一个字段</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_3-自定义sql-传递多个字段" class="sidebar-link reco-side-_3-自定义sql-传递多个字段" data-v-b57cc07c>3：自定义sql（传递多个字段）</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_4-自定义sql-传递对象" class="sidebar-link reco-side-_4-自定义sql-传递对象" data-v-b57cc07c>4：自定义sql（传递对象）</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_5-自定义sql-字段模糊查询" class="sidebar-link reco-side-_5-自定义sql-字段模糊查询" data-v-b57cc07c>5：自定义sql（字段模糊查询）</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/mybatis/2%EF%BC%9Amybatis%E5%B8%B8%E7%94%A8sql%E5%A4%A7%E5%85%A8.html#_6-带条件查询-case-when" class="sidebar-link reco-side-_6-带条件查询-case-when" data-v-b57cc07c>6：带条件查询( case when )</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.572faffb.js" defer></script><script src="/xiaoze-blog/assets/js/9.76c849d1.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/65.e34a298d.js" defer></script>
+  </body>
+</html>
