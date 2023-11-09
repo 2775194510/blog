@@ -193,6 +193,13 @@ module.exports = {
           collapsable: false,
           children: [
             {
+              title: 'maven',
+              collapsable: false,
+              children: [
+                'maven基本知识',
+              ]
+            },
+            {
               title: 'gitee',
               collapsable: false,
               children: [
@@ -609,6 +616,7 @@ module.exports = {
       {
         text: '其他',
         items: [
+          { text: 'maven', link: '/blogs/其他/maven基本知识' },
           { text: 'gitee', link: '/blogs/其他/gitee' },
           { text: 'linux', link: '/blogs/其他/linux' },
           { text: 'nginx', link: '/blogs/其他/Nginx' },
