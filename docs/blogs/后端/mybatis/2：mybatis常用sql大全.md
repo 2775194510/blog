@@ -290,3 +290,31 @@ xml
 	</select>
 </mapper>
 ```
+
+## 7：更新sql
+```xml
+    <update id="updCardBinInf">
+        update t_bpf_card_bin_inf 
+             set 
+             card_bin_no=#{cardBinInfoPo.cardBinNo},
+             bank_no=#{cardBinInfoPo.bankNo},
+             bank_code=#{cardBinInfoPo.bankCode},
+             bank_name=#{cardBinInfoPo.bankName},
+             
+			<if test="cardBinInfoPo.crdTyp!=null and cardBinInfoPo.crdTyp!=''">
+ 			   crd_typ = #{cardBinInfoPo.crdTyp},
+ 			</if>
+ 			<if test="cardBinInfoPo.crdLen!=null and cardBinInfoPo.crdLen!=''">
+ 			   crd_len = #{cardBinInfoPo.crdLen},
+ 			</if>
+			<if test="cardBinInfoPo.crdTyp==null or cardBinInfoPo.crdTyp==''">
+ 			   crd_typ = ' ',
+ 			</if>
+ 			<if test="cardBinInfoPo.crdLen==null or cardBinInfoPo.crdLen==''">
+ 			   crd_len = ' ',
+ 			</if>
+             superbank_flag=#{cardBinInfoPo.superBankFlag},
+             deleted = 0
+         where card_bin_no = #{cardBinInfoPo.cardBinNo}
+    </update>
+```

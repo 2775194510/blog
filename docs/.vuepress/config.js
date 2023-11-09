@@ -109,6 +109,15 @@ module.exports = {
                 'mybatis/2：mybatis常用sql大全',
               ]
             },
+
+            {
+
+              title: 'mybatisPlus',
+              collapsable: false,
+              children: [
+                'mybatisPlus/1：mybatisPlus相关业务',
+              ]
+            },
             {
 
               title: 'redis',
@@ -398,7 +407,7 @@ module.exports = {
                         'spring/springboot/业务需求/7：结合mapStruct实现JavaBean转换',
                         'spring/springboot/业务需求/8：调用三方接口示例实现',
                         'spring/springboot/业务需求/9：数据脱敏',
-
+                        'spring/springboot/业务需求/10：接口失败重试机制实现',
                       ]
                     },
                     {
@@ -583,6 +592,7 @@ module.exports = {
           { text: 'Java', link: '/blogs/后端/java/Java面向对象' },
           { text: 'Juc', link: '/blogs/后端/juc/1：线程基础' },
           { text: 'Mybatis', link: '/blogs/后端/mybatis/1：mybatis入门教程' },
+          { text: 'MybatisPlus', link: '/blogs/后端/mybatisPlus/1：mybatisPlus相关业务' },
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
           { text: 'Spring', link: '/blogs/后端/spring/spring' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
