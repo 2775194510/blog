@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>19：错误和异常 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.129a1cbb.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/9.e87b05c6.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/69.26c81708.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.c2986b96.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.8bf9f537.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.f9d6bf8a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.a6b6688f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.dff909d2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.b03f6537.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.28a5f504.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.766f334b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.2503a379.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.abbf67b5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.25916e96.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.b859259a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.30381049.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.71753788.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.94eb0e1b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.8cf38a49.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.8f4abd9c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.451c019d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.ad0e9536.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.da2ebc81.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.c40e5375.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.8a9c6fa9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.323bd3c1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.88810de4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.a4b0ac1c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.452151fd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.35f0f0d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.14e2ff38.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.28c4993f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.0b7ce92f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.bc236e19.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.c37a0c62.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.96de48b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.20a6027c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.cc0e0306.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.6bb3d902.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.99abc567.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.3a2e0d7d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.ac810e24.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.93974b47.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.9fd886fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.14aa7971.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.66a01acf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.915c2f29.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.bf415d9a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.8fd2e0fb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.1b45b3fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.1b4c0001.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.a0739c81.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.7449430d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.3caa8a83.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.2b5b0361.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.c75e55fe.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.d9ffcdd3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.40196ab7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.af0103e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.8f8edc30.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.b5049ea7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.5bb2ccfc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.57ad869b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.a53e995d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.89851ae8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.9d2c9ac0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.4ed317f8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.5eceeb1d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.c4e58334.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.7a7bd6a8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.4176cfa0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.0a9609da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.fff0e031.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.add2b928.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.87f044df.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.edf1c28f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.561e0073.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.2ade61e4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.14c9777b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.5ceac7c5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.11af7b44.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.50607fbf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.8c6b4e3e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.507fad23.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.5a96fa3b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.c4aa3c14.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.18f5fe17.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.e2eadd66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.db93b23f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.65d6ad49.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.2da6fbb7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.1ba7ce25.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.af1c3aec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.2c5e946d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.31b51a08.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.0bf4cd2a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.a0d0c13a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.cc518f22.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.eba50b8f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.47ccf2d8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.7b515c8a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.7499fef0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.19ab26f3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.1149434e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.1a91f024.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.234f3550.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.afae77e7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.406a67f8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.91295c15.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.5df2e681.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.876beb23.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.fbd837f5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.39f36f82.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.4932c282.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.ab7d7c66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.eb43f6c6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.e59533f3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.6712e47a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.99592128.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.2d3884d7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.ce198345.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.f48a8320.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.96287bda.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.6239ec7c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.ca967abd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.47cda445.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.575e2222.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.afd8c4a6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.b8ea69ba.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.07071e1a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.2e2cc470.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.72fc9a75.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.d2e7c513.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.341874c7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.e56f1224.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.fdf0340f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.a8d56f42.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.05f969d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.c0d16b7b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.cbe26a07.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.bb6f8fcf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.05324d81.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.71503e12.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.e089f22c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.642d6286.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>134</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>33</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#abbd81;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#f8b26a;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#f8b26a;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>基本语法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="sidebar-link">1：基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/2：运算符.html" class="sidebar-link">2：运算符</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/3：数字.html" class="sidebar-link">3：数字</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/4：序列.html" class="sidebar-link">4：序列</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/5：字符串.html" class="sidebar-link">5：字符串</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/6：列表.html" class="sidebar-link">6：列表</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/7：元组.html" class="sidebar-link">7：元组</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/8：字典.html" class="sidebar-link">8：字典</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/9：集合.html" class="sidebar-link">9：集合</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/10：条件控制.html" class="sidebar-link">10：条件控制</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/11：循环.html" class="sidebar-link">11：循环</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/12：迭代器与生成器.html" class="sidebar-link">12：迭代器与生成器</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/13：函数.html" class="sidebar-link">13：函数</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/14：数据结构.html" class="sidebar-link">14：数据结构</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/15：模块.html" class="sidebar-link">15：模块</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/16：输入和输出.html" class="sidebar-link">16：输入和输出</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/17：File 方法.html" class="sidebar-link">17：File 方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/18：OS 文件、目录方法.html" class="sidebar-link">18：OS 文件、目录方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/19：错误和异常.html" class="active sidebar-link">19：错误和异常</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/20：面向对象.html" class="sidebar-link">20：面向对象</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/21：标准库概览.html" class="sidebar-link">21：标准库概览</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>19：错误和异常</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">19：错误和异常</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>11/12/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>python</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-语法错误"><a href="#_1-语法错误" class="header-anchor">#</a> 1：语法错误</h2> <p>Python 的语法错误或者称之为解析错，是初学者经常碰到的，如下实例</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">while</span> <span class="token boolean">True</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+    <span class="token keyword">while</span> <span class="token boolean">True</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span>
+                   <span class="token operator">^</span>
+SyntaxError<span class="token punctuation">:</span> invalid syntax
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>这个例子中，函数 <code>print()</code> 被检查到有错误，是它前面缺少了一个冒号（:）。</p> <p>语法分析器指出了出错的一行，并且在最先找到的错误的位置标记了一个小小的箭头。</p> <h2 id="_2-异常"><a href="#_2-异常" class="header-anchor">#</a> 2：异常</h2> <p>即便 Python 程序的语法是正确的，在运行它的时候，也有可能发生错误。运行期检测到的错误被称为异常。</p> <p>大多数的异常都不会被程序处理，都以错误信息的形式展现在这里:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">10</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+ZeroDivisionError<span class="token punctuation">:</span> division by zero
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token number">4</span> <span class="token operator">+</span> spam<span class="token operator">*</span><span class="token number">3</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+NameError<span class="token punctuation">:</span> name <span class="token string">'spam'</span> <span class="token keyword">is</span> <span class="token keyword">not</span> defined
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token string">'2'</span> <span class="token operator">+</span> <span class="token number">2</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+TypeError<span class="token punctuation">:</span> Can<span class="token string">'t convert '</span><span class="token builtin">int</span>' <span class="token builtin">object</span> to <span class="token builtin">str</span> implicitly
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>异常以不同的类型出现，这些类型都作为信息的一部分打印出来: 例子中的类型有 <code>ZeroDivisionError</code>，<code>NameError</code> 和 <code>TypeError</code>。</p> <p>错误信息的前面部分显示了异常发生的上下文，并以调用栈的形式显示具体信息。</p> <h2 id="_3-异常处理"><a href="#_3-异常处理" class="header-anchor">#</a> 3：异常处理</h2> <p>以下例子中，让用户输入一个合法的整数，但是允许用户中断这个程序（使用 Control-C 或者操作系统提供的方法）。用户中断的信息会引发一个 <code>KeyboardInterrupt</code> 异常。</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">&quot;Please enter a number: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;Oops!  That was no valid number.  Try again   &quot;</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><code>try</code> 语句按照如下方式工作；</p> <ul><li>首先，执行 <code>try</code> 子句（在关键字 <code>try</code> 和关键字 <code>except</code> 之间的语句）</li> <li>如果没有异常发生，忽略 <code>except</code> 子句，<code>try</code> 子句执行后结束。</li> <li>如果在执行 <code>try</code> 子句的过程中发生了异常，那么 <code>try</code> 子句余下的部分将被忽略。如果异常的类型和 <code>except</code> 之后的名称相符，那么对应的 <code>except</code> 子句将被执行。最后执行 <code>try</code> 语句之后的代码。</li> <li>如果一个异常没有与任何的 <code>except</code> 匹配，那么这个异常将会传递给上层的 <code>try</code> 中。
+一个 <code>try</code> 语句可能包含多个 <code>except</code> 子句，分别来处理不同的特定的异常。最多只有一个分支会被执行。</li></ul> <p>处理程序将只针对对应的 <code>try</code> 子句中的异常进行处理，而不是其他的 <code>try</code> 的处理程序中的异常。</p> <p>一个 <code>except</code> 子句可以同时处理多个异常，这些异常将被放在一个括号里成为一个元组，例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">except</span> <span class="token punctuation">(</span>RuntimeError<span class="token punctuation">,</span> TypeError<span class="token punctuation">,</span> NameError<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>最后一个 <code>except</code> 子句可以忽略异常的名称，它将被当作通配符使用。你可以使用这种方法打印一个错误信息，然后再次把异常抛出。</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">import</span> sys
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    f <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'myfile.txt'</span><span class="token punctuation">)</span>
+    s <span class="token operator">=</span> f<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    i <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> OSError <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;OS error: {0}&quot;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;Could not convert data to an integer.&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;Unexpected error:&quot;</span><span class="token punctuation">,</span> sys<span class="token punctuation">.</span>exc_info<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">raise</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p><code>try except</code> 语句还有一个可选的 else 子句，如果使用这个子句，那么必须放在所有的 except 子句之后。这个子句将在 try 子句没有发生任何异常的时候执行。例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">for</span> arg <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        f <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>arg<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> IOError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cannot open'</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>arg<span class="token punctuation">,</span> <span class="token string">'has'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'lines'</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>使用 else 子句比把所有的语句都放在 try 子句里面要好，这样可以避免一些意想不到的、而except又没有捕获的异常。</p> <p>异常处理并不仅仅处理那些直接发生在try子句中的异常，而且还能处理子句中调用的函数（甚至间接调用的函数）里抛出的异常。例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">this_fails</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span>
+   
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">try</span><span class="token punctuation">:</span>
+        this_fails<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> ZeroDivisionError <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Handling run-time error:'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+   
+Handling run<span class="token operator">-</span>time error<span class="token punctuation">:</span> <span class="token builtin">int</span> division <span class="token keyword">or</span> modulo by zero
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="_4-抛出异常"><a href="#_4-抛出异常" class="header-anchor">#</a> 4：抛出异常</h2> <p>Python 使用 raise 语句抛出一个指定的异常。例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">raise</span> NameError<span class="token punctuation">(</span><span class="token string">'HiThere'</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+NameError<span class="token punctuation">:</span> HiThere
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>raise 唯一的一个参数指定了要被抛出的异常。它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。</p> <p>如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> NameError<span class="token punctuation">(</span><span class="token string">'HiThere'</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> NameError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'An exception flew by!'</span><span class="token punctuation">)</span>
+        <span class="token keyword">raise</span>
+   
+An exception flew by!
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">2</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+NameError<span class="token punctuation">:</span> HiThere
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="_5-用户自定义异常"><a href="#_5-用户自定义异常" class="header-anchor">#</a> 5：用户自定义异常</h2> <p>你可以通过创建一个新的 <code>exception</code> 类来拥有自己的异常。异常应该继承自 Exception 类，或者直接继承，或者间接继承，例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">class</span> <span class="token class-name">MyError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+   
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> MyError<span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> MyError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'My exception occurred, value:'</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+   
+My exception occurred<span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token number">4</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">raise</span> MyError<span class="token punctuation">(</span><span class="token string">'oops!'</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+__main__<span class="token punctuation">.</span>MyError<span class="token punctuation">:</span> <span class="token string">'oops!'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>在这个例子中，类 Exception 默认的 <code>__init__()</code> 被覆盖。</p> <p>异常的类可以像其他的类一样做任何事情，但是通常都会比较简单，只提供一些错误相关的属性，并且允许处理异常的代码方便的获取这些信息。</p> <p>当创建一个模块有可能抛出多种不同的异常时，一种通常的做法是为这个包建立一个基础异常类，然后基于这个基础类为不同的错误情况创建不同的子类:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>   <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">InputError</span><span class="token punctuation">(</span>Error<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;Exception raised for errors in the input.
+
+    Attributes:
+        expression -- input expression in which the error occurred
+        message -- explanation of the error
+    &quot;&quot;&quot;</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> expression<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>expression <span class="token operator">=</span> expression
+        self<span class="token punctuation">.</span>message <span class="token operator">=</span> message
+
+<span class="token keyword">class</span> <span class="token class-name">TransitionError</span><span class="token punctuation">(</span>Error<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;Raised when an operation attempts a state transition that's not
+    allowed.
+
+    Attributes:
+        previous -- state at beginning of transition
+        next -- attempted new state
+        message -- explanation of why the specific transition is not allowed
+    &quot;&quot;&quot;</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> previous<span class="token punctuation">,</span> <span class="token builtin">next</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>previous <span class="token operator">=</span> previous
+        self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span>
+        self<span class="token punctuation">.</span>message <span class="token operator">=</span> message
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><h3 id="定义清理行为"><a href="#定义清理行为" class="header-anchor">#</a> 定义清理行为</h3> <p>try 语句还有另外一个可选的子句，它定义了无论在任何情况下都会执行的清理行为。 例如:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> KeyboardInterrupt
+    <span class="token keyword">finally</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Goodbye, world!'</span><span class="token punctuation">)</span>
+   
+Goodbye<span class="token punctuation">,</span> world!
+KeyboardInterrupt
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>以上例子不管 try 子句里面有没有发生异常，finally 子句都会执行。</p> <p>如果一个异常在 try 子句里（或者在 except 和 else 子句里）被抛出，而又没有任何的 except 把它截住，那么这个异常会在 finally 子句执行后再次被抛出。</p> <p>下面是一个更加复杂的例子（在同一个 try 语句里包含 except 和 finally 子句）:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">def</span> <span class="token function">divide</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            result <span class="token operator">=</span> x <span class="token operator">/</span> y
+        <span class="token keyword">except</span> ZeroDivisionError<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;division by zero!&quot;</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;result is&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;executing finally clause&quot;</span><span class="token punctuation">)</span>
+   
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> divide<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+result <span class="token keyword">is</span> <span class="token number">2.0</span>
+executing <span class="token keyword">finally</span> clause
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> divide<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+division by zero!
+executing <span class="token keyword">finally</span> clause
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> divide<span class="token punctuation">(</span><span class="token string">&quot;2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span>
+executing <span class="token keyword">finally</span> clause
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> ?
+  File <span class="token string">&quot;&lt;stdin&gt;&quot;</span><span class="token punctuation">,</span> line <span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">in</span> divide
+TypeError<span class="token punctuation">:</span> unsupported operand <span class="token builtin">type</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token operator">/</span><span class="token punctuation">:</span> <span class="token string">'str'</span> <span class="token keyword">and</span> <span class="token string">'str'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="预定义的清理行为"><a href="#预定义的清理行为" class="header-anchor">#</a> 预定义的清理行为</h3> <p>一些对象定义了标准的清理行为，无论系统是否成功的使用了它，一旦不需要它了，那么这个标准的清理行为就会执行。</p> <p>这面这个例子展示了尝试打开一个文件，然后把内容打印到屏幕上:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">for</span> line <span class="token keyword">in</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;myfile.txt&quot;</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>以上这段代码的问题是，当执行完毕后，文件会保持打开状态，并没有被关闭。</p> <p>关键词 with 语句就可以保证诸如文件之类的对象在使用完之后一定会正确的执行他的清理方法:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;myfile.txt&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> f<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>以上这段代码执行完毕后，就算在处理过程中出问题了，文件 f 总是会关闭。</p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/python/基本语法/18：OS 文件、目录方法.html" class="prev">
+          18：OS 文件、目录方法
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/python/基本语法/20：面向对象.html">
+          20：面向对象
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#_1-语法错误" class="sidebar-link reco-side-_1-语法错误" data-v-b57cc07c>1：语法错误</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#_2-异常" class="sidebar-link reco-side-_2-异常" data-v-b57cc07c>2：异常</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#_3-异常处理" class="sidebar-link reco-side-_3-异常处理" data-v-b57cc07c>3：异常处理</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#_4-抛出异常" class="sidebar-link reco-side-_4-抛出异常" data-v-b57cc07c>4：抛出异常</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#_5-用户自定义异常" class="sidebar-link reco-side-_5-用户自定义异常" data-v-b57cc07c>5：用户自定义异常</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#定义清理行为" class="sidebar-link reco-side-定义清理行为" data-v-b57cc07c>定义清理行为</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/19%EF%BC%9A%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8.html#预定义的清理行为" class="sidebar-link reco-side-预定义的清理行为" data-v-b57cc07c>预定义的清理行为</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.129a1cbb.js" defer></script><script src="/xiaoze-blog/assets/js/9.e87b05c6.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/69.26c81708.js" defer></script>
+  </body>
+</html>
