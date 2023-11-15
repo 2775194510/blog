@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2：数据库连接 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.481e6af5.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/9.da33e0a3.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/57.89e428f5.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.dc49a439.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.2d0fab46.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.3fa259d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.097e3b10.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.511431f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.7adf07f0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.d9c1adc1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.6a5501e5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.77f4877c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.0e897ef2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.8847f80b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.c4203521.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.2a5f16a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.e8786257.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.f2c4aa04.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.01d9f8d4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.5ac3d990.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.a40ca585.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.66b5e658.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.562876cb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.0861072d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.cb27c353.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.31448821.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.abaf5a28.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.d177d592.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.20d9eceb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.c6553ca5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.cd55077d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.d91a5333.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.e0d5d07e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.cfd91b06.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.20712d50.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.2f84962d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.090d53ce.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.003e58c1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.2b575b66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.353e2be1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.35d84a8d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.303cc1c9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.5ce69377.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.52b319aa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.dd53e7f6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.c8d1eecf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.27ccea2b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.d6aa5115.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.ee077d40.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.934d0c41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.a9bf67ca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.b511d5d5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.1db7673f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.7b4f2bb0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.9baffd99.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/147.dd099769.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/148.253a6d76.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/149.484e19fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.42326a2c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/150.ad44132e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/151.1185781d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/152.d7b8af61.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/153.d213cf9a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/154.1e40c6cd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/155.2cf4f4ee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.501e97c2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.7bf3227c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.d5a13d7a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.9dbf41b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.2226c383.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.bd028322.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.d830905f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.dc17e115.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.9e74a408.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.c6c0f3fb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.19775be5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.2b6761ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.a42246d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.07636048.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.e7716357.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.5f4c066f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.e838d30c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.a093251d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.9dc46c32.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.f06092c0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.2be70091.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.1e68caa8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.dd0f4ee7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.5ee53fa5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.68045a56.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.3ccb0180.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.3496a536.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.8eaea972.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.052e8b7e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.0c04f6ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.f36d5933.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.129d2e5f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.b2be1f72.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.4e57e74c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.93ccb033.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.886574de.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.206c28ba.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.bcecd87f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.0122b2f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.5943ec73.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.45013bb2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.cb4a5d82.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.aef199d2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.be6a9b1f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.d638bf1f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.53c01791.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.0df99a65.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.57842432.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.2f392a33.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.b0061518.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.33eb1345.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.15da99e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.69914d6a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.9cf4da38.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.f64dc1e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.a23ade54.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.d625f754.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.ddb127ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.f761a713.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.c29c47fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.d2347586.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.f920b99b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.935515b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.40e1d125.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.da1248fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.0a977bb7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.035060f5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.65a7dac6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.ccfb1891.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.0df4a4eb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.737d36f4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.4e331234.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.192c7a37.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.5993c37d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.b2b528b3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.391754f3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.4caa9d62.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.6607459f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.20cf7701.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.7e11c49e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.746d7d6b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.febb6478.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.3ff7159c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.70f00257.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.1f9a528f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.daa52f2a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.4d934435.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.fb8ac357.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.b96063c5.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>143</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>33</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f8b26a;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#abbd81;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#849b87;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基本语法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="sidebar-link">1：基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/2：运算符.html" class="sidebar-link">2：运算符</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/3：数字.html" class="sidebar-link">3：数字</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/4：序列.html" class="sidebar-link">4：序列</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/5：字符串.html" class="sidebar-link">5：字符串</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/6：列表.html" class="sidebar-link">6：列表</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/7：元组.html" class="sidebar-link">7：元组</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/8：字典.html" class="sidebar-link">8：字典</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/9：集合.html" class="sidebar-link">9：集合</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/10：条件控制.html" class="sidebar-link">10：条件控制</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/11：循环.html" class="sidebar-link">11：循环</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/12：迭代器与生成器.html" class="sidebar-link">12：迭代器与生成器</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/13：函数.html" class="sidebar-link">13：函数</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/14：数据结构.html" class="sidebar-link">14：数据结构</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/15：模块.html" class="sidebar-link">15：模块</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/16：输入和输出.html" class="sidebar-link">16：输入和输出</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/17：File 方法.html" class="sidebar-link">17：File 方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/18：OS 文件、目录方法.html" class="sidebar-link">18：OS 文件、目录方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/19：错误和异常.html" class="sidebar-link">19：错误和异常</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/20：面向对象.html" class="sidebar-link">20：面向对象</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/21：标准库概览.html" class="sidebar-link">21：标准库概览</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>高级进阶</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/python/高级进阶/1：正则表达式.html" class="sidebar-link">1：正则表达式</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/2：数据库连接.html" class="active sidebar-link">2：数据库连接</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/3：网络编程.html" class="sidebar-link">3：网络编程</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/4：SMTP发送邮件.html" class="sidebar-link">4：SMTP发送邮件</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/5：多线程.html" class="sidebar-link">5：多线程</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/6：JSON 数据解析.html" class="sidebar-link">6：JSON 数据解析</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/7：日期和时间.html" class="sidebar-link">7：日期和时间</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/8：math 模块.html" class="sidebar-link">8：math 模块</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/9：requests 模块.html" class="sidebar-link">9：requests 模块</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>2：数据库连接</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">2：数据库连接</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>11/14/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>python</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-什么是-pymysql"><a href="#_1-什么是-pymysql" class="header-anchor">#</a> 1：什么是 PyMySQL？</h2> <p><code>PyMySQL</code> 是在 <code>Python3.x</code> 版本中用于连接 <code>MySQL</code> 服务器的一个库，<code>Python2</code> 中则使用<code>mysqldb</code>。</p> <p><code>PyMySQL</code> 遵循 <code>Python</code> 数据库 <code>API v2.0</code> 规范，并包含了 <code>pure-Python MySQL</code> 客户端库。</p> <h2 id="_2-pymysql-安装"><a href="#_2-pymysql-安装" class="header-anchor">#</a> 2：PyMySQL 安装</h2> <p>PyMySQL 下载地址：<a href="https://github.com/PyMySQL/PyMySQL" target="_blank" rel="noopener noreferrer">下载地址<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p> <p>如果还未安装，我们可以使用以下命令安装最新版的 PyMySQL：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>pip <span class="token function">install</span> PyMySQL
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>如果你的系统不支持 <code>pip</code> 命令，可以使用以下方式安装：</p> <p>1、使用 <code>git</code> 命令下载安装包安装(你也可以手动下载)：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ <span class="token function">git</span> clone https://github.com/PyMySQL/PyMySQL
+$ <span class="token builtin class-name">cd</span> PyMySQL/
+$ python3 setup.py <span class="token function">install</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>2、如果需要制定版本号，可以使用 <code>curl</code> 命令来安装：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ <span class="token comment"># X.X 为 PyMySQL 的版本号</span>
+$ <span class="token function">curl</span> <span class="token parameter variable">-L</span> https://github.com/PyMySQL/PyMySQL/tarball/pymysql-X.X <span class="token operator">|</span> <span class="token function">tar</span> xz
+$ <span class="token builtin class-name">cd</span> PyMySQL*
+$ python3 setup.py <span class="token function">install</span>
+$ <span class="token comment"># 现在你可以删除 PyMySQL* 目录</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>注意</strong> ：请确保您有 root 权限来安装上述模块。</p> <h2 id="_3-数据库连接"><a href="#_3-数据库连接" class="header-anchor">#</a> 3：数据库连接</h2> <ul><li><code>host(str)</code>:      MySQL服务器地址</li> <li><code>port(int)</code>:      MySQL服务器端口号</li> <li><code>user(str)</code>:      用户名</li> <li><code>passwd(str)</code>:    密码</li> <li><code>db(str)</code>:        数据库名称</li> <li><code>charset(str)</code>:   连接编码</li></ul> <p><code>connection</code>对象支持的方法</p> <ul><li><code>cursor()</code>        使用该连接创建并返回游标</li> <li><code>commit()</code>       提交当前事务</li> <li><code>rollback()</code>     回滚当前事务</li> <li><code>close()</code>         关闭连接</li></ul> <p><code>cursor</code>对象支持的方法</p> <ul><li><code>execute(op)</code>     执行一个数据库的查询命令</li> <li><code>fetchone()</code>     取得结果集的下一行</li> <li><code>fetchmany(size)</code> 获取结果集的下几行</li> <li><code>fetchall()</code>      获取结果集中的所有行</li> <li><code>rowcount()</code>      返回数据条数或影响行数</li> <li><code>close()</code>         关闭游标对象</li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span> user<span class="token operator">=</span><span class="token string">&quot;root&quot;</span><span class="token punctuation">,</span> password<span class="token operator">=</span><span class="token string">&quot;xiaoze&quot;</span><span class="token punctuation">,</span> db<span class="token operator">=</span><span class="token string">&quot;collegestudentsloosechangenetwork&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用 cursor() 方法创建一个游标对象 cursor</span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用 execute()  方法执行 SQL 查询</span>
+cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">&quot;SELECT * FROM user where user_id = 43&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用 fetchone() 方法获取单条数据.</span>
+data <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchone<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="_4-创建数据库表"><a href="#_4-创建数据库表" class="header-anchor">#</a> 4：创建数据库表</h2> <p>如果数据库连接存在我们可以使用 <code>execute()</code> 方法来为数据库创建表，如下所示创建表<code>EMPLOYEE</code>：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用 cursor() 方法创建一个游标对象 cursor</span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用 execute() 方法执行 SQL，如果表存在则删除</span>
+cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">&quot;DROP TABLE IF EXISTS EMPLOYEE&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用预处理语句创建表</span>
+sql <span class="token operator">=</span> <span class="token triple-quoted-string string">&quot;&quot;&quot;CREATE TABLE EMPLOYEE (
+         FIRST_NAME  CHAR(20) NOT NULL,
+         LAST_NAME  CHAR(20),
+         AGE INT,  
+         SEX CHAR(1),
+         INCOME FLOAT )&quot;&quot;&quot;</span>
+
+cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h2 id="_5-数据库插入操作"><a href="#_5-数据库插入操作" class="header-anchor">#</a> 5：数据库插入操作</h2> <p>以下实例使用执行 <code>SQL INSERT</code> 语句向表 <code>EMPLOYEE</code> 插入记录：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用cursor()方法获取操作游标 </span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># SQL 插入语句</span>
+sql <span class="token operator">=</span> <span class="token triple-quoted-string string">&quot;&quot;&quot;INSERT INTO EMPLOYEE(FIRST_NAME,
+         LAST_NAME, AGE, SEX, INCOME)
+         VALUES ('Mac', 'Mohan', 20, 'M', 2000)&quot;&quot;&quot;</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行sql语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 提交到数据库执行</span>
+   db<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token comment"># 如果发生错误则回滚</span>
+   db<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>以上例子也可以写成如下形式：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用cursor()方法获取操作游标 </span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># SQL 插入语句</span>
+sql <span class="token operator">=</span> &quot;INSERT INTO EMPLOYEE<span class="token punctuation">(</span>FIRST_NAME<span class="token punctuation">,</span> \
+       LAST_NAME<span class="token punctuation">,</span> AGE<span class="token punctuation">,</span> SEX<span class="token punctuation">,</span> INCOME<span class="token punctuation">)</span> \
+       VALUES <span class="token punctuation">(</span><span class="token string">'%s'</span><span class="token punctuation">,</span> <span class="token string">'%s'</span><span class="token punctuation">,</span> <span class="token string">'%d'</span><span class="token punctuation">,</span> <span class="token string">'%c'</span><span class="token punctuation">,</span> <span class="token string">'%d'</span> <span class="token punctuation">)</span>&quot; <span class="token operator">%</span> \
+       <span class="token punctuation">(</span><span class="token string">'Mac'</span><span class="token punctuation">,</span> <span class="token string">'Mohan'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行sql语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 执行sql语句</span>
+   db<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token comment"># 发生错误时回滚</span>
+   db<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><p>以下代码使用变量向 SQL 语句中传递参数:</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+user_id <span class="token operator">=</span> <span class="token string">&quot;test123&quot;</span>
+password <span class="token operator">=</span> <span class="token string">&quot;password&quot;</span>
+
+con<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">'insert into Login values(&quot;%s&quot;, &quot;%s&quot;)'</span> <span class="token operator">%</span> \
+             <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="_6-数据库查询操作"><a href="#_6-数据库查询操作" class="header-anchor">#</a> 6：数据库查询操作</h2> <p>Python 查询 Mysql 使用 <code>fetchone()</code> 方法获取单条数据, 使用 <code>fetchall()</code> 方法获取多条数据。</p> <ul><li><code>fetchone()</code> : 该方法获取下一个查询结果集。结果集是一个对象</li> <li><code>fetchall()</code> : 接收全部的返回结果行.</li> <li><code>rowcount</code> : 这是一个只读属性，并返回执行 <code>execute()</code> 方法后影响的行数。</li></ul> <p>查询 <code>EMPLOYEE</code> 表中 <code>salary</code>（工资）字段大于 1000 的所有数据：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用cursor()方法获取操作游标 </span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># SQL 查询语句</span>
+sql <span class="token operator">=</span> &quot;SELECT <span class="token operator">*</span> FROM EMPLOYEE \
+       WHERE INCOME <span class="token operator">&gt;</span> <span class="token string">'%d'</span>&quot; <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行SQL语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 获取所有记录列表</span>
+   results <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchall<span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token keyword">for</span> row <span class="token keyword">in</span> results<span class="token punctuation">:</span>
+      fname <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+      lname <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+      age <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+      sex <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+      income <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>
+       <span class="token comment"># 打印结果</span>
+      <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">&quot;fname=%s,lname=%s,age=%d,sex=%s,income=%d&quot;</span> <span class="token operator">%</span> \
+             <span class="token punctuation">(</span>fname<span class="token punctuation">,</span> lname<span class="token punctuation">,</span> age<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> income <span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">&quot;Error: unable to fecth data&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>以上脚本执行结果如下：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>fname<span class="token operator">=</span>Mac<span class="token punctuation">,</span> lname<span class="token operator">=</span>Mohan<span class="token punctuation">,</span> age<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> sex<span class="token operator">=</span>M<span class="token punctuation">,</span> income<span class="token operator">=</span><span class="token number">2000</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_7-数据库更新操作"><a href="#_7-数据库更新操作" class="header-anchor">#</a> 7：数据库更新操作</h2> <p>更新操作用于更新数据表的的数据，以下实例将 <code>TESTDB</code> 表中的 <code>SEX</code> 字段全部修改为 'M'，AGE 字段递增 1：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用cursor()方法获取操作游标 </span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># SQL 更新语句</span>
+sql <span class="token operator">=</span> &quot;UPDATE EMPLOYEE SET AGE <span class="token operator">=</span> AGE <span class="token operator">+</span> <span class="token number">1</span>
+                          WHERE SEX <span class="token operator">=</span> <span class="token string">'%c'</span>&quot; <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token string">'M'</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行SQL语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 提交到数据库执行</span>
+   db<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token comment"># 发生错误时回滚</span>
+   db<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭数据库连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h2 id="_8-删除操作"><a href="#_8-删除操作" class="header-anchor">#</a> 8：删除操作</h2> <p>删除操作用于删除数据表中的数据，以下实例演示了删除数据表 <code>EMPLOYEE</code> 中 <code>AGE</code> 大于 20 的所有数据：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token keyword">import</span> pymysql
+
+<span class="token comment"># 打开数据库连接</span>
+db <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testuser&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;test123&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;TESTDB&quot;</span> <span class="token punctuation">)</span>
+
+<span class="token comment"># 使用cursor()方法获取操作游标 </span>
+cursor <span class="token operator">=</span> db<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># SQL 删除语句</span>
+sql <span class="token operator">=</span> <span class="token string">&quot;DELETE FROM EMPLOYEE WHERE AGE &gt; '%d'&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行SQL语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 提交修改</span>
+   db<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token comment"># 发生错误时回滚</span>
+   db<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭连接</span>
+db<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="_9-执行事务"><a href="#_9-执行事务" class="header-anchor">#</a> 9：执行事务</h2> <p>事务机制可以确保数据一致性。</p> <p>事务应该具有 4 个属性：<code>原子性</code>、<code>一致性</code>、<code>隔离性</code>、<code>持久性</code>。这四个属性通常称为 <code>ACID</code> 特性。</p> <ul><li><code>原子性（atomicity）</code> 。一个事务是一个不可分割的工作单位，事务中包括的诸操作要么都做，要么都不做。</li> <li><code>一致性（consistency）</code> 。事务必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。</li> <li><code>隔离性（isolation）</code> 。一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</li> <li><code>持久性（durability）</code> 。持续性也称永久性（permanence），指一个事务一旦提交，它对数据库中数据的改变就应该是永久性的。接下来的其他操作或故障不应该对其有任何影响。
+<code>Python DB API 2.0</code> 的事务提供了两个方法 <code>commit</code> 或 <code>rollback</code>。</li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># SQL删除记录语句</span>
+sql <span class="token operator">=</span> <span class="token string">&quot;DELETE FROM EMPLOYEE WHERE AGE &gt; '%d'&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token comment"># 执行SQL语句</span>
+   cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+   <span class="token comment"># 向数据库提交</span>
+   db<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+   <span class="token comment"># 发生错误时回滚</span>
+   db<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>对于支持事务的数据库， 在 <code>Python</code> 数据库编程中，当游标建立之时，就自动开始了一个隐形的数据库事务。</p> <p><code>commit()</code> 方法游标的所有更新操作，<code>rollback（）</code>方法回滚当前游标的所有操作。每一个方法都开始了一个新的事务。</p> <h2 id="_10-错误处理"><a href="#_10-错误处理" class="header-anchor">#</a> 10：错误处理</h2> <p>DB API 中定义了一些数据库操作的错误及异常，下表列出了这些错误和异常:
+<img src="/xiaoze-blog/assets/img/image.3d29ba15.png" alt="Alt text"></p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/python/高级进阶/1：正则表达式.html" class="prev">
+          1：正则表达式
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/python/高级进阶/3：网络编程.html">
+          3：网络编程
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_1-什么是-pymysql" class="sidebar-link reco-side-_1-什么是-pymysql" data-v-b57cc07c>1：什么是 PyMySQL？</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_2-pymysql-安装" class="sidebar-link reco-side-_2-pymysql-安装" data-v-b57cc07c>2：PyMySQL 安装</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_3-数据库连接" class="sidebar-link reco-side-_3-数据库连接" data-v-b57cc07c>3：数据库连接</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_4-创建数据库表" class="sidebar-link reco-side-_4-创建数据库表" data-v-b57cc07c>4：创建数据库表</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_5-数据库插入操作" class="sidebar-link reco-side-_5-数据库插入操作" data-v-b57cc07c>5：数据库插入操作</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_6-数据库查询操作" class="sidebar-link reco-side-_6-数据库查询操作" data-v-b57cc07c>6：数据库查询操作</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_7-数据库更新操作" class="sidebar-link reco-side-_7-数据库更新操作" data-v-b57cc07c>7：数据库更新操作</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_8-删除操作" class="sidebar-link reco-side-_8-删除操作" data-v-b57cc07c>8：删除操作</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_9-执行事务" class="sidebar-link reco-side-_9-执行事务" data-v-b57cc07c>9：执行事务</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5.html#_10-错误处理" class="sidebar-link reco-side-_10-错误处理" data-v-b57cc07c>10：错误处理</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.481e6af5.js" defer></script><script src="/xiaoze-blog/assets/js/9.da33e0a3.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/57.89e428f5.js" defer></script>
+  </body>
+</html>

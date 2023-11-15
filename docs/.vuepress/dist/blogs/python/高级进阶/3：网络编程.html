@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>3：网络编程 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.481e6af5.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/9.da33e0a3.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/44.f36d5933.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.dc49a439.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.2d0fab46.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.3fa259d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.097e3b10.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.511431f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.7adf07f0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.d9c1adc1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.6a5501e5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.77f4877c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.0e897ef2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.8847f80b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.c4203521.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.2a5f16a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.e8786257.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.f2c4aa04.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.01d9f8d4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.5ac3d990.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.a40ca585.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.66b5e658.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.562876cb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.0861072d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.cb27c353.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.31448821.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.abaf5a28.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.d177d592.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.20d9eceb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.c6553ca5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.cd55077d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.d91a5333.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.e0d5d07e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.cfd91b06.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.20712d50.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.2f84962d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.090d53ce.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.003e58c1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.2b575b66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.353e2be1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.35d84a8d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.303cc1c9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.5ce69377.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.52b319aa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.dd53e7f6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.c8d1eecf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.27ccea2b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.d6aa5115.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.ee077d40.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.934d0c41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.a9bf67ca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.b511d5d5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.1db7673f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.7b4f2bb0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.9baffd99.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/147.dd099769.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/148.253a6d76.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/149.484e19fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.42326a2c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/150.ad44132e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/151.1185781d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/152.d7b8af61.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/153.d213cf9a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/154.1e40c6cd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/155.2cf4f4ee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.501e97c2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.7bf3227c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.d5a13d7a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.9dbf41b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.2226c383.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.bd028322.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.d830905f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.dc17e115.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.9e74a408.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.c6c0f3fb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.19775be5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.2b6761ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.a42246d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.07636048.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.e7716357.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.5f4c066f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.e838d30c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.a093251d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.9dc46c32.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.f06092c0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.2be70091.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.1e68caa8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.dd0f4ee7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.5ee53fa5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.68045a56.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.3ccb0180.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.3496a536.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.8eaea972.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.052e8b7e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.0c04f6ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.129d2e5f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.b2be1f72.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.4e57e74c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.93ccb033.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.886574de.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.206c28ba.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.bcecd87f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.0122b2f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.5943ec73.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.45013bb2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.cb4a5d82.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.aef199d2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.be6a9b1f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.89e428f5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.d638bf1f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.53c01791.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.0df99a65.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.57842432.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.2f392a33.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.b0061518.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.33eb1345.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.15da99e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.69914d6a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.9cf4da38.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.f64dc1e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.a23ade54.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.d625f754.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.ddb127ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.f761a713.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.c29c47fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.d2347586.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.f920b99b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.935515b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.40e1d125.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.da1248fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.0a977bb7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.035060f5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.65a7dac6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.ccfb1891.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.0df4a4eb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.737d36f4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.4e331234.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.192c7a37.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.5993c37d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.b2b528b3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.391754f3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.4caa9d62.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.6607459f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.20cf7701.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.7e11c49e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.746d7d6b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.febb6478.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.3ff7159c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.70f00257.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.1f9a528f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.daa52f2a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.4d934435.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.fb8ac357.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.b96063c5.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>143</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>33</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f8b26a;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#abbd81;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#849b87;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/spring.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基本语法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="sidebar-link">1：基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/2：运算符.html" class="sidebar-link">2：运算符</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/3：数字.html" class="sidebar-link">3：数字</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/4：序列.html" class="sidebar-link">4：序列</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/5：字符串.html" class="sidebar-link">5：字符串</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/6：列表.html" class="sidebar-link">6：列表</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/7：元组.html" class="sidebar-link">7：元组</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/8：字典.html" class="sidebar-link">8：字典</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/9：集合.html" class="sidebar-link">9：集合</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/10：条件控制.html" class="sidebar-link">10：条件控制</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/11：循环.html" class="sidebar-link">11：循环</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/12：迭代器与生成器.html" class="sidebar-link">12：迭代器与生成器</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/13：函数.html" class="sidebar-link">13：函数</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/14：数据结构.html" class="sidebar-link">14：数据结构</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/15：模块.html" class="sidebar-link">15：模块</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/16：输入和输出.html" class="sidebar-link">16：输入和输出</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/17：File 方法.html" class="sidebar-link">17：File 方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/18：OS 文件、目录方法.html" class="sidebar-link">18：OS 文件、目录方法</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/19：错误和异常.html" class="sidebar-link">19：错误和异常</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/20：面向对象.html" class="sidebar-link">20：面向对象</a></li><li><a href="/xiaoze-blog/blogs/python/基本语法/21：标准库概览.html" class="sidebar-link">21：标准库概览</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>高级进阶</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/python/高级进阶/1：正则表达式.html" class="sidebar-link">1：正则表达式</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/2：数据库连接.html" class="sidebar-link">2：数据库连接</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/3：网络编程.html" class="active sidebar-link">3：网络编程</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/4：SMTP发送邮件.html" class="sidebar-link">4：SMTP发送邮件</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/5：多线程.html" class="sidebar-link">5：多线程</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/6：JSON 数据解析.html" class="sidebar-link">6：JSON 数据解析</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/7：日期和时间.html" class="sidebar-link">7：日期和时间</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/8：math 模块.html" class="sidebar-link">8：math 模块</a></li><li><a href="/xiaoze-blog/blogs/python/高级进阶/9：requests 模块.html" class="sidebar-link">9：requests 模块</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>3：网络编程</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">3：网络编程</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>11/14/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>python</span></i></div></div> <div class="theme-reco-content content__default"><p>Python 提供了两个级别访问的网络服务。：</p> <ul><li>低级别的网络服务支持基本的 <code>Socket</code>，它提供了标准的 <code>BSD Sockets API</code>，可以访问底层操作系统 <code>Socket</code> 接口的全部方法。</li> <li>高级别的网络服务模块 <code>SocketServer</code>， 它提供了服务器中心类，可以简化网络服务器的开发。</li></ul> <h2 id="_1-什么是-socket"><a href="#_1-什么是-socket" class="header-anchor">#</a> 1：什么是 Socket?</h2> <p><code>Socket</code> 又称&quot;套接字&quot;，应用程序通常通过&quot;套接字&quot;向网络发出请求或者应答网络请求，使主机间或者一台计算机上的进程间可以通讯。</p> <h2 id="_2-socket-函数"><a href="#_2-socket-函数" class="header-anchor">#</a> 2：socket()函数</h2> <p>Python 中，我们用 <code>socket（）</code>函数来创建套接字，语法格式如下：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span><span class="token punctuation">[</span>family<span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token punctuation">[</span><span class="token punctuation">,</span> proto<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>参数</strong></p> <ul><li><code>family</code>: 套接字家族可以使 <code>AF_UNIX</code> 或者 <code>AF_INET</code></li> <li><code>type</code>: 套接字类型可以根据是面向连接的还是非连接分为 <code>SOCK_STREAM</code> 或 <code>SOCK_DGRAM</code></li> <li><code>protocol</code>: 一般不填默认为0.</li></ul> <h2 id="_3-socket-对象-内建-方法"><a href="#_3-socket-对象-内建-方法" class="header-anchor">#</a> 3：Socket 对象(内建)方法</h2> <p><img src="/xiaoze-blog/assets/img/image1.ca813834.png" alt="Alt text"> <img src="/xiaoze-blog/assets/img/image2.9ad27f6c.png" alt="Alt text"></p> <h2 id="_4-简单实例"><a href="#_4-简单实例" class="header-anchor">#</a> 4：简单实例</h2> <h3 id="_1-服务端"><a href="#_1-服务端" class="header-anchor">#</a> 1）服务端</h3> <p>我们使用 <code>socket</code> 模块的 <code>socket</code> 函数来创建一个 <code>socket</code> 对象。<code>socket</code> 对象可以通过调用其他函数来设置一个 <code>socket</code> 服务。</p> <p>现在我们可以通过调用 <code>bind(hostname, port)</code> 函数来指定服务的 <code>port(端口)</code>。</p> <p>接着，我们调用 <code>socket</code> 对象的 <code>accept</code> 方法。该方法等待客户端的连接，并返回 <code>connection</code> 对象，表示已连接到客户端。</p> <p>完整代码如下：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+<span class="token comment"># 文件名：server.py</span>
+
+<span class="token comment"># 导入 socket、sys 模块</span>
+<span class="token keyword">import</span> socket
+<span class="token keyword">import</span> sys
+
+<span class="token comment"># 创建 socket 对象</span>
+serversocket <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>
+            socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span> 
+
+<span class="token comment"># 获取本地主机名</span>
+host <span class="token operator">=</span> socket<span class="token punctuation">.</span>gethostname<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+port <span class="token operator">=</span> <span class="token number">9999</span>
+
+<span class="token comment"># 绑定端口</span>
+serversocket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 设置最大连接数，超过后排队</span>
+serversocket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token comment"># 建立客户端连接</span>
+    clientsocket<span class="token punctuation">,</span>addr <span class="token operator">=</span> serversocket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>      
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;连接地址: %s&quot;</span> <span class="token operator">%</span> <span class="token builtin">str</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    msg<span class="token operator">=</span><span class="token string">'欢迎访问W3Cschool教程！'</span><span class="token operator">+</span> <span class="token string">&quot;\r\n&quot;</span>
+    clientsocket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>msg<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    clientsocket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><h3 id="_2-客户端"><a href="#_2-客户端" class="header-anchor">#</a> 2）客户端</h3> <p>接下来我们写一个简单的客户端实例连接到以上创建的服务。端口号为 <code>12345</code>。</p> <p><code>socket.connect(hosname, port )</code> 方法打开一个 <code>TCP</code> 连接到主机为 <code>hostname</code> 端口为 <code>port</code> 的服务商。连接后我们就可以从服务端后期数据，记住，操作完成后需要关闭连接。</p> <p>完整代码如下：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/python3</span>
+<span class="token comment"># 文件名：client.py</span>
+
+<span class="token comment"># 导入 socket、sys 模块</span>
+<span class="token keyword">import</span> socket
+<span class="token keyword">import</span> sys
+
+<span class="token comment"># 创建 socket 对象</span>
+s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span> 
+
+<span class="token comment"># 获取本地主机名</span>
+host <span class="token operator">=</span> socket<span class="token punctuation">.</span>gethostname<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+
+<span class="token comment"># 设置端口好</span>
+port <span class="token operator">=</span> <span class="token number">9999</span>
+
+<span class="token comment"># 连接服务，指定主机和端口</span>
+s<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 接收小于 1024 字节的数据</span>
+msg <span class="token operator">=</span> s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+
+s<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>现在我们打开连个终端，第一个终端执行 <code>server.py</code> 文件：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>$ python3 server<span class="token punctuation">.</span>py
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>第二个终端执行 <code>client.py</code> 文件：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>$ python3 client<span class="token punctuation">.</span>py 
+欢迎访问W3Cschool教程！
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>这是我们再打开第一个终端，就会看到有以下信息输出：</p> <div class="language-python line-numbers-mode"><pre class="language-python"><code>连接地址： <span class="token punctuation">(</span><span class="token string">'192.168.0.118'</span><span class="token punctuation">,</span> <span class="token number">33397</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_5-internet-模块"><a href="#_5-internet-模块" class="header-anchor">#</a> 5：Internet 模块</h2> <p><img src="/xiaoze-blog/assets/img/image3.0075c0a8.png" alt="Alt text"></p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/python/高级进阶/2：数据库连接.html" class="prev">
+          2：数据库连接
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/python/高级进阶/4：SMTP发送邮件.html">
+          4：SMTP发送邮件
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_1-什么是-socket" class="sidebar-link reco-side-_1-什么是-socket" data-v-b57cc07c>1：什么是 Socket?</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_2-socket-函数" class="sidebar-link reco-side-_2-socket-函数" data-v-b57cc07c>2：socket()函数</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_3-socket-对象-内建-方法" class="sidebar-link reco-side-_3-socket-对象-内建-方法" data-v-b57cc07c>3：Socket 对象(内建)方法</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_4-简单实例" class="sidebar-link reco-side-_4-简单实例" data-v-b57cc07c>4：简单实例</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_1-服务端" class="sidebar-link reco-side-_1-服务端" data-v-b57cc07c>1）服务端</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_2-客户端" class="sidebar-link reco-side-_2-客户端" data-v-b57cc07c>2）客户端</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/python/%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6/3%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html#_5-internet-模块" class="sidebar-link reco-side-_5-internet-模块" data-v-b57cc07c>5：Internet 模块</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.481e6af5.js" defer></script><script src="/xiaoze-blog/assets/js/9.da33e0a3.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/44.f36d5933.js" defer></script>
+  </body>
+</html>
