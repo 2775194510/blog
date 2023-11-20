@@ -408,6 +408,8 @@ module.exports = {
                         'spring/springboot/业务需求/8：调用三方接口示例实现',
                         'spring/springboot/业务需求/9：数据脱敏',
                         'spring/springboot/业务需求/10：接口失败重试机制实现',
+                        'spring/springboot/业务需求/11：大文件上传',
+
                       ]
                     },
                     {
