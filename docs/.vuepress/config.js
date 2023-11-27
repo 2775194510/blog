@@ -374,6 +374,29 @@ module.exports = {
               ]
             },
             {
+              title: 'redis知识库',
+              collapsable: false,
+              children: [
+                {
+                  title: 'redis工具类',
+                  collapsable: false,
+                  children: [
+                    'redis/redis工具类/1：redisUtils快捷操作redis',
+                    'redis/redis工具类/2：批量操作redis工具类',
+
+                  ]
+                },
+                {
+                  title: 'redis业务类',
+                  collapsable: false,
+                  children: [
+                    'redis/redis业务类/1：用redis生成唯一自增id',
+                    'redis/redis业务类/2：用redis防止按钮重复提交',
+                  ]
+                }
+              ]
+            },
+            {
               title: 'spring',
               collapsable: false,
               children: [
@@ -696,6 +719,7 @@ module.exports = {
         items: [
           { text: '常用css', link: '/blogs/工具/css/h5/h5' },
           { text: 'spring工具', link: '/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解' },
+          { text: 'redis工具', link: '/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis' },
           { text: '面试大全', link: '/blogs/面试/Java基础上' },
         ]
       },
