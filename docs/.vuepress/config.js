@@ -131,7 +131,7 @@ module.exports = {
               title: 'spring',
               collapsable: false,
               children: [
-                'spring/spring',
+                'spring/1：SpringAop',
               ]
             },
             {
@@ -666,7 +666,7 @@ module.exports = {
           { text: 'Mybatis', link: '/blogs/后端/mybatis/1：mybatis入门教程' },
           { text: 'MybatisPlus', link: '/blogs/后端/mybatisPlus/1：mybatisPlus相关业务' },
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
-          { text: 'Spring', link: '/blogs/后端/spring/spring' },
+          { text: 'Spring', link: '/blogs/后端/spring/1：SpringAop' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '消息中间件', link: '/blogs/后端/rabbitmq/1：RabbitMq' },
