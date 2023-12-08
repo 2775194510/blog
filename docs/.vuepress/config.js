@@ -392,6 +392,12 @@ module.exports = {
                   children: [
                     'redis/redis业务类/1：用redis生成唯一自增id',
                     'redis/redis业务类/2：用redis防止按钮重复提交',
+                    'redis/redis业务类/3：基于Redis实现共享Session登录',
+                    'redis/redis业务类/4：redis实现点赞排行榜',
+                    'redis/redis业务类/5：redis实现共同好友或者共同关注',
+                    'redis/redis业务类/6：redis实现用户签到以及签到统计',
+                    'redis/redis业务类/7：redis实现优惠券秒杀',
+
                   ]
                 }
               ]

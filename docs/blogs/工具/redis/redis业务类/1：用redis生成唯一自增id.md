@@ -12,7 +12,12 @@ author: 胡昊泽
 ---
 
 方式：`32位时间戳` + `redis自增id`
+![Alt text](./assets/image7.png)
+ID 组成部分：
 
+- `符号位`：1 bit，永远为 0
+- `时间戳`：31 bit，以秒为单位，可以使用 69 年
+- `序列号`：32 bit，秒内的计数器，支持每秒产生 2^32 个不同的 ID
 ```java
 package com.xiaoze.exer.Component;
 
@@ -64,5 +69,37 @@ public class RedisIdWorker {
     //     // Long test = redisIdWorker.nextId("test");
     //     // System.out.println(test);
     // }
+}
+```
+
+测试
+```java
+@SpringBootTest
+class HmDianPingApplicationTests {
+ 
+    @Autowired
+    private RedisIdWorker redisIdWorker;
+ 
+    private ExecutorService es = Executors.newFixedThreadPool(500);
+ 
+    @Test
+    void testIdWorker() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(300);
+        Runnable task = () -> {
+            for (int i = 0; i < 100; i++) {
+                Long id = redisIdWorker.nextId("order");
+                System.out.println("id = " + id);
+            }
+            latch.countDown();
+        };
+        long begin = System.currentTimeMillis();
+        for (int i = 0; i < 300; i++) {
+            es.submit(task);
+        }
+        latch.await();
+        long end = System.currentTimeMillis();
+        System.out.println("time = " + (end - begin));
+    }
+ 
 }
 ```
