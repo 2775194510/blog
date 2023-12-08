@@ -221,6 +221,8 @@ module.exports = {
               children: [
                 'linux',
                 'linux特殊命令',
+                'linux-vi命令',
+
               ]
             },
             {
