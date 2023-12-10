@@ -1,6 +1,6 @@
 ---
-title: 1：cmd打开根据不同数字来打开本地文件
-date: 2023-4-18
+title: 1：cmd打开本地电脑文件
+date: 2023-12-10
 sidebar: auto
 categories:
   - cmd
@@ -8,12 +8,17 @@ tags:
   - cmd
 ---
 
-::: warning cmd命令
-**vuepress-theme-reco**因为每次都要打开不同地方的文件，很麻烦，所以有没有一种方式，我可以在窗口输入不同的数字来打开不同的文件呢？ ~~~ 当然可以的啦！
+:::warning cmd命令
+`vuepress-theme-reco` 因为每次都要打开不同地方的文件，很麻烦，所以有没有一种方式，我可以在窗口输入不同的数字来打开不同的文件呢？ ~~~ 当然可以的啦！
 :::
+
 ## 1：创建bat命令脚本
+
 ## 2：编写脚本
-```bat
+```shell
+Copyright © 小泽
+Link: https://hu-haoze.gitee.io/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html
+
 @chcp 65001 
 @echo off
 ::title

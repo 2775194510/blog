@@ -179,6 +179,24 @@ module.exports = {
           ]
         }
       ],
+
+      '/blogs/大数据/': [
+        {
+          title: '大数据篇',
+          collapsable: false,
+          children: [
+            {
+              title: 'Flink',
+              collapsable: false,
+              children: [
+                'Flink/1：Flink概述',
+                'Flink/2：Flink快速上手',
+
+              ]
+            },
+          ]
+        }
+      ],
       '/blogs/运维/': [
         {
           title: '运维篇',
@@ -682,11 +700,18 @@ module.exports = {
         ]
       },
       {
+        text: '大数据',
+        items: [
+          { text: 'flink', link: '/blogs/大数据/Flink/1：Flink概述' },
+        ]
+      },
+      {
         text: '运维',
         items: [
           { text: 'docker', link: '/blogs/运维/docker/1：docker安装部署' },
         ]
       },
+
       {
         text: '数据库',
         items: [
