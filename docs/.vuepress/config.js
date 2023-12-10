@@ -191,7 +191,13 @@ module.exports = {
               children: [
                 'Flink/1：Flink概述',
                 'Flink/2：Flink快速上手',
-
+                {
+                  title: 'Flink部署',
+                  collapsable: false,
+                  children: [
+                    'Flink/3：Flink部署-集群角色',
+                  ]
+                },
               ]
             },
           ]
