@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>5：YARN运行模式（重点） | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.2fcd8ba7.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/10.398992e8.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/43.1979469c.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.c25fce1b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.f5cb5d8a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.f10c0001.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.a65c85ad.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.0fd7c90e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.fc1728ad.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.8fb487c2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.e01ddcb1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.d97be9ab.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.617ea446.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/11.0f871674.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.719617e5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.48a84723.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.7418d893.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.c32680ca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.361147c7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.f383cb46.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.bd6523a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.31b5c742.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.a1919237.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.19f3087d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.fd2043ef.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.37999b20.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.f897630e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.7d25dee6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.a50250ea.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.550f39fb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.21401d20.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.a73e4068.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.c27b212a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.e30cbaf5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.4bdc0035.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.8d91d448.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.6f931bf4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.6fbe9ee5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.f77cb3b1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.4ee16739.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.b21781f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.cad84ca6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.3f328fdb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.732de7cb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.d02e999f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.d994925c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.62b33690.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.3f6821d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.70658689.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.82f2bbe1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.709e9874.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.f187660b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.6c91bada.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.3f16617b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/147.5fe59ea8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/148.1ccf156f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/149.aca0dd44.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.e659319d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/150.bed1d5f7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/151.a18f6af8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/152.ca11463e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/153.ea2a2696.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/154.da9b9389.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/155.b7119d01.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/156.325c2698.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/157.477f419b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/158.98d62f7c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/159.b0409a56.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.ec4e2770.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/160.0be2810a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/161.dbf56acd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/162.89044e8c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/163.c40e0ae9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/164.f87d4a4b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/165.f1460bbf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/166.e9afc898.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/167.ce3a8e0d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/168.de20043c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/169.bb616329.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.ed883f41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/170.5723aa02.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/171.de05c885.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/172.42bb3bbc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/173.31f01536.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/174.0fbccd5c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/175.1fd1e47f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/176.62030c86.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/177.14c29b98.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/178.e87f45ad.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.717e9bb9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.1bdeb848.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.80ac94e3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.3f22e27a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.728fd01d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.1aa98aec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.457cee40.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.1e22ba2a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.73d4a913.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.0b277d12.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.ed1290c0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.b8b6b544.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.e0fd811a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.a871cf67.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.e30eeb45.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.9d00f8d2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.1b5a0b14.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.4208508f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.3a870688.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.34249950.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.2869d283.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.0709b576.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.027f2bbb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.90865799.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.58eaaf60.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.c26971ed.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.9e2e1015.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.76923e9a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.c0f0a8cd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.0bc92faa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.d2711dc9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.bd98c2af.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.ccd5f9c8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.82de2c3d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.e5699b35.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.f745b789.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.653cfc49.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.e38123a4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.d07e201c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.4a50ce23.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.10f2b9af.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.4eb873b5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.bb7081a0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.796c17e2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.d136a974.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.cb13f866.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.009c351c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.4fa4cca3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.195221c8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.b27fbb68.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.f27ac998.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.c6adddf0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.a4e9ee27.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.231ee057.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.f657db1c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.adc20a9b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.0d3282b1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.3cba7262.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.47c60d4d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.54ba3fcb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.a63507ce.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.09f7190e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.245faec8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.f101e705.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.e7ffd310.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.a097b1d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.645e7df0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.8dd19e79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.2a2ca4bf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.2a6c0ceb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.1b5f2061.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.75dc606a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.078dfaa7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.90e36931.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.2b56b0da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.127e217f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.6aa05073.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/9.dfa11175.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.3b2a0a67.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.2fdd2618.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.0a435326.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.ca341952.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.fffbf856.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.36091f75.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.b85bae47.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.b152e5e2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.02bcc887.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.999b407d.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Flink/" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>166</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>36</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#fb9b5f;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#f26d6d;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#849b87;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Flink/" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>大数据篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>Flink</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="sidebar-link">1：Flink概述</a></li><li><a href="/xiaoze-blog/blogs/大数据/Flink/2：Flink快速上手.html" class="sidebar-link">2：Flink快速上手</a></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>Flink部署</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/大数据/Flink/3：Flink部署-集群角色.html" class="sidebar-link">3：集群角色及部署模式</a></li><li><a href="/xiaoze-blog/blogs/大数据/Flink/4：Standalone运行模式（了解）.html" class="sidebar-link">4：Standalone运行模式（了解）</a></li><li><a href="/xiaoze-blog/blogs/大数据/Flink/5：YARN运行模式（重点）.html" class="active sidebar-link">5：YARN运行模式（重点）</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading"><span>Flink运行时架构</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/大数据/Flink/6：系统架构.html" class="sidebar-link">6：系统架构</a></li><li><a href="/xiaoze-blog/blogs/大数据/Flink/7：核心概念-并行度、算子链、任务槽.html" class="sidebar-link">7：核心概念-并行度、算子链、任务槽</a></li></ul></section></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>5：YARN运行模式（重点）</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">5：YARN运行模式（重点）</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/11/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>Flink</span><span class="tag-item" data-v-8a445198>大数据</span></i></div></div> <div class="theme-reco-content content__default"><p><code>YARN</code> 上部署的过程是：客户端把 <code>Flink</code> 应用提交给 <code>Yarn</code> 的 <code>ResourceManager</code>，<code>Yarn</code>的 <code>ResourceManager</code> 会向 <code>Yarn</code> 的 <code>NodeManager</code> 申请容器。在这些容器上，<code>Flink</code> 会部署 <code>JobManager</code> 和 <code>TaskManager</code> 的实例，从而启动集群。***<code>Flink</code> 会根据运行在 <code>JobManger</code>上的作业所需要的 <code>Slot</code> 数量动态分配 <code>TaskManager</code>资源***。</p> <h2 id="_1-相关准备和配置"><a href="#_1-相关准备和配置" class="header-anchor">#</a> 1：相关准备和配置</h2> <p>在将 <code>Flink</code> 任务部署至 <code>YARN</code> 集群之前，需要确认集群是否安装有 <code>Hadoop</code>，保证 <code>Hadoop</code> 版本至少在2.2以上，并且集群中安装有 <code>HDFS</code> 服务。<br>
+具体配置步骤如下：</p> <p>（1）配置环境变量，增加环境变量配置如下：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ <span class="token function">sudo</span> <span class="token function">vim</span> /etc/profile.d/my_env.sh
+
+<span class="token assign-left variable">HADOOP_HOME</span><span class="token operator">=</span>/opt/module/hadoop-3.3.4
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$HADOOP_HOME</span>/bin:<span class="token variable">$HADOOP_HOME</span>/sbin
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">HADOOP_CONF_DIR</span><span class="token operator">=</span><span class="token variable">${HADOOP_HOME}</span>/etc/hadoop
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">HADOOP_CLASSPATH</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>hadoop classpath<span class="token variable">`</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>（2）启动 <code>Hadoop</code> 集群，包括 <code>HDFS</code> 和 <code>YARN</code> 。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>start-dfs.sh
+start-yarn.sh
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>（3）在 <code>hadoop102</code> 中执行以下命令启动 <code>netcat</code> 。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">nc</span> <span class="token parameter variable">-lk</span> <span class="token number">7777</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_2-会话模式部署"><a href="#_2-会话模式部署" class="header-anchor">#</a> 2：会话模式部署</h2> <p><code>YARN</code> 的会话模式与独立集群略有不同，需要首先申请一个 <code>YARN</code> 会话（YARN Session）来启动<code>Flink</code> 集群。具体步骤如下：</p> <h3 id="_1-启动集群"><a href="#_1-启动集群" class="header-anchor">#</a> 1）启动集群</h3> <p>（1）启动 <code>Hadoop</code> 集群（<code>HDFS、YARN</code>）。<br>
+（2）执行脚本命令向 <code>YARN</code> 集群申请资源，开启一个 <code>YARN</code> 会话，启动 <code>Flink</code> 集群。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/yarn-session.sh <span class="token parameter variable">-nm</span> <span class="token builtin class-name">test</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>可用参数解读：</p> <ul><li><code>-d</code> ：分离模式，如果你不想让Flink YARN客户端一直前台运行，可以使用这个参数，即使关掉当前对话窗口，YARN session也可以后台运行。</li> <li><code>-jm（--jobManagerMemory）</code> ：配置JobManager所需内存，默认单位MB。</li> <li><code>-nm（--name）</code> ：配置在YARN UI界面上显示的任务名。</li> <li><code>-qu（--queue）</code> ：指定YARN队列名。</li> <li><code>-tm（--taskManager）</code> ：配置每个TaskManager所使用内存。</li></ul> <p>注意：<code>Flink1.11.0</code> 版本不再使用 <code>-n</code> 参数和 <code>-s</code> 参数分别指定 <code>TaskManager</code> 数量和 <code>slot</code> 数量，<code>YARN</code> 会按照需求动态分配 <code>TaskManager</code> 和 <code>slot</code> 。所以从这个意义上讲，<code>YARN</code> 的会话模式也不会把集群资源固定，同样是动态分配的。<br> <code>YARN Session</code> 启动之后会给出一个 <code>Web UI</code> 地址以及一个 <code>YARN application ID</code>，如下所示，用户可以通过 <code>Web UI</code> 或者命令行两种方式提交作业。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token number">2022</span>-11-17 <span class="token number">15</span>:20:52,711 INFO  org.apache.flink.yarn.YarnClusterDescriptor                  <span class="token punctuation">[</span><span class="token punctuation">]</span> - Found Web Interface hadoop104:40825 of application <span class="token string">'application_1668668287070_0005'</span><span class="token builtin class-name">.</span>
+JobManager Web Interface: http://hadoop104:40825
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_2-提交作业"><a href="#_2-提交作业" class="header-anchor">#</a> 2）提交作业</h3> <p>（1）通过Web UI提交作业<br>
+这种方式比较简单，与上文所述Standalone部署模式基本相同。</p> <p><img src="/xiaoze-blog/assets/img/image20.949edc4d.png" alt="Alt text"></p> <p>（2）通过命令行提交作业<br>
+① 将 <code>FlinkTutorial-1.0-SNAPSHOT.jar</code> 任务上传至集群。
+② 执行以下命令将该任务提交到已经开启的 <code>Yarn-Session</code> 中运行。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink run
+<span class="token parameter variable">-c</span> com.atguigu.wc.SocketStreamWordCount FlinkTutorial-1.0-SNAPSHOT.jar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>客户端可以自行确定 <code>JobManager</code> 的地址，也可以通过 <code>-m</code> 或者 <code>-jobmanager</code> 参数指定<code>JobManager</code> 的地址，<code>JobManager</code> 的地址在 <code>YARN Session</code> 的启动页面中可以找到。<br>
+③ 任务提交成功后，可在 <code>YARN</code> 的 <code>Web UI</code> 界面查看运行情况。<code>hadoop103:8088</code>。</p> <p><img src="/xiaoze-blog/assets/img/image21.1f68c2a0.png" alt="Alt text"></p> <p>从上图中可以看到我们创建的 <code>Yarn-Session</code> 实际上是一个 <code>Yarn</code> 的 <code>Application</code>，并且有唯一的 <code>Application ID</code>。<br>
+④也可以通过 <code>Flink</code> 的 <code>Web UI</code> 页面查看提交任务的运行情况，如下图所示。</p> <p><img src="/xiaoze-blog/assets/img/image22.f3e3554f.png" alt="Alt text"></p> <h2 id="_3-单作业模式部署"><a href="#_3-单作业模式部署" class="header-anchor">#</a> 3：单作业模式部署</h2> <p>在 <code>YARN</code> 环境中，由于有了外部平台做资源调度，所以我们也可以直接向 <code>YARN</code> 提交一个单独的作业，从而启动一个 <code>Flink</code> 集群。</p> <p>（1）执行命令提交作业。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink run <span class="token parameter variable">-d</span> <span class="token parameter variable">-t</span> yarn-per-job <span class="token parameter variable">-c</span> com.atguigu.wc.SocketStreamWordCount FlinkTutorial-1.0-SNAPSHOT.jar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>注意：如果启动过程中报如下异常。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Exception <span class="token keyword">in</span> thread “Thread-5” java.lang.IllegalStateException: Trying to access closed classloader. Please check <span class="token keyword">if</span> you store classloaders directly or indirectly <span class="token keyword">in</span> static fields. If the stacktrace suggests that the leak occurs <span class="token keyword">in</span> a third party library and cannot be fixed immediately, you can disable this check with the configuration ‘classloader.check-leaked-classloader’.
+at org.apache.flink.runtime.execution.librarycache.FlinkUserCodeClassLoaders
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>解决办法：在 <code>flink</code> 的 <code>/opt/module/flink-1.17.0/conf/flink-conf.yaml</code> 配置文件中设置</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token punctuation">[</span>atguigu@hadoop102 conf<span class="token punctuation">]</span>$ <span class="token function">vim</span> flink-conf.yaml
+
+classloader.check-leaked-classloader: <span class="token boolean">false</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>（2）在 <code>YARN</code> 的 <code>ResourceManager</code> 界面查看执行情况。</p> <p><img src="/xiaoze-blog/assets/img/image23.96e0da73.png" alt="Alt text"></p> <p>点击可以打开 <code>Flink Web UI</code> 页面进行监控，如下图所示：</p> <p><img src="/xiaoze-blog/assets/img/image24.0cc7f21e.png" alt="Alt text"></p> <p>（3）可以使用命令行查看或取消作业，命令如下。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink list <span class="token parameter variable">-t</span> yarn-per-job <span class="token parameter variable">-Dyarn.application.id</span><span class="token operator">=</span>application_XXXX_YY
+
+bin/flink cancel <span class="token parameter variable">-t</span> yarn-per-job <span class="token parameter variable">-Dyarn.application.id</span><span class="token operator">=</span>application_XXXX_YY <span class="token operator">&lt;</span>jobId<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>这里的 <code>application_XXXX_YY</code> 是当前应用的 <code>ID</code>，<code>&lt;jobId&gt;</code> 是作业的 <code>ID</code> 。注意如果取消作业，整个 <code>Flink</code> 集群也会停掉。</p> <h2 id="_4-应用模式部署"><a href="#_4-应用模式部署" class="header-anchor">#</a> 4：应用模式部署</h2> <p>应用模式同样非常简单，与单作业模式类似，直接执行 <code>flink run-application</code> 命令即可。</p> <h3 id="_1-命令行提交"><a href="#_1-命令行提交" class="header-anchor">#</a> 1）命令行提交</h3> <p>（1）执行命令提交作业。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink run-application <span class="token parameter variable">-t</span> yarn-application <span class="token parameter variable">-c</span> com.atguigu.wc.SocketStreamWordCount FlinkTutorial-1.0-SNAPSHOT.jar 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>（2）在命令行中查看或取消作业。</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink list <span class="token parameter variable">-t</span> yarn-application <span class="token parameter variable">-Dyarn.application.id</span><span class="token operator">=</span>application_XXXX_YY
+
+bin/flink cancel <span class="token parameter variable">-t</span> yarn-application <span class="token parameter variable">-Dyarn.application.id</span><span class="token operator">=</span>application_XXXX_YY <span class="token operator">&lt;</span>jobId<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_2-上传hdfs提交"><a href="#_2-上传hdfs提交" class="header-anchor">#</a> 2）上传HDFS提交</h3> <p>可以通过 <code>yarn.provided.lib.dirs</code> 配置选项指定位置，将 <code>flink</code> 的依赖上传到远程。</p> <p>（1）上传 <code>flink</code> 的 <code>lib</code> 和 <code>plugins</code> 到 <code>HDFS</code> 上</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code> hadoop fs <span class="token parameter variable">-mkdir</span> /flink-dist
+ hadoop fs <span class="token parameter variable">-put</span> lib/ /flink-dist
+ hadoop fs <span class="token parameter variable">-put</span> plugins/ /flink-dist
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>（2）上传自己的jar包到HDFS</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code> hadoop fs <span class="token parameter variable">-mkdir</span> /flink-jars
+ hadoop fs <span class="token parameter variable">-put</span> FlinkTutorial-1.0-SNAPSHOT.jar /flink-jars
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>（3）提交作业</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>bin/flink run-application <span class="token parameter variable">-t</span> yarn-application	<span class="token parameter variable">-Dyarn.provided.lib.dirs</span><span class="token operator">=</span><span class="token string">&quot;hdfs://hadoop102:8020/flink-dist&quot;</span>	<span class="token parameter variable">-c</span> com.atguigu.wc.SocketStreamWordCount  hdfs://hadoop102:8020/flink-jars/FlinkTutorial-1.0-SNAPSHOT.jar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>这种方式下，<code>flink</code> 本身的依赖和用户 <code>jar</code> 可以预先上传到 <code>HDFS</code>，而不需要单独发送到集群，这就使得作业提交更加轻量了。</p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/大数据/Flink/4：Standalone运行模式（了解）.html" class="prev">
+          4：Standalone运行模式（了解）
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/大数据/Flink/6：系统架构.html">
+          6：系统架构
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_1-相关准备和配置" class="sidebar-link reco-side-_1-相关准备和配置" data-v-b57cc07c>1：相关准备和配置</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_2-会话模式部署" class="sidebar-link reco-side-_2-会话模式部署" data-v-b57cc07c>2：会话模式部署</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_1-启动集群" class="sidebar-link reco-side-_1-启动集群" data-v-b57cc07c>1）启动集群</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_2-提交作业" class="sidebar-link reco-side-_2-提交作业" data-v-b57cc07c>2）提交作业</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_3-单作业模式部署" class="sidebar-link reco-side-_3-单作业模式部署" data-v-b57cc07c>3：单作业模式部署</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_4-应用模式部署" class="sidebar-link reco-side-_4-应用模式部署" data-v-b57cc07c>4：应用模式部署</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_1-命令行提交" class="sidebar-link reco-side-_1-命令行提交" data-v-b57cc07c>1）命令行提交</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%A4%A7%E6%95%B0%E6%8D%AE/Flink/5%EF%BC%9AYARN%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89.html#_2-上传hdfs提交" class="sidebar-link reco-side-_2-上传hdfs提交" data-v-b57cc07c>2）上传HDFS提交</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.2fcd8ba7.js" defer></script><script src="/xiaoze-blog/assets/js/10.398992e8.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/43.1979469c.js" defer></script>
+  </body>
+</html>

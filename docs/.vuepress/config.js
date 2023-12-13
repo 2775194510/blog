@@ -196,6 +196,18 @@ module.exports = {
                   collapsable: false,
                   children: [
                     'Flink/3：Flink部署-集群角色',
+                    'Flink/4：Standalone运行模式（了解）',
+                    'Flink/5：YARN运行模式（重点）'
+                  ]
+                },
+
+                {
+                  title: 'Flink运行时架构',
+                  collapsable: false,
+                  children: [
+                    'Flink/6：系统架构',
+                    'Flink/7：核心概念-并行度、算子链、任务槽',
+
                   ]
                 },
               ]
