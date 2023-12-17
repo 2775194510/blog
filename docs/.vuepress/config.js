@@ -152,6 +152,8 @@ module.exports = {
                 'springcloud/5：Nacos配置管理',
                 'springcloud/6：Feign远程调用',
                 'springcloud/7：Gateway服务网关',
+                'springcloud/8：Hystrix熔断降级',
+
               ]
             },
             {
@@ -476,6 +478,7 @@ module.exports = {
                         'spring/springboot/业务需求/9：数据脱敏',
                         'spring/springboot/业务需求/10：接口失败重试机制实现',
                         'spring/springboot/业务需求/11：大文件上传',
+                        'spring/springboot/业务需求/12：springboot上传文件至本地',
 
                       ]
                     },
