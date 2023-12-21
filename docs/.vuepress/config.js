@@ -153,6 +153,10 @@ module.exports = {
                 'springcloud/6：Feign远程调用',
                 'springcloud/7：Gateway服务网关',
                 'springcloud/8：Hystrix熔断降级',
+                'springcloud/9：Config分布式配置中心',
+                'springcloud/10：消息总线Bus',
+                'springcloud/11：消息驱动Stream',
+                'springcloud/12：链路追踪Sleuth',
 
               ]
             },
@@ -479,6 +483,7 @@ module.exports = {
                         'spring/springboot/业务需求/10：接口失败重试机制实现',
                         'spring/springboot/业务需求/11：大文件上传',
                         'spring/springboot/业务需求/12：springboot上传文件至本地',
+                        'spring/springboot/业务需求/13：订单自动取消的11种实现方式',
 
                       ]
                     },
