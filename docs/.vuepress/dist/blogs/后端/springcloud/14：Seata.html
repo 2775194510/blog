@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>14：Seata | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.7c8e580d.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/11.aec34606.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.faeb34d2.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/19.96a614d4.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.4d340f43.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.15fed2f6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.fcb12c41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.19ebf530.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.908aa635.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.c3fdd116.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.672fee6d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.25d85573.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.ddd5e498.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.04be8825.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.a29f9fc0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.b64a9e94.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.c8b931ce.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.0b840ec2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.8b0db25d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.d65b14ff.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.359f7366.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.d3aa7ccb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.9801c054.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.82eba9da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.ee520977.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.541520a9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.ec9fc184.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.6156b04e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.4dcec959.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.7b4a1b95.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.dc3f4479.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.ec173eb9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.1a78017e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.1028495c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.5efe5b0e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.d7010adb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.f41b2d70.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.e983e307.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.370b990a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.f9d86bee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.f7aea8da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.9fdac98e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.c5c79b48.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.cf6af014.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.735a2936.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.b8a153a4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.6740be79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.ccda5d30.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.977c3055.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.22d8c44e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.88e5e9b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.bf25adb1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.9eb2d212.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.1294f2e0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.37b18a73.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/147.0a823976.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/148.657bef79.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/149.0f004511.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.15b28ec5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/150.cbd63089.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/151.4ff6c6c6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/152.faf03369.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/153.23cdcf4f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/154.4d0b02e2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/155.83769e80.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/156.db49554c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/157.02d4dd8b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/158.d1248c05.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/159.c5f6ec67.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.4a95cb78.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/160.14526a5c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/161.97cf7c4a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/162.2832fe3d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/163.34a080d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/164.b2ca7b06.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/165.9ad7a58f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/166.8f799d4e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/167.58ccdab9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/168.dd24218d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/169.f1838515.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.13568579.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/170.50f70e36.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/171.323377c7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/172.6c677ef1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/173.48b8667f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/174.2dfac67e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/175.8b1cbecf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/176.a5272de5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/177.18994d55.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/178.833534b1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/179.8b28fe90.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.e2ea9755.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/180.8c4df252.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/181.6fb26783.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/182.0f9904a6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/183.da75b9da.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/184.e1918807.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/185.61e4f38a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/186.9aba368b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/187.aebf0c62.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.64b69d06.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.7611544d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.fad77771.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.cf389871.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.c2b69831.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.617cd4e2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.53b29cbd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.1a00ce38.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.72696de3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.0b5d0721.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.d9a9619e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.3e059612.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.16e5744e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.06ac460c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.ddd9f056.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.71c61002.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.87ab4eef.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.e0e2efb8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.c4186b7a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.23241a10.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.d32fd483.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.1ad313b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.239d690f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.b8f6b468.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.385593d7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.b252cd53.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.4bf678b0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.6cccf0ac.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.02b541d0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.2eaa83ee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.f0816773.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.9a2f21eb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.9cf645f6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.649f3418.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.c99dc347.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.ec01c10c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.7ec33e65.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.6ccc132e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.20802ae5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.68c1eed2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.aa8a9fad.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.e496bd15.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.fb611836.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.d95223d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.781b22f2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.bca6db8a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.cde44987.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.8c35ca9f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.03eec321.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.1f5d73eb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.50b77d4c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.f20b8250.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.1db3f299.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.bc37b71c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.78ccd973.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.810f1c7c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.635bcb6a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.c3f93e07.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.14ecbef1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.d252a301.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.6a55288b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.ec3728d2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.c92f431f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.ee778965.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.cfb81173.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.0bc4ae9f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.0f0f010e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.ca5284b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.57105c09.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.ef818f6c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.febafb66.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/85.d22e9415.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.444cb15f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.a4841522.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.3891ff86.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.0435424b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/9.cca79417.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.19944edc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.6842fca6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.114a03ad.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.af5be5cf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.76b7d6a0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.49d448fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.300b16e3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.5ef3ca2c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.7fdef231.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.18d65383.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.aa94598e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Flink/" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>175</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>36</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f47e60;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#67cc86;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#abbd81;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      必备知识
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/nginx/" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/gitee/" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/lua/" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/jQuery/" class="nav-link"><i class="undefined"></i>
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/juc/" class="nav-link"><i class="undefined"></i>
+  juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rabbit/" class="nav-link"><i class="undefined"></i>
+  rabbit
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/rocket/" class="nav-link"><i class="undefined"></i>
+  rocket
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/Flink/" class="nav-link"><i class="undefined"></i>
+  Flink
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/cmd/" class="nav-link"><i class="undefined"></i>
+  cmd
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/markdown语法/" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/css/" class="nav-link"><i class="undefined"></i>
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/spring/" class="nav-link"><i class="undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/categories/面经/" class="nav-link"><i class="undefined"></i>
+  面经
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/vue3.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>后端</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="sidebar-link">1：java面向对象</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java反射.html" class="sidebar-link">2：java反射</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java-Stream大全.html" class="sidebar-link">3：Stream</a></li><li><a href="/xiaoze-blog/blogs/后端/java/Java位运算符详解.html" class="sidebar-link">4：Java位运算符详解</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Juc</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="sidebar-link">1：线程基础</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture.html" class="sidebar-link">2：CompletableFuture</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/2：CompletableFuture个人代码.html" class="sidebar-link">2：CompletableFuture个人代码</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/3：Java锁.html" class="sidebar-link">3：Java锁</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/4：LockSupport与线程中断.html" class="sidebar-link">4：LockSupport与线程中断</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/5：Java内存模型之JMM.html" class="sidebar-link">5：Java内存模型之JMM</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/6：volatile与Java内存模型.html" class="sidebar-link">6：volatile与Java内存模型</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/7：CAS.html" class="sidebar-link">7：CAS</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/8：原子操作类之18罗汉增强.html" class="sidebar-link">8：原子操作类之18罗汉增强</a></li><li><a href="/xiaoze-blog/blogs/后端/juc/9：聊聊ThreadLocal.html" class="sidebar-link">9：聊聊ThreadLocal</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>mybatis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="sidebar-link">1：mybatis入门教程</a></li><li><a href="/xiaoze-blog/blogs/后端/mybatis/2：mybatis常用sql大全.html" class="sidebar-link">2：mybatis常用sql大全</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>mybatisPlus</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="sidebar-link">1：mybatisPlus相关业务</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="sidebar-link">1：redis基本数据类型</a></li><li><a href="/xiaoze-blog/blogs/后端/redis/缓存击穿，穿透解决.html" class="sidebar-link">2：缓存击穿、穿透解决办法</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>spring</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="sidebar-link">1：SpringAop</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>springboot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="sidebar-link">1：SpringBoot拦截器</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>springcloud</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="sidebar-link">1：springcloud入门</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/2：eureka服务注册.html" class="sidebar-link">2：eureka服务注册</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/3：ribbon负载均衡.html" class="sidebar-link">3：ribbon负载均衡</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/4：Nacos注册中心.html" class="sidebar-link">4：Nacos注册中心</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/5：Nacos配置管理.html" class="sidebar-link">5：Nacos配置管理</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/6：Feign远程调用.html" class="sidebar-link">6：Feign远程调用</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/7：Gateway服务网关.html" class="sidebar-link">7：Gateway服务网关</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/8：Hystrix熔断降级.html" class="sidebar-link">8：Hystrix熔断降级</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/9：Config分布式配置中心.html" class="sidebar-link">9：Config分布式配置中心</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/10：消息总线Bus.html" class="sidebar-link">10：消息总线Bus</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/11：消息驱动Stream.html" class="sidebar-link">11：消息驱动Stream</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/12：链路追踪Sleuth.html" class="sidebar-link">12：链路追踪Sleuth</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/13：Sentinel.html" class="sidebar-link">13：Sentinel</a></li><li><a href="/xiaoze-blog/blogs/后端/springcloud/14：Seata.html" class="active sidebar-link">14：Seata</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>消息中间件</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading open"><span>rabbitmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="sidebar-link">1：RabbitMq</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-2"><p class="sidebar-heading"><span>rocketmq</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/后端/rocketmq/1：RocketMq.html" class="sidebar-link">1：RocketMq</a></li><li><a href="/xiaoze-blog/blogs/后端/rocketmq/2：RocketMq简单集成文档.html" class="sidebar-link">2：RocketMq简单集成文档</a></li></ul></section></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>14：Seata</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">14：Seata</h1> <div data-v-8a445198><!----> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/23/2023</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>sprincloud</span></i></div></div> <div class="theme-reco-content content__default"><p><a href="https://seata.io/zh-cn/docs/overview/what-is-seata" target="_blank" rel="noopener noreferrer">官方文档<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="_1-seata安装"><a href="#_1-seata安装" class="header-anchor">#</a> 1：seata安装</h2> <h3 id="下载"><a href="#下载" class="header-anchor">#</a> 下载</h3> <p><a href="https://github.com/apache/incubator-seata/releases" target="_blank" rel="noopener noreferrer">下载地址<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="修改file-conf"><a href="#修改file-conf" class="header-anchor">#</a> 修改file.conf</h3> <p><img src="/xiaoze-blog/assets/img/image117.632a5847.png" alt="Alt text"></p> <p><img src="/xiaoze-blog/assets/img/image118.531d9633.png" alt="Alt text"></p> <p><img src="/xiaoze-blog/assets/img/image119.2236c854.png" alt="Alt text"></p> <h3 id="mysql建库建表"><a href="#mysql建库建表" class="header-anchor">#</a> mysql建库建表</h3> <ul><li>1,上面指定了数据库为 <code>seata</code> ,所以创建一个数据库名为 <code>seata</code></li> <li>2,建表,在 <code>seata</code> 的安装目录下有一个 <code>db_store.sql</code> ,运行即可</li></ul> <h3 id="修改registry-conf"><a href="#修改registry-conf" class="header-anchor">#</a> 修改registry.conf</h3> <p>配置 <code>seata</code> 作为微服务,指定注册中心</p> <p><img src="/xiaoze-blog/assets/img/image120.e1e3b03c.png" alt="Alt text"></p> <h3 id="启动"><a href="#启动" class="header-anchor">#</a> 启动</h3> <ul><li>先启动 <code>nacos</code></li> <li>在启动 <code>seata-server</code> (运行安装目录下的, <code>seata-server.bat</code> )</li></ul> <h2 id="_2-举例"><a href="#_2-举例" class="header-anchor">#</a> 2：举例</h2> <p>业务说明</p> <p><img src="/xiaoze-blog/assets/img/image121.e59d1d36.png" alt="Alt text"></p> <h3 id="创建三个数据库"><a href="#创建三个数据库" class="header-anchor">#</a> 创建三个数据库</h3> <p><img src="/xiaoze-blog/assets/img/image122.91235439.png" alt="Alt text"></p> <h3 id="创建对应的表"><a href="#创建对应的表" class="header-anchor">#</a> 创建对应的表</h3> <p><img src="/xiaoze-blog/assets/img/image123.965249cf.png" alt="Alt text"></p> <h3 id="创建回滚日志表-方便查看"><a href="#创建回滚日志表-方便查看" class="header-anchor">#</a> 创建回滚日志表,方便查看</h3> <p><img src="/xiaoze-blog/assets/img/image124.b8a1f357.png" alt="Alt text"></p> <p><strong>注意每个库都要执行一次这个sql,生成 <code>回滚日志表</code></strong></p> <h3 id="创建seata-order-2001"><a href="#创建seata-order-2001" class="header-anchor">#</a> 创建seata-order-2001</h3> <h4 id="pom-xml"><a href="#pom-xml" class="header-anchor">#</a> pom.xml</h4> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--nacos--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--seata--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-alibaba-seata<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclusions</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclusion</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>seata-all<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.seata<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>exclusion</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>exclusions</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.seata<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>seata-all<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>0.9.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--feign--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--web-actuator--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-actuator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--mysql-druid--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.1.37<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.1.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br></div></div><h4 id="application-yml"><a href="#application-yml" class="header-anchor">#</a> application.yml</h4> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">2001</span>
+
+
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>order<span class="token punctuation">-</span>service
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">alibaba</span><span class="token punctuation">:</span>
+      <span class="token key atrule">seata</span><span class="token punctuation">:</span>
+        <span class="token key atrule">tx-service-group</span><span class="token punctuation">:</span> fsp_tx_group <span class="token comment">#自定义事务组名称需要与seata-server中的对应</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span>
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> com.alibaba.druid.pool.DruidDataSource
+    <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> org.gjt.mm.mysql.Driver
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/seata_order<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;characterEncoding=utf-8&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> root
+
+<span class="token key atrule">feign</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hystrix</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+<span class="token key atrule">logging</span><span class="token punctuation">:</span>
+  <span class="token key atrule">level</span><span class="token punctuation">:</span>
+    <span class="token key atrule">io</span><span class="token punctuation">:</span>
+      <span class="token key atrule">seata</span><span class="token punctuation">:</span> info
+
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mapperLocations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mapper/<span class="token important">*.xml</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h4 id="创建一个file-conf"><a href="#创建一个file-conf" class="header-anchor">#</a> 创建一个file.conf</h4> <div class="language-conf line-numbers-mode"><pre class="language-text"><code>service {
+  #transaction service group mapping
+  vgroup_mapping.fsp_tx_group = &quot;default&quot; #修改自定义事务组名称
+  #only support when registry.type=file, please don't set multiple addresses
+  default.grouplist = &quot;127.0.0.1:8091&quot;
+  #disable seata
+  disableGlobalTransaction = false
+}
+
+## transaction log store, only used in seata-server
+store {
+  ## store mode: file、db
+  mode = &quot;db&quot;
+
+  ## file store property
+  file {
+    ## store location dir
+    dir = &quot;sessionStore&quot;
+  }
+
+  ## database store property
+  db {
+    ## the implement of javax.sql.DataSource, such as DruidDataSource(druid)/BasicDataSource(dbcp) etc.
+    datasource = &quot;dbcp&quot;
+    ## mysql/oracle/h2/oceanbase etc.
+    db-type = &quot;mysql&quot;
+    driver-class-name = &quot;com.mysql.jdbc.Driver&quot;
+    url = &quot;jdbc:mysql://localhost:3306/seata&quot;
+    user = &quot;root&quot;
+    password = &quot;root&quot;
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h4 id="创建registry-conf"><a href="#创建registry-conf" class="header-anchor">#</a> 创建registry.conf</h4> <div class="language-conf line-numbers-mode"><pre class="language-text"><code>registry {
+  # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
+  type = &quot;nacos&quot;
+ 
+  nacos {
+    #serverAddr = &quot;localhost&quot;
+    serverAddr = &quot;localhost:8848&quot;
+    namespace = &quot;&quot;
+    cluster = &quot;default&quot;
+  }
+  eureka {
+    serviceUrl = &quot;http://localhost:8761/eureka&quot;
+    application = &quot;default&quot;
+    weight = &quot;1&quot;
+  }
+  redis {
+    serverAddr = &quot;localhost:6379&quot;
+    db = &quot;0&quot;
+  }
+  zk {
+    cluster = &quot;default&quot;
+    serverAddr = &quot;127.0.0.1:2181&quot;
+    session.timeout = 6000
+    connect.timeout = 2000
+  }
+  consul {
+    cluster = &quot;default&quot;
+    serverAddr = &quot;127.0.0.1:8500&quot;
+  }
+  etcd3 {
+    cluster = &quot;default&quot;
+    serverAddr = &quot;http://localhost:2379&quot;
+  }
+  sofa {
+    serverAddr = &quot;127.0.0.1:9603&quot;
+    application = &quot;default&quot;
+    region = &quot;DEFAULT_ZONE&quot;
+    datacenter = &quot;DefaultDataCenter&quot;
+    cluster = &quot;default&quot;
+    group = &quot;SEATA_GROUP&quot;
+    addressWaitTime = &quot;3000&quot;
+  }
+  file {
+    name = &quot;file.conf&quot;
+  }
+}
+ 
+config {
+  # file、nacos 、apollo、zk、consul、etcd3
+  type = &quot;file&quot;
+ 
+  nacos {
+    serverAddr = &quot;localhost&quot;
+    namespace = &quot;&quot;
+  }
+  consul {
+    serverAddr = &quot;127.0.0.1:8500&quot;
+  }
+  apollo {
+    app.id = &quot;seata-server&quot;
+    apollo.meta = &quot;http://192.168.1.204:8801&quot;
+  }
+  zk {
+    serverAddr = &quot;127.0.0.1:2181&quot;
+    session.timeout = 6000
+    connect.timeout = 2000
+  }
+  etcd3 {
+    serverAddr = &quot;http://localhost:2379&quot;
+  }
+  file {
+    name = &quot;file.conf&quot;
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br></div></div><p><strong>实际上,就是要将 <code>seata</code> 中的我们之前修改的两个配置文件复制到这个项目下</strong></p> <h4 id="主启动类"><a href="#主启动类" class="header-anchor">#</a> 主启动类</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@SpringBootApplication</span><span class="token punctuation">(</span>exclude <span class="token operator">=</span> <span class="token class-name">DataSourceAutoConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token comment">//取消数据源的自动创建</span>
+<span class="token annotation punctuation">@EnableDiscoveryClient</span>
+<span class="token annotation punctuation">@EnableFeignClients</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SeataOrderMain2001</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">SeataOrderMain2001</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="service层"><a href="#service层" class="header-anchor">#</a> service层</h4> <p>订单</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">OrderService</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Order</span> order<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>远程调用</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;seata-storage-service&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">StorageService</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 减库存
+     * @param productId
+     * @param count
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/storage/decrease&quot;</span><span class="token punctuation">)</span>
+    <span class="token class-name">CommonResult</span> <span class="token function">decrease</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;productId&quot;</span><span class="token punctuation">)</span> <span class="token class-name">Long</span> productId<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;count&quot;</span><span class="token punctuation">)</span> <span class="token class-name">Integer</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;seata-account-service&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AccountService</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 减余额
+     * @param userId
+     * @param money
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/account/decrease&quot;</span><span class="token punctuation">)</span>
+    <span class="token class-name">CommonResult</span> <span class="token function">decrease</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;userId&quot;</span><span class="token punctuation">)</span> <span class="token class-name">Long</span> userId<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;money&quot;</span><span class="token punctuation">)</span> <span class="token class-name">BigDecimal</span> money<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">OrderService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> <span class="token class-name">OrderDao</span> orderDao<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> <span class="token class-name">AccountService</span> accountService<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> <span class="token class-name">StorageService</span> storageService<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 创建订单-&gt;调用库存服务扣减库存-&gt;调用账户服务扣减账户余额-&gt;修改订单状态
+     * 简单说:
+     * 下订单-&gt;减库存-&gt;减余额-&gt;改状态
+     * GlobalTransactional seata开启分布式事务,异常时回滚,name保证唯一即可
+     * @param order 订单对象
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@GlobalTransactional</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;fsp-create-order&quot;</span><span class="token punctuation">,</span> rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Order</span> order<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 1 新建订单</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;开始新建订单&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        orderDao<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 2 扣减库存</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;订单微服务开始调用库存,做扣减Count&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        storageService<span class="token punctuation">.</span><span class="token function">decrease</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getProductId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;订单微服务开始调用库存,做扣减End&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 3 扣减账户</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;订单微服务开始调用账户,做扣减Money&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        accountService<span class="token punctuation">.</span><span class="token function">decrease</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getUserId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> order<span class="token punctuation">.</span><span class="token function">getMoney</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;订单微服务开始调用账户,做扣减End&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 4 修改订单状态,从0到1,1代表已完成</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;修改订单状态开始&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        orderDao<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">getUserId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;-----&gt;下订单结束了,O(∩_∩)O哈哈~&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><h2 id="_3-setat原理"><a href="#_3-setat原理" class="header-anchor">#</a> 3：setat原理</h2> <p><img src="/xiaoze-blog/assets/img/image125.e6b1336b.png" alt="Alt text"></p> <p><img src="/xiaoze-blog/assets/img/image126.7cee16c8.png" alt="Alt text"></p> <h3 id="seata提供了四个模式"><a href="#seata提供了四个模式" class="header-anchor">#</a> seata提供了四个模式</h3> <blockquote><p>AT 模式
+TCC 模式
+SAGA 模式
+XA 模式</p></blockquote> <p><img src="/xiaoze-blog/assets/img/image127.360d0b09.png" alt="Alt text"></p> <h3 id="第一阶段"><a href="#第一阶段" class="header-anchor">#</a> 第一阶段</h3> <p><img src="/xiaoze-blog/assets/img/image128.003ef92e.png" alt="Alt text"></p> <p><img src="/xiaoze-blog/assets/img/image129.51a82998.png" alt="Alt text"></p> <h3 id="二阶段之提交"><a href="#二阶段之提交" class="header-anchor">#</a> 二阶段之提交</h3> <p><img src="/xiaoze-blog/assets/img/image130.6a89f4be.png" alt="Alt text"></p> <h3 id="二阶段之回滚"><a href="#二阶段之回滚" class="header-anchor">#</a> 二阶段之回滚</h3> <p><img src="/xiaoze-blog/assets/img/image131.0757af12.png" alt="Alt text"> <img src="/xiaoze-blog/assets/img/image132.306fb1d1.png" alt="Alt text"></p> <h3 id="断点"><a href="#断点" class="header-anchor">#</a> 断点</h3> <p><img src="/xiaoze-blog/assets/img/image133.de774a30.png" alt="Alt text"></p> <p>可以看到,他们的xid全局事务id是一样的,证明他们在一个事务下</p> <p><img src="/xiaoze-blog/assets/img/image134.86f56c01.png" alt="Alt text"></p> <h3 id="before和after的原理"><a href="#before和after的原理" class="header-anchor">#</a> before和after的原理</h3> <p><img src="/xiaoze-blog/assets/img/image135.537eece2.png" alt="Alt text"></p> <p><strong>在更新数据之前,先解析这个更新sql,然后查询要更新的数据,进行保存</strong></p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/后端/springcloud/13：Sentinel.html" class="prev">
+          13：Sentinel
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html">
+          1：RabbitMq
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#_1-seata安装" class="sidebar-link reco-side-_1-seata安装" data-v-b57cc07c>1：seata安装</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#下载" class="sidebar-link reco-side-下载" data-v-b57cc07c>下载</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#修改file-conf" class="sidebar-link reco-side-修改file-conf" data-v-b57cc07c>修改file.conf</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#mysql建库建表" class="sidebar-link reco-side-mysql建库建表" data-v-b57cc07c>mysql建库建表</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#修改registry-conf" class="sidebar-link reco-side-修改registry-conf" data-v-b57cc07c>修改registry.conf</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#启动" class="sidebar-link reco-side-启动" data-v-b57cc07c>启动</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#_2-举例" class="sidebar-link reco-side-_2-举例" data-v-b57cc07c>2：举例</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#创建三个数据库" class="sidebar-link reco-side-创建三个数据库" data-v-b57cc07c>创建三个数据库</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#创建对应的表" class="sidebar-link reco-side-创建对应的表" data-v-b57cc07c>创建对应的表</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#创建回滚日志表-方便查看" class="sidebar-link reco-side-创建回滚日志表-方便查看" data-v-b57cc07c>创建回滚日志表,方便查看</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#创建seata-order-2001" class="sidebar-link reco-side-创建seata-order-2001" data-v-b57cc07c>创建seata-order-2001</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#_3-setat原理" class="sidebar-link reco-side-_3-setat原理" data-v-b57cc07c>3：setat原理</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#seata提供了四个模式" class="sidebar-link reco-side-seata提供了四个模式" data-v-b57cc07c>seata提供了四个模式</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#第一阶段" class="sidebar-link reco-side-第一阶段" data-v-b57cc07c>第一阶段</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#二阶段之提交" class="sidebar-link reco-side-二阶段之提交" data-v-b57cc07c>二阶段之提交</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#二阶段之回滚" class="sidebar-link reco-side-二阶段之回滚" data-v-b57cc07c>二阶段之回滚</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#断点" class="sidebar-link reco-side-断点" data-v-b57cc07c>断点</a></li><li class="level-3" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/springcloud/14%EF%BC%9ASeata.html#before和after的原理" class="sidebar-link reco-side-before和after的原理" data-v-b57cc07c>before和after的原理</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.7c8e580d.js" defer></script><script src="/xiaoze-blog/assets/js/11.aec34606.js" defer></script><script src="/xiaoze-blog/assets/js/1.faeb34d2.js" defer></script><script src="/xiaoze-blog/assets/js/19.96a614d4.js" defer></script>
+  </body>
+</html>

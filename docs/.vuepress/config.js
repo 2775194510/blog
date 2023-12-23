@@ -157,6 +157,8 @@ module.exports = {
                 'springcloud/10：消息总线Bus',
                 'springcloud/11：消息驱动Stream',
                 'springcloud/12：链路追踪Sleuth',
+                'springcloud/13：Sentinel',
+                'springcloud/14：Seata',
 
               ]
             },
