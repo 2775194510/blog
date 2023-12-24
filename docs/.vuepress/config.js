@@ -369,6 +369,21 @@ module.exports = {
         }
       ],
 
+      '/blogs/架构/': [
+        {
+          title: '架构基础和知识点',
+          collapsable: false,
+          children: [
+            {
+              title: '分布式系统',
+              collapsable: false,
+              children: [
+                '分布式系统/1：全局唯一id实现方案'
+              ]
+            },
+          ]
+        }
+      ],
       '/blogs/好玩的东西/': [
         {
           title: '各种杂货铺',
@@ -760,6 +775,20 @@ module.exports = {
           { text: '刷题链接', link: 'https://leetcode.cn/problemset/all/' },
         ]
       },
+
+      {
+        text: '架构',
+        items: [
+          {
+            text: '分布式系统',
+            items: [
+              {
+                text: '全局唯一id实现方案', link: '/blogs/架构/分布式系统/1：全局唯一id实现方案'
+              }
+            ]
+          }
+        ]
+      },
       {
         text: '其他',
         items: [
@@ -793,14 +822,14 @@ module.exports = {
     ],
     // 博客配置ll
     blogConfig: {
-      category: {
-        location: 2, // 在导航栏菜单中所占的位置，默认2
-        text: "必备知识", // 默认文案 “分类”
-      },
-      tag: {
-        location: 9, // 在导航栏菜单中所占的位置，默认3
-        text: "Tag", // 默认文案 “标签”
-      },
+      // category: {
+      //   location: 2, // 在导航栏菜单中所占的位置，默认2
+      //   text: "必备知识", // 默认文案 “分类”
+      // },
+      // tag: {
+      //   location: 9, // 在导航栏菜单中所占的位置，默认3
+      //   text: "Tag", // 默认文案 “标签”
+      // },
       socialLinks: [     // 信息栏展示社交信息
         { icon: 'reco-github', link: 'https://github.com/recoluan' },
         { icon: 'reco-mayun', link: 'https://gitee.com/hu-haoze/xiaoze-blog/pages' },
