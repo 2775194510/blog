@@ -184,6 +184,21 @@ module.exports = {
                 },
               ]
             },
+            {
+              title: '分库分表',
+              collapsable: false,
+              children: [
+                {
+                  title: 'shardingsphere',
+                  collapsable: false,
+                  children: [
+                    'shardingsphere/1：shardingsphere基础',
+                    'shardingsphere/2：shardingjdbc',
+
+                  ]
+                },
+              ]
+            },
           ]
         }
       ],
@@ -743,6 +758,7 @@ module.exports = {
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '消息中间件', link: '/blogs/后端/rabbitmq/1：RabbitMq' },
+          { text: 'Shardingsphere', link: '/blogs/后端/shardingsphere/1：shardingsphere基础' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
         ]
       },
