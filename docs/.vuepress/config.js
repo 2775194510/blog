@@ -333,8 +333,8 @@ module.exports = {
               title: 'jQuery',
               collapsable: false,
               children: [
-                'jquery',
-                'jquery常用'
+                'jquery/jquery',
+                'jquery/jquery常用'
               ]
             },
             {
@@ -348,7 +348,10 @@ module.exports = {
               title: 'vue3',
               collapsable: false,
               children: [
-                'vue3/vue3',
+                'vue3/1：创建vue3工程',
+                'vue3/2：Vue3核心语法',
+                'vue3/3：路由',
+
               ]
             },
             {
@@ -361,11 +364,19 @@ module.exports = {
           ]
         }
       ],
+
       '/blogs/算法/': [
         {
-          title: '算法大全',
+          title: '',
           collapsable: false,
           children: [
+            {
+              title: '数据结构',
+              collapsable: false,
+              children: [
+                '数据结构/1：数组和矩阵',
+              ]
+            },
             {
               title: 'Java',
               collapsable: false,
@@ -374,21 +385,27 @@ module.exports = {
               ]
             },
             {
-              title: 'MySQL',
+              title: 'Mysql',
               collapsable: false,
               children: [
                 'MySQL/MySQL算法',
               ]
-            }
+            },
           ]
         }
       ],
-
       '/blogs/架构/': [
         {
           title: '架构基础和知识点',
           collapsable: false,
           children: [
+            {
+              title: '设计模式',
+              collapsable: false,
+              children: [
+                '设计模式/1：单例模式'
+              ]
+            },
             {
               title: '分布式系统',
               collapsable: false,
@@ -739,9 +756,9 @@ module.exports = {
       {
         text: '前端',
         items: [
-          { text: 'jQuery笔记', link: '/blogs/前端/jquery' },
+          { text: 'jQuery笔记', link: '/blogs/前端/jquery/jquery' },
           { text: 'vue2', link: '/blogs/前端/vue2/vue2' },
-          { text: 'vue3', link: '/blogs/前端/vue3/vue3' },
+          { text: 'vue3', link: '/blogs/前端/vue3/1：创建vue3工程' },
           { text: 'ES6', link: '/blogs/前端/ES6/ES6语法' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
         ]
@@ -786,8 +803,32 @@ module.exports = {
       {
         text: '算法',
         items: [
-          { text: 'Java', link: '/blogs/算法/java/Java算法' },
-          { text: 'Mysql', link: '/blogs/算法/MySQL/MySQL算法' },
+          {
+            text: '算法基础和思想',
+            items: [
+              { text: '数据结构基础', link: '/blogs/算法/数据结构/1：数组和矩阵' },
+            ]
+          },
+
+          {
+            text: 'java',
+            items: [
+              {
+                text: 'Java',
+                link: '/blogs/算法/java/Java算法'
+              }
+            ]
+
+          },
+          {
+            text: 'Mysql',
+            items: [
+              {
+                text: 'Mysql',
+                link: '/blogs/算法/MySQL/MySQL算法'
+              }
+            ]
+          },
           { text: '刷题链接', link: 'https://leetcode.cn/problemset/all/' },
         ]
       },
@@ -795,6 +836,14 @@ module.exports = {
       {
         text: '架构',
         items: [
+          {
+            text: '设计模式',
+            items: [
+              {
+                text: '设计模式', link: '/blogs/架构/设计模式/1：单例模式'
+              }
+            ]
+          },
           {
             text: '分布式系统',
             items: [
