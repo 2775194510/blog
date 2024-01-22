@@ -403,7 +403,10 @@ module.exports = {
               title: '设计模式',
               collapsable: false,
               children: [
-                '设计模式/1：单例模式'
+                '设计模式/1：单例模式',
+                '设计模式/2：策略模式',
+                '设计模式/3：工厂模式',
+
               ]
             },
             {
@@ -840,7 +843,7 @@ module.exports = {
             text: '设计模式',
             items: [
               {
-                text: '设计模式', link: '/blogs/架构/设计模式/1：单例模式'
+                text: '设计模式学习入口', link: '/blogs/架构/设计模式/1：单例模式'
               }
             ]
           },
