@@ -351,6 +351,10 @@ module.exports = {
                 'vue3/1：创建vue3工程',
                 'vue3/2：Vue3核心语法',
                 'vue3/3：路由',
+                'vue3/4：pinia',
+                'vue3/5：组件通信',
+                'vue3/6：其它API',
+                'vue3/7：Vue3新组件',
 
               ]
             },
