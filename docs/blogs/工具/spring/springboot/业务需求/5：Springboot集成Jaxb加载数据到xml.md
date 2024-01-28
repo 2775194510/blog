@@ -2,6 +2,8 @@
 title: 5：Springboot集成Jaxb加载数据到xml
 date: 2023-8-31
 sidebar: auto
+keys: 
+  - 'c5abde72f7faa2110550fc5a776622a2'
 categories:
   - spring
 tags:
@@ -388,7 +390,138 @@ userTestJaxb=src/main/resources/UserTestJaxb.xml
     }
 ```
 
-## 5：学习网站补充
+## 5：加载配置文件数据成map
+
+### 1）配置文件
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+    <mapping appId="VBS" svcCd="1800500001" svcScn="01" verNo="1.0.0.0" tranNo="801086" tranNm="总线文件服务" logFlag="0" fileFlag="0" ftpFlag="0" headTyp="1"/>
+</mappings>
+```
+
+### 2）对应实体类
+
+```java
+@XmlRootElement(name = "mappings")
+@XmlAccessorType(XmlAccessType.FIELD)
+@Data
+public class EsbServMappings {
+	@XmlElement(name = "mapping")
+    private List<EsbServMapping> mappingDefs;
+}
+```
+
+
+```java
+@XmlRootElement(name = "mapping")
+@XmlAccessorType(XmlAccessType.FIELD)
+@Data
+public class EsbServMapping {
+	@XmlAttribute(name = "appId")
+    private String appId;
+	
+	@XmlAttribute(name = "svcCd")
+    private String svcCd;
+	
+	@XmlAttribute(name = "svcScn")
+    private String svcScn;
+	
+	@XmlAttribute(name = "verNo")
+    private String verNo;
+	
+	@XmlAttribute(name = "tranNo")
+    private String tranNo;
+	
+	@XmlAttribute(name = "tranNm")
+    private String tranNm;
+	
+	@XmlAttribute(name = "logFlag")
+    private String logFlag;
+	
+	@XmlAttribute(name = "fileFlag")
+    private String fileFlag;
+	
+	@XmlAttribute(name = "ftpFlag")
+    private String ftpFlag;
+
+	@XmlAttribute(name = "headTyp")
+    private String headTyp;
+	
+	@XmlAttribute(name = "inConvFlag")
+    private String inConvFlag;
+	
+	@XmlAttribute(name = "outConvFlag")
+    private String outConvFlag;
+
+}
+```
+
+### 3）组件读取
+```java
+@Configuration
+@ComponentScan(basePackages = "com.xjrccb.bizplat.gateway")
+public class GateWayConfig {
+	
+	private static final Logger logger = LoggerFactory.getLogger(GateWayConfig.class);
+	
+	/**
+	 * 加载Esb服务配置文件
+	 * @return
+	 */
+	@Bean(name = "esbSevMapping")
+	public Map<String, EsbServMapping> esbServMapping() {
+		Map<String, EsbServMapping> map = new HashMap<>();
+		
+		Resource resource = new ClassPathResource("META-INF/esbServMapping.xml");
+		InputStream inputStream = null;
+		try {
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+			spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+			spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+			spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+			inputStream = resource.getInputStream();
+			
+			Source source = new SAXSource(spf.newSAXParser().getXMLReader(), new InputSource(inputStream));
+			JAXBContext jc = JAXBContext.newInstance(EsbServMappings.class);
+			Unmarshaller u = jc.createUnmarshaller();
+			Object obj = u.unmarshal(source);
+			EsbServMappings def = EsbServMappings.class.cast(obj);
+			
+			List<EsbServMapping> esbServMappList = def.getMappingDefs();
+			if(CollectionUtils.isNotEmpty(esbServMappList)) {
+				esbServMappList.forEach(esbServMapp -> {
+					map.put(esbServMapp.getSvcCd(), esbServMapp);
+				});
+			}		
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+			throw new RuntimeException("加载Esb配置文件错误");
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					logger.error("struct流关闭异常:", e);
+				}
+			}
+		}
+		
+		
+		return map;
+	}
+}
+```
+### 4）使用
+```java
+	@Autowired
+	private Map<String, EsbServMapping> esbSevMapping;
+
+    // 根据唯一得svcId来获取该行具体信息到实体类映射中
+    EsbServMapping esbServEnum = esbSevMapping.get(svcId);
+```
+## 6：学习网站补充
 - [JAXB应用实例大全](https://www.cnblogs.com/chenbenbuyi/archive/2018/01/20/8283657.html#_label1)
 - [W3Cschool](https://www.w3cschool.cn/jaxb2/jaxb2-tji52zof.html)
 - [互相转换示例](https://zhuanlan.zhihu.com/p/343893930)
