@@ -540,6 +540,7 @@ module.exports = {
                         'spring/springboot/业务需求/11：大文件上传',
                         'spring/springboot/业务需求/12：springboot上传文件至本地',
                         'spring/springboot/业务需求/13：订单自动取消的11种实现方式',
+                        'spring/springboot/业务需求/14：springboot进行图片中文字识别',
 
                       ]
                     },
