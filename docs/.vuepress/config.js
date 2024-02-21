@@ -705,6 +705,13 @@ module.exports = {
                 'Kafka面试题'
               ]
             },
+            {
+              title: '面试杂货铺',
+              collapsable: false,
+              children: [
+                '其他资料/1：HTTP加密和HTTPS工作过程',
+              ]
+            },
           ]
         }
       ],
