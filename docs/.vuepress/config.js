@@ -424,7 +424,9 @@ module.exports = {
               title: '分布式系统',
               collapsable: false,
               children: [
-                '分布式系统/1：全局唯一id实现方案'
+                '分布式系统/1：全局唯一id实现方案',
+                '分布式系统/2：经典限流算法'
+
               ]
             },
           ]
@@ -870,9 +872,9 @@ module.exports = {
           {
             text: '分布式系统',
             items: [
-              {
-                text: '全局唯一id实现方案', link: '/blogs/架构/分布式系统/1：全局唯一id实现方案'
-              }
+              { text: '1：全局唯一id实现方案', link: '/blogs/架构/分布式系统/1：全局唯一id实现方案' },
+              { text: '2：经典限流算法', link: '/blogs/架构/分布式系统/2：经典限流算法' }
+
             ]
           }
         ]
