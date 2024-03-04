@@ -170,6 +170,8 @@ tags:
 
 ### 4.1 参考地址
 
+[安装参考地址](https://hu-haoze.gitee.io/xiaoze-blog/blogs/%E5%90%8E%E7%AB%AF/elasticSearch/2：windows安装elasticSearch.html)
+
 ### 4.2 总结
 
 >  **`分词器` 的作用是什么？**

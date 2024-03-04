@@ -206,6 +206,7 @@ module.exports = {
                 'elasticSearch/1：docker安装elasticSearch',
                 'elasticSearch/2：windows安装elasticSearch',
                 'elasticSearch/3：初识elasticsearch',
+                'elasticSearch/4：DSL语法',
 
               ]
             },
