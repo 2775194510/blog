@@ -203,7 +203,10 @@ module.exports = {
               title: 'elasticSearch',
               collapsable: false,
               children: [
-                'elasticSearch/1：安装elasticSearch',
+                'elasticSearch/1：docker安装elasticSearch',
+                'elasticSearch/2：windows安装elasticSearch',
+                'elasticSearch/3：初识elasticsearch',
+
               ]
             },
           ]
@@ -800,7 +803,7 @@ module.exports = {
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '消息中间件', link: '/blogs/后端/rabbitmq/1：RabbitMq' },
           { text: 'Shardingsphere', link: '/blogs/后端/shardingsphere/1：shardingsphere基础' },
-          { text: 'ElasticSearch', link: '/blogs/后端/elasticSearch/1：安装elasticSearch' },
+          { text: 'ElasticSearch', link: '/blogs/后端/elasticSearch/1：docker安装elasticSearch' },
           { text: '其它链接', link: 'https://www.baidu.com/' }// 外部链接
         ]
       },
