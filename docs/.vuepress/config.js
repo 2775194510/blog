@@ -206,7 +206,11 @@ module.exports = {
                 'elasticSearch/1：docker安装elasticSearch',
                 'elasticSearch/2：windows安装elasticSearch',
                 'elasticSearch/3：初识elasticsearch',
-                'elasticSearch/4：DSL语法',
+                'elasticSearch/4：DSL语法操作索引库和文档',
+                'elasticSearch/5：RestClient操作索引库和文档',
+                'elasticSearch/6：DSL语法查询文档',
+                'elasticSearch/7：DSL搜索结果处理',
+                'elasticSearch/8：RestClient查询文档',
 
               ]
             },
