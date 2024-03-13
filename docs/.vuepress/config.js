@@ -211,6 +211,7 @@ module.exports = {
                 'elasticSearch/6：DSL语法查询文档',
                 'elasticSearch/7：DSL搜索结果处理',
                 'elasticSearch/8：RestClient查询文档',
+                'elasticSearch/9：搜索案例实现',
 
               ]
             },
