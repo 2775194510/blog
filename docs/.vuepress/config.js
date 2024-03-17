@@ -212,6 +212,8 @@ module.exports = {
                 'elasticSearch/7：DSL搜索结果处理',
                 'elasticSearch/8：RestClient查询文档',
                 'elasticSearch/9：搜索案例实现',
+                'elasticSearch/10：数据聚合和自动补全',
+                'elasticSearch/11：数据同步',
 
               ]
             },
