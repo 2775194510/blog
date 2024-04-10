@@ -567,6 +567,7 @@ module.exports = {
                         'spring/springboot/业务需求/13：订单自动取消的11种实现方式',
                         'spring/springboot/业务需求/14：springboot进行图片中文字识别',
                         'spring/springboot/业务需求/15：校验非controller层业务参数',
+                        'spring/springboot/业务需求/16：游标解决深翻页问题',
 
                       ]
                     },
