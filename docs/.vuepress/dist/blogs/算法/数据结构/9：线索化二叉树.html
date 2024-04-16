@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>9：线索化二叉树 | 小泽认真奋进</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/xiaoze-blog/assets/css/0.styles.25451b68.css" as="style"><link rel="preload" href="/xiaoze-blog/assets/js/app.ad1c8717.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/11.8b4fb189.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/1.a4abe869.js" as="script"><link rel="preload" href="/xiaoze-blog/assets/js/85.b72ee410.js" as="script"><link rel="prefetch" href="/xiaoze-blog/assets/js/10.d1cf6faf.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/100.d43ca092.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/101.93cd62a5.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/102.558342b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/103.3c0a0406.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/104.fa78979c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/105.6e0676f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/106.a68f5ce3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/107.70f5ac8f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/108.3bc08138.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/109.6e49fb53.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/110.dcc726e0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/111.ca9eda1d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/112.42d2aa4e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/113.00da2505.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/114.801c9909.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/115.614fac41.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/116.9a334790.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/117.16e238ab.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/118.48a6d1d9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/119.9c599e3f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/12.b58ee113.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/120.6b8ecc17.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/121.7dc74166.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/122.044a3779.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/123.c8350fc4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/124.0f68a7f2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/125.775bdc30.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/126.6d48865a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/127.c2122659.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/128.98d2ce02.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/129.f3ee4896.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/13.6eb7d8a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/130.fd0d4180.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/131.3d0820b2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/132.3c8333a9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/133.76b8992d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/134.5a69e7e1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/135.d28e5eb8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/136.9b5a11e4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/137.4cee8036.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/138.e4385f91.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/139.c8ef3708.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/14.7cef7881.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/140.3fc1f68f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/141.91dfc41c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/142.9b258c52.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/143.a57e5ac4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/144.d18cb347.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/145.86ab7592.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/146.887a414f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/147.b6b52233.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/148.1a6ca914.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/149.74997503.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/15.7e0ae21e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/150.4e5ddbd2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/151.88680296.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/152.a5eaf3a9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/153.da5c9045.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/154.25915628.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/155.cd064eed.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/156.4f86cf1b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/157.317b9ee2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/158.17766835.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/159.33043e5f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/16.bcdb679f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/160.36593391.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/161.c719a558.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/162.a25812c3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/163.9e67252c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/164.5b8e1042.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/165.be6cadfb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/166.70bbab15.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/167.fb13002c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/168.53e548a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/169.45fb7d5d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/17.0f532787.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/170.8928e6c7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/171.ac72e605.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/172.570238d6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/173.ef3ff3c7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/174.d9b1fd61.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/175.d049c73c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/176.c0566696.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/177.0de883fa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/178.4a8112cc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/179.eab078eb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/18.df35ac86.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/180.d32f707c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/181.53d8bbeb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/182.c17b9065.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/183.c23b60e9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/184.0f1ddff8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/185.45589175.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/186.afc388b3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/187.68b3c13e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/188.3808bd1e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/189.5d4ebd3c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/19.6e85e2d8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/190.d8df57e8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/191.f98932be.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/192.f7f188ec.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/193.4d0dc924.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/194.90f5bcb7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/195.31b6f734.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/196.18d4a40c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/197.7aac29b4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/198.3e227a07.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/199.8fe4e358.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/20.adf59b0c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/200.0b5d46ab.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/201.2daab489.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/202.ff1d9023.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/203.2034e91b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/204.6a0ceb03.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/205.fcff612b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/206.932b008b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/207.77433a19.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/208.ccbc66ca.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/209.a44db49a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/21.30282c4f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/210.5e2ce6bd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/211.e7f5682e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/212.d917b0e1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/213.51f4708d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/214.71b826a2.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/215.d01a8349.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/216.d073bcea.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/217.62e365b8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/218.569bfbcd.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/219.a14bcf3e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/22.7b6d1b91.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/220.eed953a3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/221.2ab1a147.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/222.f3abae77.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/223.e9ac67bb.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/224.66cdfe3d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/225.b8f36534.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/226.3a3016b1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/23.20519308.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/24.c1e1d3fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/25.23f87c5d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/26.7371ff3f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/27.a48e6944.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/28.b8634ecc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/29.2d12d645.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/3.5fba4bb0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/30.9e100280.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/31.d48d4094.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/32.94de077d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/33.6c023bd8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/34.1ad80ba8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/35.5d833eff.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/36.46603b28.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/37.e5e2a1fc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/38.dcbf2e17.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/39.bb575b2e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/4.11e417b4.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/40.ed8217a0.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/41.218bc16f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/42.0cbc9254.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/43.85030cfe.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/44.de6f313d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/45.3001482a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/46.76d00448.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/47.b6361c68.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/48.db18e3ab.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/49.bbd1fa89.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/5.f822960a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/50.40ccc56c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/51.ba6721d3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/52.d7f70360.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/53.39a734af.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/54.14b39560.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/55.66c7949c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/56.1ee6ec2d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/57.26a2f7b3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/58.ee1d360e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/59.3362e951.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/6.700d9a40.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/60.495c0ea7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/61.fd473306.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/62.ee2a4b83.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/63.81bac12c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/64.9a08306e.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/65.1fe2dca3.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/66.351bd78f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/67.dc278c1f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/68.364adce8.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/69.99356345.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/7.b7494a18.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/70.317c4f88.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/71.cf85c79a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/72.0acca106.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/73.739fe35a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/74.ebc77020.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/75.8ada03b7.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/76.aab8df0c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/77.b3b7435d.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/78.33558574.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/79.cba7446f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/8.4e7f287a.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/80.e84f9359.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/81.59edd41c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/82.3bfb8e60.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/83.a6f525ce.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/84.91d1d227.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/86.e46a80a6.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/87.8a6beb8f.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/88.bbdcf9ee.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/89.7208d300.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/9.2168caa1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/90.b9e109dc.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/91.c4c20d84.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/92.38d4f3f9.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/93.25f5ef4c.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/94.6e4446f1.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/95.5eb1f7aa.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/96.9fd9c656.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/97.2be8906b.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/98.00ffe761.js"><link rel="prefetch" href="/xiaoze-blog/assets/js/99.c899e62b.js">
+    <link rel="stylesheet" href="/xiaoze-blog/assets/css/0.styles.25451b68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>小泽认真奋进</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/xiaoze-blog/" class="home-link router-link-active"><img src="/xiaoze-blog/logo.png" alt="小泽认真奋进" class="logo"> <span class="site-name">小泽认真奋进</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/1：创建vue3工程.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/shardingsphere/1：shardingsphere基础.html" class="nav-link"><i class="undefined"></i>
+  Shardingsphere
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/elasticSearch/1：docker安装elasticSearch.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>算法基础和思想</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/数据结构/1：数组和矩阵.html" class="nav-link"><i class="undefined"></i>
+  数据结构基础
+</a></li></ul></li><li class="dropdown-item"><h4>java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>Mysql</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>设计模式</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/设计模式/1：单例模式.html" class="nav-link"><i class="undefined"></i>
+  设计模式学习入口
+</a></li></ul></li><li class="dropdown-item"><h4>分布式系统</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/分布式系统/1：全局唯一id实现方案.html" class="nav-link"><i class="undefined"></i>
+  1：全局唯一id实现方案
+</a></li><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/分布式系统/2：经典限流算法.html" class="nav-link"><i class="undefined"></i>
+  2：经典限流算法
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/xiaoze-blog/titletop.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <!----> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>214</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>41</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#f47e60;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-mayun" style="color:#849b87;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-csdn" style="color:#e15b64;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/xiaoze-blog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/jquery/jquery.html" class="nav-link"><i class="undefined"></i>
+  jQuery笔记
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue2/vue2.html" class="nav-link"><i class="undefined"></i>
+  vue2
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/vue3/1：创建vue3工程.html" class="nav-link"><i class="undefined"></i>
+  vue3
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/前端/ES6/ES6语法.html" class="nav-link"><i class="undefined"></i>
+  ES6
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      后端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/java/Java面向对象.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/juc/1：线程基础.html" class="nav-link"><i class="undefined"></i>
+  Juc
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatis/1：mybatis入门教程.html" class="nav-link"><i class="undefined"></i>
+  Mybatis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/mybatisPlus/1：mybatisPlus相关业务.html" class="nav-link"><i class="undefined"></i>
+  MybatisPlus
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/redis/redis基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/spring/1：SpringAop.html" class="nav-link"><i class="undefined"></i>
+  Spring
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springboot/1：SpringBoot拦截器.html" class="nav-link"><i class="undefined"></i>
+  SpringBoot
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/springcloud/1：springcloud入门.html" class="nav-link"><i class="undefined"></i>
+  SpringCloud
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/rabbitmq/1：RabbitMq.html" class="nav-link"><i class="undefined"></i>
+  消息中间件
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/shardingsphere/1：shardingsphere基础.html" class="nav-link"><i class="undefined"></i>
+  Shardingsphere
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/后端/elasticSearch/1：docker安装elasticSearch.html" class="nav-link"><i class="undefined"></i>
+  ElasticSearch
+</a></li><li class="dropdown-item"><!----> <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  其它链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      大数据
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/大数据/Flink/1：Flink概述.html" class="nav-link"><i class="undefined"></i>
+  flink
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      运维
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/运维/docker/1：docker安装部署.html" class="nav-link"><i class="undefined"></i>
+  docker
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      数据库
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/mysql/mysql基本语法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/数据库/oracle/oracle基本语法.html" class="nav-link"><i class="undefined"></i>
+  Oracle
+</a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  学习链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      算法
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>算法基础和思想</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/数据结构/1：数组和矩阵.html" class="nav-link"><i class="undefined"></i>
+  数据结构基础
+</a></li></ul></li><li class="dropdown-item"><h4>java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/java/Java算法.html" class="nav-link"><i class="undefined"></i>
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>Mysql</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="nav-link"><i class="undefined"></i>
+  Mysql
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="https://leetcode.cn/problemset/all/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  刷题链接
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      架构
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>设计模式</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/设计模式/1：单例模式.html" class="nav-link"><i class="undefined"></i>
+  设计模式学习入口
+</a></li></ul></li><li class="dropdown-item"><h4>分布式系统</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/分布式系统/1：全局唯一id实现方案.html" class="nav-link"><i class="undefined"></i>
+  1：全局唯一id实现方案
+</a></li><li class="dropdown-subitem"><a href="/xiaoze-blog/blogs/架构/分布式系统/2：经典限流算法.html" class="nav-link"><i class="undefined"></i>
+  2：经典限流算法
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      其他
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/maven基本知识.html" class="nav-link"><i class="undefined"></i>
+  maven
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/gitee.html" class="nav-link"><i class="undefined"></i>
+  gitee
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/linux.html" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/Nginx.html" class="nav-link"><i class="undefined"></i>
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/其他/lua脚本.html" class="nav-link"><i class="undefined"></i>
+  lua
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/python/基本语法/1：基本数据类型.html" class="nav-link"><i class="undefined"></i>
+  python
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      好玩的东西
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/cmd命令/1：cmd打开本地电脑文件.html" class="nav-link"><i class="undefined"></i>
+  电脑杂货铺
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/好玩的东西/markdown语法/markdown.html" class="nav-link"><i class="undefined"></i>
+  markdown语法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      工具集合
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/css/h5/h5.html" class="nav-link"><i class="undefined"></i>
+  常用css
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/spring/springboot/自定义注解/1：自定义校验字段注解.html" class="nav-link"><i class="undefined"></i>
+  spring工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/工具/redis/redis工具类/1：redisUtils快捷操作redis.html" class="nav-link"><i class="undefined"></i>
+  redis工具
+</a></li><li class="dropdown-item"><!----> <a href="/xiaoze-blog/blogs/面试/Java基础上.html" class="nav-link"><i class="undefined"></i>
+  面试大全
+</a></li></ul></div></div><div class="nav-item"><a href="/xiaoze-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>数据结构</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/算法/数据结构/1：数组和矩阵.html" class="sidebar-link">1：数组和矩阵</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/2：稀疏数组.html" class="sidebar-link">2：稀疏数组</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/3：单链表.html" class="sidebar-link">3：单链表</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/4：双向链表.html" class="sidebar-link">4：双向链表</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/6：栈.html" class="sidebar-link">6：栈</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/7：二叉树.html" class="sidebar-link">7：二叉树</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/8：顺序存储二叉树.html" class="sidebar-link">8：顺序存储二叉树</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/9：线索化二叉树.html" class="active sidebar-link">9：线索化二叉树</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/10：赫夫曼树.html" class="sidebar-link">10：赫夫曼树</a></li><li><a href="/xiaoze-blog/blogs/算法/数据结构/11：二叉排序树.html" class="sidebar-link">11：二叉排序树</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/算法/Java/Java算法.html" class="sidebar-link">Java算法集合</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Mysql</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xiaoze-blog/blogs/算法/MySQL/MySQL算法.html" class="sidebar-link">MySQL算法集合</a></li></ul></section></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>9：线索化二叉树</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><!---->
+          
+        <!---->
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">9：线索化二叉树</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>胡昊泽</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>4/15/2024</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>数据结构</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-问题"><a href="#_1-问题" class="header-anchor">#</a> 1：问题</h2> <p>将数列 <code>{1, 3, 6, 8, 10, 14 }</code> 构建成一颗二叉树. <code>n+1=7</code></p> <p><img src="/xiaoze-blog/assets/img/image20.1adec2ed.png" alt="alt text"></p> <p>问题分析:</p> <ul><li><ol><li>当我们对上面的二叉树进行 <code>中序遍历</code> 时，数列为 <code>{8, 3, 10, 1, 6, 14 }</code></li></ol></li> <li><ol start="2"><li>但是 <code>6</code>, <code>8</code>, <code>10</code>, <code>14</code> 这几个节点的 左右指针，并没有完全的利用上.</li></ol></li> <li><ol start="3"><li>如果我们希望充分的利用 <code>各个节点</code> 的左右指针， 让各个节点可以指向自己的前后节点,怎么办</li></ol></li> <li><ol start="4"><li><strong>解决方案-线索二叉树</strong></li></ol></li></ul> <h2 id="_2-基本介绍"><a href="#_2-基本介绍" class="header-anchor">#</a> 2：基本介绍</h2> <ul><li><ol><li><code>n</code> 个结点的二叉链表中含有 <code>n+1 【公式 2n-(n-1)=n+1】</code> 个空指针域。利用二叉链表中的 <strong>空指针域</strong>，存放指向 <strong>该结点在某种遍历次序下的前驱和后继结点的指针</strong>（这种附加的指针称为&quot;线索&quot;）</li></ol></li> <li><ol start="2"><li>这种加上了线索的二叉链表称为线索链表，相应的二叉树称为线索二叉树(Threaded BinaryTree)。根据线索性质的不同，线索二叉树可分为 <code>前序线索二叉树</code>、<code>中序线索二叉树</code> 和 <code>后序线索二叉树</code>三种</li></ol></li> <li><ol start="3"><li>一个结点的前一个结点，称为前驱结点</li></ol></li> <li><ol start="4"><li>一个结点的后一个结点，称为后继结点</li></ol></li></ul> <h2 id="_3-应用示例"><a href="#_3-应用示例" class="header-anchor">#</a> 3：应用示例</h2> <p>应用案例说明：将下面的二叉树，进行 <code>中序线索二叉树</code>。中序遍历的数列为 {8, 3, 10, 1, 14, 6}</p> <p><img src="/xiaoze-blog/assets/img/image21.090b6bcd.png" alt="alt text"></p> <p>思路分析: 中序遍历的结果：<code>{8, 3, 10, 1, 14, 6}</code></p> <p><img src="/xiaoze-blog/assets/img/image22.928ea03e.png" alt="alt text"></p> <p>说明: 当线索化二叉树后，<code>Node</code> 节点的 属性 <code>left</code> 和 <code>right</code> ，有如下情况:</p> <ul><li><ol><li><code>left</code> 指向的是 <code>左子树</code>，也可能是指向的 <code>前驱节点</code>. 比如 ① 节点 <code>left</code> 指向的 <code>左子树</code>, 而 ⑩ 节点的 <code>left</code> 指向的 就是 <code>前驱节点</code>.</li></ol></li> <li><ol start="2"><li><code>right</code> 指向的是 <code>右子树</code>，也可能是指向 <code>后继节点</code>，比如 ① 节点 <code>right</code> 指向的是 <code>右子树</code>，而⑩ 节点的 <code>right</code> 指向 的是 <code>后继节点</code>.</li></ol></li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">SynchronousQueue</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadedBinaryTreeDemo</span> <span class="token punctuation">{</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">//测试一把中序线索二叉树的功能</span>
+		<span class="token class-name">HeroNode</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&quot;tom&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> node2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&quot;jack&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> node3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token string">&quot;smith&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> node4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">&quot;mary&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> node5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">&quot;king&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> node6 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">,</span> <span class="token string">&quot;dim&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//二叉树，后面我们要递归创建, 现在简单处理使用手动创建</span>
+		root<span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>node2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		root<span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>node3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		node2<span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>node4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		node2<span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>node5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		node3<span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>node6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//测试中序线索化</span>
+		<span class="token class-name">ThreadedBinaryTree</span> threadedBinaryTree <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadedBinaryTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		threadedBinaryTree<span class="token punctuation">.</span><span class="token function">setRoot</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		threadedBinaryTree<span class="token punctuation">.</span><span class="token function">threadedNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//测试: 以10号节点测试</span>
+		<span class="token class-name">HeroNode</span> leftNode <span class="token operator">=</span> node5<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">HeroNode</span> rightNode <span class="token operator">=</span> node5<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;10号结点的前驱结点是 =&quot;</span>  <span class="token operator">+</span> leftNode<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//3</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;10号结点的后继结点是=&quot;</span>  <span class="token operator">+</span> rightNode<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//1</span>
+		
+		<span class="token comment">//当线索化二叉树后，能在使用原来的遍历方法</span>
+		<span class="token comment">//threadedBinaryTree.infixOrder();</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;使用线索化的方式遍历 线索化二叉树&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		threadedBinaryTree<span class="token punctuation">.</span><span class="token function">threadedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 8, 3, 10, 1, 14, 6</span>
+		
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+
+
+
+<span class="token comment">//定义ThreadedBinaryTree 实现了线索化功能的二叉树</span>
+<span class="token keyword">class</span> <span class="token class-name">ThreadedBinaryTree</span> <span class="token punctuation">{</span>
+	<span class="token keyword">private</span> <span class="token class-name">HeroNode</span> root<span class="token punctuation">;</span>
+	
+	<span class="token comment">//为了实现线索化，需要创建要给指向当前结点的前驱结点的指针</span>
+	<span class="token comment">//在递归进行线索化时，pre 总是保留前一个结点</span>
+	<span class="token keyword">private</span> <span class="token class-name">HeroNode</span> pre <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setRoot</span><span class="token punctuation">(</span><span class="token class-name">HeroNode</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>root <span class="token operator">=</span> root<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//重载一把threadedNodes方法</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">threadedNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">threadedNodes</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//遍历线索化二叉树的方法</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">threadedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">//定义一个变量，存储当前遍历的结点，从root开始</span>
+		<span class="token class-name">HeroNode</span> node <span class="token operator">=</span> root<span class="token punctuation">;</span>
+		<span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">//循环的找到leftType == 1的结点，第一个找到就是8结点</span>
+			<span class="token comment">//后面随着遍历而变化,因为当leftType==1时，说明该结点是按照线索化</span>
+			<span class="token comment">//处理后的有效结点</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getLeftType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			
+			<span class="token comment">//打印当前这个结点</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token comment">//如果当前结点的右指针指向的是后继结点,就一直输出</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getRightType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token comment">//获取到当前结点的后继结点</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			<span class="token comment">//替换这个遍历的结点</span>
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//编写对二叉树进行中序线索化的方法</span>
+	<span class="token comment">/**
+	 * 
+	 * @param node 就是当前需要线索化的结点
+	 */</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">threadedNodes</span><span class="token punctuation">(</span><span class="token class-name">HeroNode</span> node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		
+		<span class="token comment">//如果node==null, 不能线索化</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		
+		<span class="token comment">//(一)先线索化左子树</span>
+		<span class="token function">threadedNodes</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//(二)线索化当前结点[有难度]</span>
+		
+		<span class="token comment">//处理当前结点的前驱结点</span>
+		<span class="token comment">//以8结点来理解</span>
+		<span class="token comment">//8结点的.left = null , 8结点的.leftType = 1</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">//让当前结点的左指针指向前驱结点 </span>
+			node<span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>pre<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+			<span class="token comment">//修改当前结点的左指针的类型,指向前驱结点</span>
+			node<span class="token punctuation">.</span><span class="token function">setLeftType</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		
+		<span class="token comment">//处理后继结点</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>pre <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> pre<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">//让前驱结点的右指针指向当前结点</span>
+			pre<span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token comment">//修改前驱结点的右指针类型</span>
+			pre<span class="token punctuation">.</span><span class="token function">setRightType</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//!!! 每处理一个结点后，让当前结点是下一个结点的前驱结点</span>
+		pre <span class="token operator">=</span> node<span class="token punctuation">;</span>
+		
+		<span class="token comment">//(三)在线索化右子树</span>
+		<span class="token function">threadedNodes</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//删除结点</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">delNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">//如果只有一个root结点, 这里立即判断root是不是就是要删除结点</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token function">getNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				root <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+				<span class="token comment">//递归删除</span>
+				root<span class="token punctuation">.</span><span class="token function">delNode</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;空树，不能删除~&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//前序遍历</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">preOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">preOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;二叉树为空，无法遍历&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//中序遍历</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">infixOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">infixOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;二叉树为空，无法遍历&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//后序遍历</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">postOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;二叉树为空，无法遍历&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//前序遍历</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">preOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> root<span class="token punctuation">.</span><span class="token function">preOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//中序遍历</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">infixOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> root<span class="token punctuation">.</span><span class="token function">infixOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//后序遍历</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">postOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">postOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//先创建HeroNode 结点</span>
+<span class="token keyword">class</span> <span class="token class-name">HeroNode</span> <span class="token punctuation">{</span>
+	<span class="token keyword">private</span> <span class="token keyword">int</span> no<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> <span class="token class-name">HeroNode</span> left<span class="token punctuation">;</span> <span class="token comment">//默认null</span>
+	<span class="token keyword">private</span> <span class="token class-name">HeroNode</span> right<span class="token punctuation">;</span> <span class="token comment">//默认null</span>
+	<span class="token comment">//说明</span>
+	<span class="token comment">//1. 如果leftType == 0 表示指向的是左子树, 如果 1 则表示指向前驱结点</span>
+	<span class="token comment">//2. 如果rightType == 0 表示指向是右子树, 如果 1表示指向后继结点</span>
+	<span class="token keyword">private</span> <span class="token keyword">int</span> leftType<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> <span class="token keyword">int</span> rightType<span class="token punctuation">;</span>
+	
+	
+	
+	<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getLeftType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> leftType<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setLeftType</span><span class="token punctuation">(</span><span class="token keyword">int</span> leftType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>leftType <span class="token operator">=</span> leftType<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getRightType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> rightType<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setRightType</span><span class="token punctuation">(</span><span class="token keyword">int</span> rightType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>rightType <span class="token operator">=</span> rightType<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">,</span> <span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>no <span class="token operator">=</span> no<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> no<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNo</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>no <span class="token operator">=</span> no<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> name<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> left<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setLeft</span><span class="token punctuation">(</span><span class="token class-name">HeroNode</span> left<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">=</span> left<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> right<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setRight</span><span class="token punctuation">(</span><span class="token class-name">HeroNode</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">=</span> right<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token annotation punctuation">@Override</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token string">&quot;HeroNode [no=&quot;</span> <span class="token operator">+</span> no <span class="token operator">+</span> <span class="token string">&quot;, name=&quot;</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">&quot;]&quot;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//递归删除结点</span>
+	<span class="token comment">//1.如果删除的节点是叶子节点，则删除该节点</span>
+	<span class="token comment">//2.如果删除的节点是非叶子节点，则删除该子树</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">delNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		
+		<span class="token comment">//思路</span>
+		<span class="token comment">/*
+		 * 	1. 因为我们的二叉树是单向的，所以我们是判断当前结点的子结点是否需要删除结点，而不能去判断当前这个结点是不是需要删除结点.
+			2. 如果当前结点的左子结点不为空，并且左子结点 就是要删除结点，就将this.left = null; 并且就返回(结束递归删除)
+			3. 如果当前结点的右子结点不为空，并且右子结点 就是要删除结点，就将this.right= null ;并且就返回(结束递归删除)
+			4. 如果第2和第3步没有删除结点，那么我们就需要向左子树进行递归删除
+			5.  如果第4步也没有删除结点，则应当向右子树进行递归删除.
+
+		 */</span>
+		<span class="token comment">//2. 如果当前结点的左子结点不为空，并且左子结点 就是要删除结点，就将this.left = null; 并且就返回(结束递归删除)</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span>no <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//3.如果当前结点的右子结点不为空，并且右子结点 就是要删除结点，就将this.right= null ;并且就返回(结束递归删除)</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span>no <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//4.我们就需要向左子树进行递归删除</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">delNode</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//5.则应当向右子树进行递归删除</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">delNode</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//编写前序遍历的方法</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">preOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//先输出父结点</span>
+		<span class="token comment">//递归向左子树前序遍历</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">preOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//递归向右子树前序遍历</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">preOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//中序遍历</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">infixOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		
+		<span class="token comment">//递归向左子树中序遍历</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">infixOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//输出父结点</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//递归向右子树中序遍历</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">infixOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//后序遍历</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">postOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">postOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//前序遍历查找</span>
+	<span class="token comment">/**
+	 * 
+	 * @param no 查找no
+	 * @return 如果找到就返回该Node ,如果没有找到返回 null
+	 */</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">preOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;进入前序遍历&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//比较当前结点是不是</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>no <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//1.则判断当前结点的左子节点是否为空，如果不为空，则递归前序查找</span>
+		<span class="token comment">//2.如果左递归前序查找，找到结点，则返回</span>
+		<span class="token class-name">HeroNode</span> resNode <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">preOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>resNode <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//说明我们左子树找到</span>
+			<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//1.左递归前序查找，找到结点，则返回，否继续判断，</span>
+		<span class="token comment">//2.当前的结点的右子节点是否为空，如果不空，则继续向右递归前序查找</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">preOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//中序遍历查找</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">infixOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">//判断当前结点的左子节点是否为空，如果不为空，则递归中序查找</span>
+		<span class="token class-name">HeroNode</span> resNode <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">infixOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>resNode <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;进入中序查找&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//如果找到，则返回，如果没有找到，就和当前结点比较，如果是则返回当前结点</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>no <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//否则继续进行右递归的中序查找</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">infixOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+		
+	<span class="token punctuation">}</span>
+	
+	<span class="token comment">//后序遍历查找</span>
+	<span class="token keyword">public</span> <span class="token class-name">HeroNode</span> <span class="token function">postOrderSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		
+		<span class="token comment">//判断当前结点的左子节点是否为空，如果不为空，则递归后序查找</span>
+		<span class="token class-name">HeroNode</span> resNode <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">postOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>resNode <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//说明在左子树找到</span>
+			<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		
+		<span class="token comment">//如果左子树没有找到，则向右子树递归进行后序遍历查找</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			resNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">postOrderSearch</span><span class="token punctuation">(</span>no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>resNode <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;进入后序查找&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//如果左右子树都没有找到，就比较当前结点是不是</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>no <span class="token operator">==</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> resNode<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br><span class="line-number">233</span><br><span class="line-number">234</span><br><span class="line-number">235</span><br><span class="line-number">236</span><br><span class="line-number">237</span><br><span class="line-number">238</span><br><span class="line-number">239</span><br><span class="line-number">240</span><br><span class="line-number">241</span><br><span class="line-number">242</span><br><span class="line-number">243</span><br><span class="line-number">244</span><br><span class="line-number">245</span><br><span class="line-number">246</span><br><span class="line-number">247</span><br><span class="line-number">248</span><br><span class="line-number">249</span><br><span class="line-number">250</span><br><span class="line-number">251</span><br><span class="line-number">252</span><br><span class="line-number">253</span><br><span class="line-number">254</span><br><span class="line-number">255</span><br><span class="line-number">256</span><br><span class="line-number">257</span><br><span class="line-number">258</span><br><span class="line-number">259</span><br><span class="line-number">260</span><br><span class="line-number">261</span><br><span class="line-number">262</span><br><span class="line-number">263</span><br><span class="line-number">264</span><br><span class="line-number">265</span><br><span class="line-number">266</span><br><span class="line-number">267</span><br><span class="line-number">268</span><br><span class="line-number">269</span><br><span class="line-number">270</span><br><span class="line-number">271</span><br><span class="line-number">272</span><br><span class="line-number">273</span><br><span class="line-number">274</span><br><span class="line-number">275</span><br><span class="line-number">276</span><br><span class="line-number">277</span><br><span class="line-number">278</span><br><span class="line-number">279</span><br><span class="line-number">280</span><br><span class="line-number">281</span><br><span class="line-number">282</span><br><span class="line-number">283</span><br><span class="line-number">284</span><br><span class="line-number">285</span><br><span class="line-number">286</span><br><span class="line-number">287</span><br><span class="line-number">288</span><br><span class="line-number">289</span><br><span class="line-number">290</span><br><span class="line-number">291</span><br><span class="line-number">292</span><br><span class="line-number">293</span><br><span class="line-number">294</span><br><span class="line-number">295</span><br><span class="line-number">296</span><br><span class="line-number">297</span><br><span class="line-number">298</span><br><span class="line-number">299</span><br><span class="line-number">300</span><br><span class="line-number">301</span><br><span class="line-number">302</span><br><span class="line-number">303</span><br><span class="line-number">304</span><br><span class="line-number">305</span><br><span class="line-number">306</span><br><span class="line-number">307</span><br><span class="line-number">308</span><br><span class="line-number">309</span><br><span class="line-number">310</span><br><span class="line-number">311</span><br><span class="line-number">312</span><br><span class="line-number">313</span><br><span class="line-number">314</span><br><span class="line-number">315</span><br><span class="line-number">316</span><br><span class="line-number">317</span><br><span class="line-number">318</span><br><span class="line-number">319</span><br><span class="line-number">320</span><br><span class="line-number">321</span><br><span class="line-number">322</span><br><span class="line-number">323</span><br><span class="line-number">324</span><br><span class="line-number">325</span><br><span class="line-number">326</span><br><span class="line-number">327</span><br><span class="line-number">328</span><br><span class="line-number">329</span><br><span class="line-number">330</span><br><span class="line-number">331</span><br><span class="line-number">332</span><br><span class="line-number">333</span><br><span class="line-number">334</span><br><span class="line-number">335</span><br><span class="line-number">336</span><br><span class="line-number">337</span><br><span class="line-number">338</span><br><span class="line-number">339</span><br><span class="line-number">340</span><br><span class="line-number">341</span><br><span class="line-number">342</span><br><span class="line-number">343</span><br><span class="line-number">344</span><br><span class="line-number">345</span><br><span class="line-number">346</span><br><span class="line-number">347</span><br><span class="line-number">348</span><br><span class="line-number">349</span><br><span class="line-number">350</span><br><span class="line-number">351</span><br><span class="line-number">352</span><br><span class="line-number">353</span><br><span class="line-number">354</span><br><span class="line-number">355</span><br><span class="line-number">356</span><br><span class="line-number">357</span><br><span class="line-number">358</span><br><span class="line-number">359</span><br><span class="line-number">360</span><br><span class="line-number">361</span><br><span class="line-number">362</span><br><span class="line-number">363</span><br><span class="line-number">364</span><br><span class="line-number">365</span><br><span class="line-number">366</span><br><span class="line-number">367</span><br><span class="line-number">368</span><br><span class="line-number">369</span><br><span class="line-number">370</span><br><span class="line-number">371</span><br><span class="line-number">372</span><br><span class="line-number">373</span><br><span class="line-number">374</span><br><span class="line-number">375</span><br><span class="line-number">376</span><br><span class="line-number">377</span><br><span class="line-number">378</span><br><span class="line-number">379</span><br><span class="line-number">380</span><br><span class="line-number">381</span><br><span class="line-number">382</span><br><span class="line-number">383</span><br><span class="line-number">384</span><br><span class="line-number">385</span><br><span class="line-number">386</span><br><span class="line-number">387</span><br><span class="line-number">388</span><br><span class="line-number">389</span><br><span class="line-number">390</span><br><span class="line-number">391</span><br><span class="line-number">392</span><br><span class="line-number">393</span><br><span class="line-number">394</span><br><span class="line-number">395</span><br><span class="line-number">396</span><br><span class="line-number">397</span><br><span class="line-number">398</span><br><span class="line-number">399</span><br><span class="line-number">400</span><br><span class="line-number">401</span><br><span class="line-number">402</span><br><span class="line-number">403</span><br><span class="line-number">404</span><br><span class="line-number">405</span><br><span class="line-number">406</span><br></div></div><h2 id="_4-遍历线索化二叉树"><a href="#_4-遍历线索化二叉树" class="header-anchor">#</a> 4：遍历线索化二叉树</h2> <ul><li><ol><li><strong>说明</strong>：对前面的中序线索化的二叉树， 进行遍历</li></ol></li> <li><ol start="2"><li><strong>分析</strong>：因为线索化后，各个结点指向有变化，因此原来的遍历方式不能使用，这时需要使用新的方式遍历 线索化二叉树，各个节点可以通过线型方式遍历，因此无需使用递归方式，这样也提高了遍历的效率。 遍历的次 序应当和中序遍历保持一致。</li></ol></li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//遍历线索化二叉树的方法</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">threadedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">//定义一个变量，存储当前遍历的结点，从root开始</span>
+		<span class="token class-name">HeroNode</span> node <span class="token operator">=</span> root<span class="token punctuation">;</span>
+		<span class="token keyword">while</span><span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">//循环的找到leftType == 1的结点，第一个找到就是8结点</span>
+			<span class="token comment">//后面随着遍历而变化,因为当leftType==1时，说明该结点是按照线索化</span>
+			<span class="token comment">//处理后的有效结点</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getLeftType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			
+			<span class="token comment">//打印当前这个结点</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token comment">//如果当前结点的右指针指向的是后继结点,就一直输出</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getRightType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token comment">//获取到当前结点的后继结点</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			<span class="token comment">//替换这个遍历的结点</span>
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/xiaoze-blog/blogs/算法/数据结构/8：顺序存储二叉树.html" class="prev">
+          8：顺序存储二叉树
+        </a></span> <span class="next"><a href="/xiaoze-blog/blogs/算法/数据结构/10：赫夫曼树.html">
+          10：赫夫曼树
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/9%EF%BC%9A%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.html#_1-问题" class="sidebar-link reco-side-_1-问题" data-v-b57cc07c>1：问题</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/9%EF%BC%9A%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.html#_2-基本介绍" class="sidebar-link reco-side-_2-基本介绍" data-v-b57cc07c>2：基本介绍</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/9%EF%BC%9A%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.html#_3-应用示例" class="sidebar-link reco-side-_3-应用示例" data-v-b57cc07c>3：应用示例</a></li><li class="level-2" data-v-b57cc07c><a href="/xiaoze-blog/blogs/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/9%EF%BC%9A%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.html#_4-遍历线索化二叉树" class="sidebar-link reco-side-_4-遍历线索化二叉树" data-v-b57cc07c>4：遍历线索化二叉树</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><canvas id="vuepress-canvas-cursor"></canvas><div></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 小泽认真奋进
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="220" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:999;" data-v-248d85d6></canvas></div></div></div>
+    <script src="/xiaoze-blog/assets/js/app.ad1c8717.js" defer></script><script src="/xiaoze-blog/assets/js/11.8b4fb189.js" defer></script><script src="/xiaoze-blog/assets/js/1.a4abe869.js" defer></script><script src="/xiaoze-blog/assets/js/85.b72ee410.js" defer></script>
+  </body>
+</html>
