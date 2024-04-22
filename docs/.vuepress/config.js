@@ -606,6 +606,7 @@ module.exports = {
                         'spring/springboot/整合三方/10：springboot整合MybatisPlus',
                         'spring/springboot/整合三方/11：springboot整合Swagger',
                         'spring/springboot/整合三方/12：springboot整合微信推送',
+                        'spring/springboot/整合三方/13：springboot整合Websocket',
 
                       ]
                     },
