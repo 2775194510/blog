@@ -132,6 +132,8 @@ module.exports = {
               collapsable: false,
               children: [
                 'spring/1：SpringAop',
+                'spring/2：SpringIoc实现以及原理',
+
               ]
             },
             {
