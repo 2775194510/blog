@@ -270,6 +270,8 @@ module.exports = {
                 'docker/1：docker安装部署',
                 'docker/2：docker命令',
                 'docker/3：docker安装三方指南',
+                'docker/4：docker数据卷',
+
               ]
             },
           ]
