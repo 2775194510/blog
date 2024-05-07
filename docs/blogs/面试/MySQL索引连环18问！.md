@@ -2,8 +2,8 @@
 title: Mysql索引
 date: 2023-6-12
 sidebar: auto
-keys: 
-  - 'c5abde72f7faa2110550fc5a776622a2'
+# keys: 
+#   - 'c5abde72f7faa2110550fc5a776622a2'
 categories:
   - 面经
 tags:
@@ -185,9 +185,9 @@ MySQL 5.6引入了索引下推优化。默认开启，使用SET optimizer_switch
 
 ` EXPLAIN SELECT * FROM employees.titles WHERE emp_no='10001' AND title='Senior Engineer' AND from_date='1986-06-26'; `
 
-| id   | select_type | table  | partitions | type  | possible_keys | key     | key_len | ref               | filtered | rows | Extra |
-| ---- | ----------- | ------ | ---------- | ----- | ------------- | ------- | ------- | ----------------- | -------- | ---- | ----- |
-| 1    | SIMPLE      | titles | null       | const | PRIMARY       | PRIMARY | 59      | const,const,const | 10       | 1    |       |
+| id  | select_type | table  | partitions | type  | possible_keys | key     | key_len | ref               | filtered | rows | Extra |
+| --- | ----------- | ------ | ---------- | ----- | ------------- | ------- | ------- | ----------------- | -------- | ---- | ----- |
+| 1   | SIMPLE      | titles | null       | const | PRIMARY       | PRIMARY | 59      | const,const,const | 10       | 1    |       |
 
  
 

@@ -2,8 +2,8 @@
 title: SpringSecurity
 date: 2023-6-13
 sidebar: auto
-keys: 
-  - 'c5abde72f7faa2110550fc5a776622a2'
+# keys: 
+#   - 'c5abde72f7faa2110550fc5a776622a2'
 categories:
   - 面经
 tags:
@@ -324,7 +324,6 @@ public class RedisConfig {
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseResult<T> {
@@ -942,7 +941,6 @@ public class SimpleSecurityApplication {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @SpringBootTest
 public class MapperTest {
@@ -966,7 +964,6 @@ public class MapperTest {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -996,7 +993,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 ```java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Data
 @NoArgsConstructor
@@ -1065,7 +1061,6 @@ public class LoginUser implements UserDetails {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -1104,7 +1099,6 @@ public class LoginController {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -1227,7 +1221,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -1277,7 +1270,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Service
 public class LoginServiceImpl implements LoginServcie {
@@ -1394,7 +1386,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Data
 @NoArgsConstructor
@@ -1484,7 +1475,6 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -1722,7 +1712,6 @@ import com.sangeng.domain.Menu;
 import java.util.List;
 
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 public interface MenuMapper extends BaseMapper<Menu> {
     List<String> selectPermsByUserId(Long id);
@@ -1776,7 +1765,6 @@ mybatis-plus:
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -1839,7 +1827,6 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 
 ~~~~java
 /**
- * @Author 三更  B站： https://space.bilibili.com/663528522
  */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
@@ -2220,6 +2207,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-## 7. 源码讲解
-
-​	投票过50更新源码讲解

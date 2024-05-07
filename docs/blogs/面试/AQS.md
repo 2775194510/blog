@@ -2,8 +2,8 @@
 title: AQS
 date: 2023-6-12
 sidebar: auto
-keys: 
-  - 'c5abde72f7faa2110550fc5a776622a2'
+# keys: 
+#   - 'c5abde72f7faa2110550fc5a776622a2'
 categories:
   - 面经
 tags:
@@ -44,14 +44,14 @@ AQS中最基本的数据结构——Node，Node即为上面CLH变体队列中的
 
 解释一下几个方法和属性值的含义：
 
-| 方法和属性值 | 含义                                                         |
-| :----------- | :----------------------------------------------------------- |
-| waitStatus   | 当前节点在队列中的状态                                       |
-| thread       | 表示处于该节点的线程                                         |
-| prev         | 前驱指针                                                     |
-| predecessor  | 返回前驱节点，没有的话抛出npe                                |
+| 方法和属性值 | 含义                                                                                         |
+| :----------- | :------------------------------------------------------------------------------------------- |
+| waitStatus   | 当前节点在队列中的状态                                                                       |
+| thread       | 表示处于该节点的线程                                                                         |
+| prev         | 前驱指针                                                                                     |
+| predecessor  | 返回前驱节点，没有的话抛出npe                                                                |
 | nextWaiter   | 指向下一个处于CONDITION状态的节点（由于本篇文章不讲述Condition Queue队列，这个指针不多介绍） |
-| next         | 后继指针                                                     |
+| next         | 后继指针                                                                                     |
 
 线程两种锁的模式：
 
@@ -82,10 +82,10 @@ private volatile int state;
 
 下面提供了几个访问这个字段的方法：
 
-| 方法名                                                       | 描述                 |
-| :----------------------------------------------------------- | :------------------- |
-| protected final int getState()                               | 获取State的值        |
-| protected final void setState(int newState)                  | 设置State的值        |
+| 方法名                                                             | 描述                 |
+| :----------------------------------------------------------------- | :------------------- |
+| protected final int getState()                                     | 获取State的值        |
+| protected final void setState(int newState)                        | 设置State的值        |
 | protected final boolean compareAndSetState(int expect, int update) | 使用CAS方式更新State |
 
 这几个方法都是Final修饰的，说明子类中无法重写它们。我们可以通过修改State字段表示的同步状态来实现多线程的独占模式和共享模式（加锁过程）。

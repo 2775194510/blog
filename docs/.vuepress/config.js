@@ -144,6 +144,13 @@ module.exports = {
               ]
             },
             {
+              title: 'springSecurity',
+              collapsable: false,
+              children: [
+                'springSecurity/1：SpringSecurity入门教程',
+              ]
+            },
+            {
               title: 'springcloud',
               collapsable: false,
               children: [
@@ -829,6 +836,7 @@ module.exports = {
           { text: 'Redis', link: '/blogs/后端/redis/redis基本数据类型' },
           { text: 'Spring', link: '/blogs/后端/spring/1：SpringAop' },
           { text: 'SpringBoot', link: '/blogs/后端/springboot/1：SpringBoot拦截器' },
+          { text: 'SpringSecurity', link: '/blogs/后端/springsecurity/1：SpringSecurity入门教程' },
           { text: 'SpringCloud', link: '/blogs/后端/springcloud/1：springcloud入门' },
           { text: '消息中间件', link: '/blogs/后端/rabbitmq/1：RabbitMq' },
           { text: 'Shardingsphere', link: '/blogs/后端/shardingsphere/1：shardingsphere基础' },
